@@ -8,8 +8,15 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class DetalleVenta {
-    private Venta idVenta;
-    private Producto idProducto;
+    private Producto producto;
     private int cantidad;
-    private double valorTotal;
+    private double valorIva;
+    private double valorSinIva;
+    
+    public DetalleVenta(int cantidad, Producto producto){
+        this.cantidad = cantidad;
+        this.producto = producto;
+        this.valorSinIva = cantidad * producto.getPrecioPublico() ;
+        this.valorIva = valorSinIva * producto.getCategoria().getPorcentajeIva() ;
+    }
 }
