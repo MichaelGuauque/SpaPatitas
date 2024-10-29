@@ -1,5 +1,16 @@
 package com.spapatitas.persistence.model;
 
-public enum Categoria {
-    PERRO, GATO, HAMSTER
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
+
+public class Categoria {
+    private Long codigo;
+    private String descripcion;
+    private double porcentajeIva;
 }
