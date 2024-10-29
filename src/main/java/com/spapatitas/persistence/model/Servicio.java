@@ -3,10 +3,6 @@ package com.spapatitas.persistence.model;
 
 import lombok.*;
 
-/**
- *
- * @author Paul S. Figueroa
- */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -15,6 +11,5 @@ import lombok.*;
 @Builder
 public class Servicio {
     private TipoServicio tipoServicio;
-    private Cita cita;
-    private int valorTotal;
+    private Cita cita;    
 }

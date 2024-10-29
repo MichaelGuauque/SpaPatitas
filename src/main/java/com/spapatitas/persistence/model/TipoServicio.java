@@ -1,13 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
+
 package com.spapatitas.persistence.model;
 
-/**
- *
- * @author Paul S. Figueroa
- */
-public enum TipoServicio {
-    
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Builder
+
+public class TipoServicio {
+    private Long idTipoServicio;
+    private String descripcion;
+    private double precio;
 }
