@@ -1,5 +1,14 @@
 package com.spapatitas.persistence.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.*;
@@ -10,22 +19,33 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @Builder
+@Entity
 public class Cita {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCita;
-    private Cliente cliente;
+
+    @Column(nullable = false)
     private LocalDateTime fechaHora;
-    private List<Servicio> servicios;
+
+    @ManyToMany(targetEntity = TipoServicio.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "servicio")
+    private List<TipoServicio> tipoServicios;
+
+    @Column(nullable = false)
     private double ValorTotal;
 
-    public void addServicio(Servicio servicio) {
-        this.servicios.add(servicio);
-        this.ValorTotal += servicio.getTipoServicio().getPrecio();
+    @ManyToOne(targetEntity = Cliente.class)
+    private Cliente cliente;
+
+    public void addTipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicios.add(tipoServicio);
+        this.ValorTotal += tipoServicio.getPrecio();
     }
 
-    public void removeServicio(Servicio servicio) {
-        this.servicios.remove(servicio);
-        this.ValorTotal -= servicio.getTipoServicio().getPrecio();
+    public void removeTipoServicio(TipoServicio tipoServicio) {
+        this.tipoServicios.remove(tipoServicio);
+        this.ValorTotal -= tipoServicio.getPrecio();
     }
-
 }

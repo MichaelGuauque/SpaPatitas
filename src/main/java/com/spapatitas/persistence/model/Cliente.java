@@ -1,8 +1,15 @@
 package com.spapatitas.persistence.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -10,8 +17,13 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 @Builder
+@Entity
 public class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCliente;
+    
     private int cedula;
     private String primerNombre;
     private String segundoNombre;
@@ -22,4 +34,8 @@ public class Cliente {
     private String direccion;
     private int telefono;
     private UserEntity usuario;
+
+    //No modificar
+    @OneToMany(targetEntity = Cita.class, fetch = FetchType.LAZY, mappedBy = "cliente")
+    private List<Cita> citas;
 }
