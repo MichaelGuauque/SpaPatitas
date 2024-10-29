@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 public class DetalleProvee {
     private Date fecha;
-    private Producto idPr;
+    private Producto producto;
     private Proveedor nitP;
     private int cantidad;
 }
