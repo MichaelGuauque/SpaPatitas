@@ -1,5 +1,6 @@
 package com.spapatitas.persistence.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -7,8 +8,13 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
+@Table(name = "permission")
 public class PermissionEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, unique = true, updatable = false)
     private String name;
 }
