@@ -8,8 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @Builder
-public class Example {
-    private String este;
-    private String es;
-    private String unEjemplo;
+public class Pqrs {
+    private Long idPqrs;
+    private Cliente cliente;
+    private String descripcion;
 }
