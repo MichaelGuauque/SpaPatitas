@@ -1,11 +1,6 @@
 package com.spapatitas.persistence.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -13,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
 @Entity
 public class DetalleVenta {
 
@@ -20,12 +16,18 @@ public class DetalleVenta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDetalleVenta;
 
+    @ManyToOne (targetEntity = Producto.class)
     private Producto producto;
+
+    @Column(nullable = false)
     private int cantidad;
+
+    @Column(nullable = false)
     private double valorIva;
+
+    @Column(nullable = false)
     private double valorSinIva;
 
-    //No modificar
     @ManyToOne(targetEntity = Venta.class, fetch = FetchType.EAGER)
     private Venta venta;
 
