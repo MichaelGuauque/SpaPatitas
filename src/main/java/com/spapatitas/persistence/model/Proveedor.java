@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.metamodel.mapping.internal.ImmutableAttributeMappingsMap;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,5 +31,8 @@ public class Proveedor {
 
     @Column(nullable = false)
     private String correo;
+
+    @OneToMany(targetEntity = DetalleProvee.class, mappedBy = "proveedor")
+    private List<DetalleProvee> detallesProvee;
 }
 

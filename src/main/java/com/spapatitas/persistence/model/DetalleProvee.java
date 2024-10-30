@@ -25,7 +25,7 @@ public class DetalleProvee {
     private Producto producto;
 
     @ManyToOne (targetEntity = Proveedor.class)
-    private Proveedor nitP;
+    private Proveedor proveedor;
 
     @Column(nullable = false)
     private int cantidad;

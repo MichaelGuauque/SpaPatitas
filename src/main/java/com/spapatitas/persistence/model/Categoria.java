@@ -3,6 +3,8 @@ package com.spapatitas.persistence.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,4 +24,7 @@ public class Categoria {
 
     @Column(nullable = false)
     private double porcentajeIva;
+
+    @OneToMany (targetEntity = Producto.class, mappedBy = "categoria")
+    private List<Producto> productos;
 }

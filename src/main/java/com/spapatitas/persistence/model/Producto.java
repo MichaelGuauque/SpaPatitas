@@ -3,6 +3,8 @@ package com.spapatitas.persistence.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -31,4 +33,7 @@ public class Producto {
 
     @ManyToOne (targetEntity = Categoria.class)
     private Categoria categoria;
+
+    @OneToMany (targetEntity = DetalleVenta.class, mappedBy = "producto")
+    private List<DetalleVenta> detallesVenta;
 }
