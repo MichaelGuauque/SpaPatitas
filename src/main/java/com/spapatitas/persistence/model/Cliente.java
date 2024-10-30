@@ -1,11 +1,6 @@
 package com.spapatitas.persistence.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
@@ -29,10 +24,17 @@ public class Cliente {
     private String segundoNombre;
     private String primerApellido;
     private String segundoApellido;
+
+    @Enumerated(EnumType.STRING)
     private Genero genero;
     private Date fechaNacimiento;
     private String direccion;
     private int telefono;
+
+//    No deberia haber una relacion con mascota?
+//    para de esta forma ver todas las mascotas de un cliente
+
+    @OneToOne
     private UserEntity usuario;
 
     //No modificar
