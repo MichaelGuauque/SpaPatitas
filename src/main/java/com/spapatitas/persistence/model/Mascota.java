@@ -3,7 +3,7 @@ package com.spapatitas.persistence.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -20,8 +20,19 @@ public class Mascota {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private Cliente dueno;
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String nombre;
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String raza;
-    private Date fechaNacimiento;
-    private String observacione;
+
+    @Column(columnDefinition = "DATE")
+    private LocalDate fechaNacimiento;
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(300)")
+    private String observaciones;
+
+    @ManyToOne(targetEntity = Cliente.class)
+    private Cliente cliente;
 }
