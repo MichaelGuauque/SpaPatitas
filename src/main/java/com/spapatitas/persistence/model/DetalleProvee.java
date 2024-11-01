@@ -1,6 +1,8 @@
 package com.spapatitas.persistence.model;
 
 import java.util.Date;
+
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter 
@@ -8,9 +10,23 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+
+@Entity
 public class DetalleProvee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idDetalleProvee;
+
+    @Column (columnDefinition = "DATE", nullable = false)
     private Date fecha;
+
+    @ManyToOne (targetEntity = Producto.class)
     private Producto producto;
-    private Proveedor nitP;
+
+    @ManyToOne (targetEntity = Proveedor.class)
+    private Proveedor proveedor;
+
+    @Column(nullable = false)
     private int cantidad;
 }
