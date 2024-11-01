@@ -18,7 +18,7 @@ public class Mascota {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(targetEntity = Cliente.class)
     private Cliente dueno;
 
     @Column(nullable = false, columnDefinition = "VARCHAR(20)")
@@ -32,7 +32,4 @@ public class Mascota {
 
     @Column(nullable = false, columnDefinition = "VARCHAR(300)")
     private String observaciones;
-
-    @ManyToOne(targetEntity = Cliente.class)
-    private Cliente cliente;
 }

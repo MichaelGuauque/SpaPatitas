@@ -13,6 +13,7 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"usuario"}))
 public class Cliente {
 
     @Id
@@ -46,10 +47,11 @@ public class Cliente {
     @Column(nullable = false, unique = true, length = 10)
     private int telefono;
 
-    @OneToMany(targetEntity = Mascota.class, fetch = FetchType.LAZY, mappedBy = "cliente")
+    @OneToMany(targetEntity = Mascota.class, fetch = FetchType.LAZY, mappedBy = "dueno")
     private List<Mascota> mascotas;
 
-    @OneToOne
+    @OneToOne()
+    @JoinColumn(name = "usuario_id", unique = true, nullable = false)
     private UserEntity usuario;
 
     //No modificar
