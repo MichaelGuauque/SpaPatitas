@@ -30,4 +30,6 @@ public class TipoServicio {
     @Column(nullable = false)
     private double precio;
 
+//    Agregar Estado Habilitado / Deshabilitado
+
 }

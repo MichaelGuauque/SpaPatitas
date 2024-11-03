@@ -34,10 +34,13 @@ public class Cita {
     private List<TipoServicio> tipoServicios;
 
     @Column(nullable = false)
-    private double ValorTotal;
+    private double ValorTotal = 0;
 
     @ManyToOne(targetEntity = Cliente.class)
-    private Cliente cliente;
+    private Cliente cliente = null;
+
+    @Column(nullable = false)
+    private Boolean disponible;
 
     public void addTipoServicio(TipoServicio tipoServicio) {
         this.tipoServicios.add(tipoServicio);
