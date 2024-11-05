@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface ProveedorRepository extends CrudRepository<Proveedor, Long> {
 
-    Optional<Proveedor> findProveedorByNit(Long nit);
+    Optional<Proveedor> findProveedorByNombre(String nombre);
 }
