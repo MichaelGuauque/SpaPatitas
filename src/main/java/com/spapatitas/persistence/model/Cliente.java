@@ -38,6 +38,9 @@ public class Cliente {
     @Enumerated(EnumType.STRING)
     private Genero genero;
 
+    @Column(nullable = false)
+    private boolean estado;
+
     @Column(columnDefinition = "DATE")
     private LocalDate fechaNacimiento;
 

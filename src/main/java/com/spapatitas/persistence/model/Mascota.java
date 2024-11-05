@@ -32,4 +32,7 @@ public class Mascota {
 
     @Column(nullable = false, columnDefinition = "VARCHAR(300)")
     private String observaciones;
+
+    @Column(nullable = false)
+    private boolean estado;
 }
