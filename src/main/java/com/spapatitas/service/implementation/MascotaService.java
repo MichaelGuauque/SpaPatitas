@@ -26,7 +26,10 @@ public class MascotaService implements IMascotaService {
     // Encuentra una mascota por su ID
     @Override
     public Optional<Mascota> findById(Long id) {
-        return mascotaRepository.findById(id);
+        Optional<Mascota> mascotaBuscada = mascotaRepository.findById(id);
+         if (mascotaBuscada.isPresent()){
+             return mascotaBuscada;
+    }   return null;
     }
 
     // Guarda una nueva mascota en la base de datos
