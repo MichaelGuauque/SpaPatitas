@@ -20,6 +20,7 @@ public class UserEntity {
     private Long id;
     @Column(unique = true, nullable = false)
     private String username;
+    @Column(nullable = false)
     private String password;
     @Column(name = "is_enable")
     private boolean isEnabled;
