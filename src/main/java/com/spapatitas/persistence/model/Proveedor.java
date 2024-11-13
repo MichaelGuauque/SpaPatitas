@@ -20,7 +20,7 @@ public class Proveedor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long nit;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nombre;
 
     @Column(nullable = false)
@@ -31,6 +31,9 @@ public class Proveedor {
 
     @Column(nullable = false)
     private String correo;
+
+    @Column(nullable = false)
+    private boolean estado;
 
     @OneToMany(targetEntity = DetalleProvee.class, mappedBy = "proveedor")
     private List<DetalleProvee> detallesProvee;
