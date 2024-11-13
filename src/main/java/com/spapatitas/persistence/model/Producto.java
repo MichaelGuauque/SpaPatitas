@@ -19,7 +19,7 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nombre;
 
     @Column(nullable = false)
@@ -30,6 +30,9 @@ public class Producto {
 
     @Column(nullable = false)
     private int stock;
+
+    @Column(nullable = false)
+    private boolean estado;
 
     @ManyToOne (targetEntity = Categoria.class)
     private Categoria categoria;
