@@ -3,6 +3,7 @@ package com.spapatitas.service.implementation;
 import com.spapatitas.persistence.model.Cita;
 import com.spapatitas.persistence.model.Cliente;
 import com.spapatitas.persistence.repository.CitaRepository;
+import com.spapatitas.persistence.repository.ClienteRepository;
 import com.spapatitas.service.interfaces.ICitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,7 @@ public class CitaService implements ICitaService {
 
     @Autowired
     private CitaRepository citaRepository;
-
-    @Autowired
-//    private ClienteRepository clienteRepository;
+    private ClienteRepository clienteRepository;
 
     @Override
     public List<Cita> findAllCita() {
@@ -47,10 +46,10 @@ public class CitaService implements ICitaService {
     @Override
     public void agendarCita(Long idCita, Long idCliente) {
         Cita cita = citaRepository.findById(idCita).orElseThrow();
-//        Cliente cliente = clienteRepository.findById(idCliente);
+        Optional<Cliente> cliente = clienteRepository.findById(idCliente);
         if (cita.getDisponible() == TRUE) {  // Revisa si la cita está disponible (true)
             cita.setDisponible(FALSE);  // Marca como ocupada (false)
-//            cita.setCliente(cliente);
+            cita.setCliente(cliente.get());
             citaRepository.save(cita);
         }
         throw new RuntimeException("La cita no está disponible");
