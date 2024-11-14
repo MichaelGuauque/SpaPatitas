@@ -1,0 +1,21 @@
+package com.spapatitas.service.interfaces;
+
+import com.spapatitas.persistence.model.Cita;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface ICitaService {
+
+    public List<Cita> findAllCita();
+
+    public Optional<Cita> findById(Long id);
+
+    public List<Cita> findCitasDisponibles();
+
+//    public void save(Cita cita);
+
+    public void agendarCita(Long idCita, Long idCliente);
+
+    public void desagendarCita(Long idCita);
+}
