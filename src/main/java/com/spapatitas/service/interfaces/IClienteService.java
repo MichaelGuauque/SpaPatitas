@@ -1,5 +1,6 @@
 package com.spapatitas.service.interfaces;
 
+import com.spapatitas.DTO.ClienteDTO;
 import com.spapatitas.persistence.model.Cliente;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface IClienteService {
     Optional<Cliente> findByCedula(int cedula);
 
     // Guarda un nuevo cliente
-    Cliente save(Cliente cliente);
+    Cliente save(ClienteDTO cliente);
 
     // Actualiza un cliente existente
     Cliente update(Cliente cliente);

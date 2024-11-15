@@ -48,7 +48,7 @@ public class Cliente {
     private String direccion;
 
     @Column(nullable = false, unique = true, length = 10)
-    private int telefono;
+    private long telefono;
 
     @OneToMany(targetEntity = Mascota.class, fetch = FetchType.LAZY, mappedBy = "dueno")
     private List<Mascota> mascotas;

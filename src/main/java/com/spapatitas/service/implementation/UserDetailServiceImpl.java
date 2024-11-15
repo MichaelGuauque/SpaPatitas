@@ -60,7 +60,7 @@ public class UserDetailServiceImpl implements UserDetailsService, IUserEntity {
     }
 
     @Override
-    public void save(UserDTO userDTO) {
+    public UserEntity cambioUserDTO(UserDTO userDTO) {
         RoleEntity userRole = roleRepository.findByRoleEnum(RoleEnum.USER);
         UserEntity user = UserEntity.builder()
                 .username(userDTO.username())
@@ -71,7 +71,12 @@ public class UserDetailServiceImpl implements UserDetailsService, IUserEntity {
                 .credentialNoExpired(true)
                 .isEnabled(true)
                 .build();
-        userRepository.save(user);
+        return user;
+    }
+
+    @Override
+    public void save(UserEntity userEntity) {
+        userRepository.save(userEntity);
     }
 
     @Override
@@ -86,4 +91,6 @@ public class UserDetailServiceImpl implements UserDetailsService, IUserEntity {
 
         }
     }
+
+
 }
