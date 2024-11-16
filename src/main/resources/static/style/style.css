@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    background-color: #E0E0E0;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    padding: 3%;
+    gap: 3%;
+}
+
+.div-img{
+    top: 33px;
+    left: 32px;
+}
+
+.img-login{
+    width: 844px;
+    height: 924px;
+    background-color: #4F4F4F;
+    border-radius: 20px;
+}
+
+.login{
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 791px;
+    height: 924px;
+    font-family: "Poppins", sans-serif;
+    border-radius: 20px;
+    justify-content: center;
+    gap: 2%;
+    color: #000000;
+
+}
+
+.img-icon{
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+input, select{
+    display: flex;
+    width: 418px;
+    height: 53px;
+    border-style: none;
+    border-radius: 10px;
+    border-color: #B2B2B2;
+    background-color: #F3F3F3 ;
+    font-family: "Poppins", sans-serif;
+    padding-left: 2%;
+}
+
+.div-registrar{
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    gap: 4%;
+}
+
+h1, p{
+    background-color: #FFFF;
+}
+
+p{
+    font-size: 16px;
+    color: #B2B2B2;
+}
+
+.boton-ingresar{
+    height: 40px;
+    width: 418px;
+    background-color: #F2B243;
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    border-style: none;
+    border-radius: 10px;
+    color: #FFFFFF;
+}
+
+.boton-registrar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    height: 47px;
+    width: 145px;
+    background-color: #777777;
+    font-family: "Poppins", sans-serif;
+    color: #FFFFFF;
+    border-style: none;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    gap: 2%;
+}
+
+.mb-3{
+    display: flex;
+    flex-direction: column;
+    background-color: #F3F3F3;
+}
+
+.img-line{
+    width: 300px;
+    height: 3px;
+}

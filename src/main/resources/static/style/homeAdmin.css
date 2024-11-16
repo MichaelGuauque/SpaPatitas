@@ -1,0 +1,35 @@
+.right-texto-bienvenido{
+    justify-content: left;
+    justify-items: left;
+}
+
+.texto-bienvenido{
+    font-size: 2rem;
+}
+
+.img-relleno{
+    width: 37.188rem;
+    height: 55.188rem;
+    background-color: black;
+    border-radius: 0.625rem;
+}
+
+.botones-enlace{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15%;
+}
+
+.boton-cliente, .boton-promocion{
+    display: flex;
+    color: black;
+    font-size: 1.5rem;
+    width: 15.188rem;
+    height: 5.063rem;
+    border-radius: 1.25rem;
+    border: 0.5rem solid black;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
