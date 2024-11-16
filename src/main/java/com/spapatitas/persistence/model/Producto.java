@@ -9,7 +9,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 
 @Entity
@@ -32,6 +31,12 @@ public class Producto {
     private int stock;
 
     @Column(nullable = false)
+    private String descripcion;
+
+    @Column(nullable = false)
+    private String imagen;
+
+    @Column(nullable = false)
     private boolean estado;
 
     @ManyToOne (targetEntity = Categoria.class)
@@ -39,4 +44,19 @@ public class Producto {
 
     @OneToMany (targetEntity = DetalleVenta.class, mappedBy = "producto")
     private List<DetalleVenta> detallesVenta;
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "codigo=" + codigo +
+                ", nombre='" + nombre + '\'' +
+                ", precioPublico=" + precioPublico +
+                ", precioProvee=" + precioProvee +
+                ", stock=" + stock +
+                ", descripcion='" + descripcion + '\'' +
+                ", imagen='" + imagen + '\'' +
+                ", estado=" + estado +
+                ", categoria=" + categoria +
+                '}';
+    }
 }

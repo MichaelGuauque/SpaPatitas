@@ -37,4 +37,17 @@ public class UserEntity {
 
     @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Cliente cliente;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "credentialNoExpired=" + credentialNoExpired +
+                ", accountNoLocked=" + accountNoLocked +
+                ", accountNoExpired=" + accountNoExpired +
+                ", isEnabled=" + isEnabled +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

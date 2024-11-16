@@ -75,6 +75,11 @@ public class UserDetailServiceImpl implements UserDetailsService, IUserEntity {
     }
 
     @Override
+    public Optional<UserEntity> findByEmail(UserDTO userDTO) {
+        return userRepository.findUserEntityByUsername(userDTO.username());
+    }
+
+    @Override
     public void save(UserEntity userEntity) {
         userRepository.save(userEntity);
     }

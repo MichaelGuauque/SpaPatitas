@@ -475,16 +475,13 @@ footer{
     grid-row-start: 5;
 }
         
-#informa{
-    
+.informa{
     color: #FFF;
     font-family: Rubik;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
-    
     opacity: 0.6;
-    
 }
 
 h5{

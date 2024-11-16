@@ -15,17 +15,18 @@
         <img class="img-icon" th:src="@{/img/icon _Paw_.png}">
         <h1>¡Bienvenido de Nuevo!</h1>
         <p>Inicia sesión en tu cuenta</p>
-        <form class="formulario">
+        <form class="formulario" th:action="@{/user/acceder}" method="post">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label" style="background-color: #FFFFFF;">Usuario</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su dirección de correo.">
+              <input type="email" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su dirección de correo.">
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label" style="background-color: #FFFFFF;">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su contraseña.">
+              <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su contraseña.">
             </div>
+            <button class="boton-ingresar" type="submit">Ingresar</button>
           </form>
-        <button class="boton-ingresar">Ingresar</button>
+
 
         <img>
         <div class="div-registrar">

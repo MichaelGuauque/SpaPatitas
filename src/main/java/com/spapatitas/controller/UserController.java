@@ -6,6 +6,7 @@ import com.spapatitas.persistence.model.Genero;
 import com.spapatitas.persistence.model.UserEntity;
 import com.spapatitas.service.interfaces.IClienteService;
 import com.spapatitas.service.interfaces.IUserEntity;
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
@@ -48,6 +51,14 @@ public class UserController {
         cliente.setUsuario(user);
         userService.save(user);
         clienteService.save(cliente);
+        return "redirect:login";
+    }
+
+    @PostMapping("/acceder")
+    public String acceder(UserDTO userDTO){
+        logger.info("Usuario accedido: {}", userDTO);
+        Optional<UserEntity> user = userService.findByEmail(userDTO);
+        logger.info("Usuario de la BD: {}", user.get());
         return "redirect:login";
     }
 
