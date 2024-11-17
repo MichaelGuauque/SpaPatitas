@@ -117,39 +117,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">Jabón</th>
-                      <td>8000</td>
-                      <td>6500</td>
-                      <td>0001</td>
-                      <td>45</td>
-                      <td>HABILITADO</td>
+                    <tr th:each="p:${productos}">
+                      <th scope="row" th:text="${p.nombre}"></th>
+                      <td th:text="${p.precioPublico}"></td>
+                      <td th:text="${p.precioProvee}"></td>
+                      <td th:text="${p.codigo}"></td>
+                      <td th:text="${p.stock}"></td>
+                      <td th:text="${p.estado}"></td>
                       <td style="display: flex; flex-direction: column; gap: 7px;">
-                        <button style="border-radius: 10px; background-color: #F1F1F1;">Modificar</button>
-                        <button style="border-radius: 10px; background-color: #4F4F4F; color: #F1F1F1;">Habilitar/Deshabilitar</button>
-                    </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Shampoo</th>
-                      <td>12500</td>
-                      <td>10000</td>
-                      <td>0002</td>
-                      <td>30</td>
-                      <td>HABILITADO</td>
-                      <td style="display: flex; flex-direction: column; gap: 7px;">
-                        <button style="border-radius: 10px; background-color: #F1F1F1;">Modificar</button>
-                        <button style="border-radius: 10px; background-color: #4F4F4F; color: #F1F1F1;">Habilitar/Deshabilitar</button>
-                    </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Alimento Dog Chow</th>
-                      <td>45000</td>
-                      <td>38000</td>
-                      <td>0003</td>
-                      <td>100</td>
-                      <td>DESHABILITADO</td>
-                      <td style="display: flex; flex-direction: column; gap: 7px;">
-                        <button style="border-radius: 10px; background-color: #F1F1F1;">Modificar</button>
+                        <button style="border-radius: 10px; background-color: #F1F1F1;" th:href="@{productos/editar/{id} (codigo = ${p.codigo})}">Modificar</button>
                         <button style="border-radius: 10px; background-color: #4F4F4F; color: #F1F1F1;">Habilitar/Deshabilitar</button>
                     </td>
                     </tr>
