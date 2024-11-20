@@ -10,7 +10,6 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 public class ProductoDTO {
-    private Long codigo;
     private String nombre;
     private double precioPublico;
     private double precioProvee;
@@ -23,7 +22,6 @@ public class ProductoDTO {
     @Override
     public String toString() {
         return "ProductoDTO{" +
-                "codigo=" + codigo +
                 ", nombre='" + nombre + '\'' +
                 ", precioPublico=" + precioPublico +
                 ", precioProvee=" + precioProvee +

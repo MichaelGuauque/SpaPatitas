@@ -1,5 +1,6 @@
 package com.spapatitas.service.interfaces;
 
+import com.spapatitas.DTO.ProductoDTO;
 import com.spapatitas.persistence.model.Producto;
 import com.spapatitas.persistence.model.Proveedor;
 
@@ -13,9 +14,10 @@ public interface IProductoService {
     public Optional<Producto> findById (Long codigo);
     public Optional<Producto> findByNombre (String nombre);
     public List<Producto> findAll();
-    public void save(Producto producto) throws
+    public void save(ProductoDTO productoDTO) throws
             SQLIntegrityConstraintViolationException, Exception;
     public Producto update(Producto producto);
     public void deshabilitar(Long codigo);
     public void habilitar(Long codigo);
+    Producto cambiarProductoDTO(ProductoDTO productoDTO);
 }

@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,20 +35,26 @@ public class ProductoController {
     }
 
     @PostMapping("/crear")
-    public String crear(ProductoDTO productoDTO){
-        logger.info("Este es el producto {}", productoDTO);
+    public String crear(ProductoDTO productoDTO) throws Exception {
+//        logger.info("Este es el producto {}", productoDTO);
+        productoService.save(productoDTO);
         return "redirect:/productos";
     }
 
     @GetMapping("/editar/{codigo}")
     public String editar(@PathVariable Long codigo, Model model){
-        Optional<Producto> p = productoService.findById(codigo);
-        if(p.isPresent()){
-            Producto producto = p.get();
-            logger.info("Este es el producto {}", producto);
-            return "redirect:/productos";
-        }
-        logger.info("Este es el producto {}", p);
+        Producto producto = new Producto();
+        Optional<Producto> optionalProducto = productoService.findById(codigo);
+        producto = optionalProducto.get();
+        model.addAttribute("producto", producto);
+        model.addAttribute("categorias", categoriaService.findAll());
+        return "productos/vistaEditarProductos";
+    }
+
+    @PostMapping("/actualizar")
+    public String actualizar(Producto producto){
+        productoService.update(producto);
+//        logger.info("Este es el producto {}", producto);
         return "redirect:/productos";
     }
 

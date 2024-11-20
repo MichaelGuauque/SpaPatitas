@@ -45,8 +45,8 @@ public class UserController {
 
     @PostMapping("/guardar")
     public String guardar(UserDTO usuario , ClienteDTO cliente){
-        logger.info("Usuario registrado: {}", usuario);
-        logger.info("Cliente registrado: {}", cliente);
+//        logger.info("Usuario registrado: {}", usuario);
+//        logger.info("Cliente registrado: {}", cliente);
         UserEntity user = userService.cambioUserDTO(usuario);
         cliente.setUsuario(user);
         userService.save(user);

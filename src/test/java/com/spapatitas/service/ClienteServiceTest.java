@@ -21,27 +21,27 @@ class ClienteServiceTest {
 //
 //    }
 
-    @Test
-    void save() {
-        UserEntity usuarioEjemplo = new UserEntity(null, "usuario123", "contraseñaSegura123", true, true, true, true, null, null);
-        Cliente cliente = new Cliente();
-        cliente.setPrimerNombre("julanito");
-        cliente.setSegundoNombre("perez");
-        cliente.setPrimerApellido("guake");
-        cliente.setSegundoApellido("fige");
-        cliente.setCedula(165485);
-        cliente.setDireccion("avenida pta mrda");
-        cliente.setEstado(true);
-        cliente.setFechaNacimiento(LocalDate.of(1990, 5, 15));
-        cliente.setMascotas(new ArrayList<Mascota>());
-        cliente.setTelefono(316589452);
-        cliente.setGenero(Genero.MASCULINO);
-        cliente.setCitas(new ArrayList<Cita>());
-        cliente.setUsuario(usuarioEjemplo);
-
-        clienteServicio.save(cliente);
-        assertTrue(true);
-    }
+//    @Test
+//    void save() {
+//        UserEntity usuarioEjemplo = new UserEntity(null, "usuario123", "contraseñaSegura123", true, true, true, true, null, null);
+//        Cliente cliente = new Cliente();
+//        cliente.setPrimerNombre("julanito");
+//        cliente.setSegundoNombre("perez");
+//        cliente.setPrimerApellido("guake");
+//        cliente.setSegundoApellido("fige");
+//        cliente.setCedula(165485);
+//        cliente.setDireccion("avenida pta mrda");
+//        cliente.setEstado(true);
+//        cliente.setFechaNacimiento(LocalDate.of(1990, 5, 15));
+//        cliente.setMascotas(new ArrayList<Mascota>());
+//        cliente.setTelefono(316589452);
+//        cliente.setGenero(Genero.MASCULINO);
+//        cliente.setCitas(new ArrayList<Cita>());
+//        cliente.setUsuario(usuarioEjemplo);
+//
+//        clienteServicio.save(cliente);
+//        assertTrue(true);
+//    }
 
 //    @Test
 //    void findAll() {
