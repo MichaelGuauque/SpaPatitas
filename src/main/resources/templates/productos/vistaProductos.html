@@ -24,7 +24,7 @@
                 <h3>Información del Producto</h3>
             
             <div class="container mt-5" style="background-color: #FFFAF9;">
-                <form th:action="@{/productos/crear}" method="post">
+                <form th:action="@{/productos/crear}" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <!-- Primer Input -->
                         <div class="col-md-4 mb-3">
@@ -66,8 +66,8 @@
                         </div>
                         <!-- Sexto Input (Input de imagen) -->
                         <div class="col-md-4 mb-3">
-                            <label for="imagen" class="form-label">Cargar Imagen</label>
-                            <input type="file" class="form-control" name="imagen" id="imagen" accept="image/*">
+                            <label for="imagenFile" class="form-label">Cargar Imagen</label>
+                            <input type="file" class="form-control" name="imagenFile" id="imagenFile" accept="image/*">
                         </div>
                     </div>
             
@@ -75,11 +75,11 @@
                         <!-- Séptimo Input (ocupa todo el ancho de la fila) -->
                         <div class="col-md-4 mb-3">
                             <label for="input7" class="form-label">Descripción del Producto</label>
-                            <input type="text" class="form-control" name="descripcion" id="input7" placeholder="Ingrese algo">
+                            <input type="text" class="form-control" name="descripcion" id="input7" placeholder="Ingrese la descripción del producto.">
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="stock" class="form-label">Stock</label>
-                            <input type="number" class="form-control" name="stock" id="stock" placeholder="Ingrese algo">
+                            <input type="number" class="form-control" name="stock" id="stock" placeholder="Ingrese el stock del producto.">
                         </div>
                     </div>
             

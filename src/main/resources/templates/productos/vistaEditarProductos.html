@@ -24,7 +24,7 @@
                 <h3>Información del Producto</h3>
             
             <div class="container mt-5" style="background-color: #FFFAF9;">
-                <form th:action="@{/productos/actualizar}" method="post">
+                <form th:action="@{/productos/actualizar}" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <!-- Primer Input -->
                         <input type="hidden" name="codigo" th:value="${producto.codigo}" />

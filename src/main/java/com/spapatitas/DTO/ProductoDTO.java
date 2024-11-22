@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -15,6 +16,7 @@ public class ProductoDTO {
     private double precioProvee;
     private int stock;
     private String descripcion;
+    private MultipartFile imagenFile;
     private String imagen;
     private boolean estado;
     private Categoria categoria;
