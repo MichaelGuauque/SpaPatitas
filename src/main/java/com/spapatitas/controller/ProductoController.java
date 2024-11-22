@@ -61,18 +61,18 @@ public class ProductoController {
     }
 
     @PostMapping("/actualizar")
-    public String actualizar(Producto producto, @RequestParam("imagen") MultipartFile file) throws IOException {
+    public String actualizar(Producto producto, @RequestParam("imagenFile") MultipartFile file) throws IOException {
 
         if(file.isEmpty()){
             Producto p = new Producto();
             p = productoService.findById(producto.getCodigo()).get();
             producto.setImagen(p.getImagen());
         }else{
-            String nombreImaen = upload.saveImages(file);
-            producto.setImagen(nombreImaen);
+            String nombreImagen = upload.saveImages(file);
+            producto.setImagen(nombreImagen);
         }
-        logger.info("Este es el producto {}", producto);
-//        productoService.update(producto);
+//        logger.info("Este es el producto {}", producto);
+        productoService.update(producto);
         return "redirect:/productos";
     }
 

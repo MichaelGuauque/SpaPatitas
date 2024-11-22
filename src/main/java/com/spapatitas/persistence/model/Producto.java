@@ -2,6 +2,7 @@ package com.spapatitas.persistence.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -32,6 +33,9 @@ public class Producto {
 
     @Column(nullable = false)
     private String descripcion;
+
+    @Transient
+    private MultipartFile imagenFile;
 
     @Column(nullable = false)
     private String imagen;
