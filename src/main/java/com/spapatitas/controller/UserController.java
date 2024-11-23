@@ -3,7 +3,9 @@ package com.spapatitas.controller;
 import com.spapatitas.DTO.ClienteDTO;
 import com.spapatitas.DTO.UserDTO;
 import com.spapatitas.persistence.model.Genero;
+import com.spapatitas.persistence.model.Producto;
 import com.spapatitas.persistence.model.UserEntity;
+import com.spapatitas.service.implementation.ProductoService;
 import com.spapatitas.service.interfaces.IClienteService;
 import com.spapatitas.service.interfaces.IUserEntity;
 import org.apache.catalina.User;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -31,6 +34,9 @@ public class UserController {
         this.userService = userService;
         this.clienteService = clienteService;
     }
+
+    @Autowired
+    private ProductoService productoService;
 
     @GetMapping("/login")
     public String login(){
@@ -60,6 +66,18 @@ public class UserController {
         Optional<UserEntity> user = userService.findByEmail(userDTO);
         logger.info("Usuario de la BD: {}", user.get());
         return "redirect:login";
+    }
+
+    @GetMapping("/home")
+    public String home(){
+        return "user/homeUser";
+    }
+
+    @GetMapping("/productos")
+    public String productos(Model model){
+        List<Producto> productos = productoService.findAll();
+        model.addAttribute("productos", productos);
+        return "productos/vistaProductosUsuario";
     }
 
 }
