@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaPatitas | Login</title>
+    <link rel="stylesheet" th:href="@{/style/style.css}">
+    <link rel="icon" type="image/png" th:href="@{/img/Solo logo Blanco.png}">
+</head>
+<body>
+    <div class="div-img">
+        <img class="img-login" th:src="@{/img/Mask group.png}">
+    </div>
+    <div class="login">
+        <img class="img-icon" th:src="@{/img/icon _Paw_.png}">
+        <h1>¡Bienvenido de Nuevo!</h1>
+        <p>Inicia sesión en tu cuenta</p>
+        <form class="formulario" th:action="@{/user/acceder}" method="post">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label" style="background-color: #FFFFFF;">Usuario</label>
+              <input type="email" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su dirección de correo.">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label" style="background-color: #FFFFFF;">Password</label>
+              <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su contraseña.">
+            </div>
+            <button class="boton-ingresar" type="submit">Ingresar</button>
+          </form>
+
+
+        <img>
+        <div class="div-registrar">
+            <p>Aun no tienes una cuenta?</p>
+            <a class="boton-registrar" th:href="@{/user/registrar}">Registrate</a>
+        </div>
+    </div>
+</body>
+</html>

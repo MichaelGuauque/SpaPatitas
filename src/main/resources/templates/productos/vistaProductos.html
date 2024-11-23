@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaPatitas | Administrar Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" type="image/png" th:href="@{/img/Solo logo Blanco.png}">
+    <link rel="stylesheet" th:href="@{/style/principal.css}">
+</head>
+<body>
+<!-- left var -->
+    <div th:include="admin/template_admin.html::header"></div>
+
+    <main>
+    <div class="right-content">
+        <div class="panel-informacion">
+            <h2>Administra el inventario de productos de Spa Patitas: consulta productos disponibles, 
+                añade nuevos productos al catálogo y modifica la información de los existentes.</h2>
+        </div>
+
+        <div class="crear-producto" style="background-color: #FFFAF9; border-radius: 10px;">
+            
+                <h3>Información del Producto</h3>
+            
+            <div class="container mt-5" style="background-color: #FFFAF9;">
+                <form th:action="@{/productos/crear}" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <!-- Primer Input -->
+                        <div class="col-md-4 mb-3">
+                            <label for="nombre" class="form-label">Nombre del Producto</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa el nombre">
+                        </div>
+                        <!-- Segundo Input -->
+                        <div class="col-md-4 mb-3">
+                            <label for="valor" class="form-label">Precio al Publico</label>
+                            <input type="number" class="form-control" name="precioPublico" id="valor" placeholder="Ingresa el valor">
+                        </div>
+                        <!-- Tercer Input -->
+                        <div class="col-md-4 mb-3">
+                            <label for="precioProveedor" class="form-label">Precio Proveedor</label>
+                            <input type="number" class="form-control" name="precioProvee" id="precioProveedor" placeholder="Ingresa el valor">
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <!-- Cuarto Input -->
+                        <div class="col-md-4 mb-3">
+                            <label for="categoria" class="form-label">Categoría</label>
+                            <select class="form-select" id="categoria" name="categoria" aria-label="Default select example">
+                                <option value="" selected>Seleccione la categoría.</option>
+                                <th:block th:each="categoria : ${categorias}">
+                                    <option th:value="${categoria.codigo}" th:text="${categoria.descripcion}" style="background-color: #FFFFFF;">
+                                        Nombre de Categoría</option>
+                                </th:block>
+                            </select>
+                        </div>
+                        <!-- Quinto Input -->
+                        <div class="col-md-4 mb-3">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select class="form-select" name="estado" id="estado" aria-label="Default select example">
+                                <option selected>Seleccione el Estado</option>
+                                <option value="1" style="background-color: #FFFFFF;">HABILITADO</option>
+                                <option value="0" style="background-color: #FFFFFF;">DESHABILITADO</option>
+                            </select>
+                        </div>
+                        <!-- Sexto Input (Input de imagen) -->
+                        <div class="col-md-4 mb-3">
+                            <label for="imagenFile" class="form-label">Cargar Imagen</label>
+                            <input type="file" class="form-control" name="imagenFile" id="imagenFile" accept="image/*">
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <!-- Séptimo Input (ocupa todo el ancho de la fila) -->
+                        <div class="col-md-4 mb-3">
+                            <label for="input7" class="form-label">Descripción del Producto</label>
+                            <input type="text" class="form-control" name="descripcion" id="input7" placeholder="Ingrese la descripción del producto.">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="stock" class="form-label">Stock</label>
+                            <input type="number" class="form-control" name="stock" id="stock" placeholder="Ingrese el stock del producto.">
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <!-- Botones de Enviar y Cancelar -->
+                        <div id="botones" class="col-md-4 mb-3" style="display: flex;">
+                            <button type="submit" class="btn btn-primary w-50 me-2" style="background-color: #F2B243; border-style: none;">Guardar</button>
+                            <button type="button" class="btn btn-secondary w-50" onclick="window.location.href='/'">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="tabla">
+            <div class="tabla-encabezado">
+                <h3 id="pequeño">Productos</h3>
+                <div>
+                    <form>
+                        <input class="buscador" type="number" placeholder="Codigo del producto.">
+                        <button class="boton-buscar" type="submit"><img src="./img/Search.png"></button>
+                    </form>
+                </div>
+            </div>
+            <table id="tablita" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col">Nombre del Producto</th>
+                      <th scope="col">$ Publico</th>
+                      <th scope="col">$ Proveedor</th>
+                      <th scope="col">Codigo</th>
+                      <th scope="col">Stock</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr th:each="p:${productos}">
+                      <th scope="row" th:text="${p.nombre}"></th>
+                      <td th:text="${p.precioPublico}"></td>
+                      <td th:text="${p.precioProvee}"></td>
+                      <td th:text="${p.codigo}"></td>
+                      <td th:text="${p.stock}"></td>
+                      <td th:text="${p.estado}"></td>
+                      <td style="display: flex; flex-direction: column; gap: 7px;">
+                        <a style="display:flex; justify-content: center; color: #010101; border-radius: 10px; background-color: #e6e8e4; border: 2px solid black; text-decoration: none;"
+                           th:href="@{productos/editar/{codigo} (codigo = ${p.codigo})}">Modificar</a>
+                    </td>
+                    </tr>
+                  </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+        <div th:include="admin/template_admin.html::footer"></div>
+
+</main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

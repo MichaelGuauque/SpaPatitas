@@ -1,0 +1,67 @@
+ <div th:fragment="header">
+    <div class="left-var">
+      <div class="contenedor-logo">
+        <img class="logo" th:src="@{/img/Blanco Largo 1.png}">
+      </div>
+      <div>
+        <hr class="custom-line">
+      </div>
+      <div class="opciones">
+        <a class="menu-link" th:href="@{/administrador/home}"> <img class="icons-menu" th:src="@{/img/Home.png}"> Inicio</a>
+        <a class="menu-link" th:href="@{/productos}"> <img class="icons-menu" th:src="@{/img/Shopping bag.png}"> Productos</a>
+        <a class="menu-link" href="vistaServicios.html"> <img class="icons-menu" th:src="@{/img/Scissors.png}"> Servicios</a>
+        <a class="menu-link" href="vistaCitas.html"> <img class="icons-menu" th:src="@{/img/Calendar.png}"> Citas</a>
+        <a class="menu-link" href="vistaPromociones.html"> <img class="icons-menu" th:src="@{/img/Tag.png}"> Promociones</a>
+        <a class="menu-link" href="vistaMascotas.html"> <img class="icons-menu" th:src="@{/img/Users.png}">  Clientes</a>
+        <a class="menu-link" href="vistaProveedores.html"> <img class="icons-men" th:src="@{/img/Truck.png}">  Proveedores</a>
+        <a class="menu-link" href="vistaInformes.html"> <img class="icons-menu" th:src="@{/img/Clipboard.png}">  Informes</a>
+      </div>
+      <div >
+        <hr class="custom-line">
+      </div>
+      <div class="opciones">
+        <a class="menu-link" href="vistaAyuda.html"> <img class="icons-menu" th:src="@{/img/Info.png}"> Gestionar Info</a>
+      </div>
+      <div>
+        <hr class="custom-line">
+      </div>
+      <div class="opciones">
+        <a class="menu-link" href="#"> <img class="icons-menu" th:src="@{/img/Settings.png}"> Configuración</a>
+      </div>
+    </div>
+  </div>
+
+  <div th:fragment="footer">
+    <footer>
+      <div class="div1"> <img class="imgLogo" th:src="@{/img/Blanco Cuadrado.png}"> </div>
+      <div class="div2">
+        <div class="contene">
+          <h5>Información de contacto</h5>
+          <p class="informa"><img class="iconosFooter" th:src="@{/img/Map pin.png}">Calle Ejemplo 123, Ciudad, País</p>
+          <p class="informa"><img class="iconosFooter" th:src="@{/img/Phone call.png}">+123 456 7890</p>
+          <p class="informa"><img class="iconosFooter" th:src="@{/img/Mail.png}">info@spapatitas.com</p>
+          <p class="informa"><img class="iconosFooter" th:src="@{/img/Clock.png}">Horario: Lunes a Sábado, 9:00 AM - 6:00 PM</p>
+        </div>
+      </div>
+
+      <div class="div5">
+        <section id="eslo">
+          <p id="eslogan">Nos apasiona el cuidado de tu mascota. Gracias por confiar en Spa Patitas.</p>
+        </section>
+      </div>
+      <div class="div6">
+        <div class="contene">
+          <h5>Información de contacto</h5>
+          <p class="informa"><img class="iconosFooter" th:src="@{/img/Instagram.png}">Instagram</p>
+          <p class="informa"><img class="iconosFooter" th:src="@{/img/Facebook.png}">Facebook</p>
+          <p class="informa"><img class="iconosFooter" th:src="@{/img/icon _x letter_.png}">X</p>
+          <p class="informa"><img class="iconosFooter" th:src="@{/img/icon _tiktok_.png}">TikTok</p>
+        </div>
+      </div>
+      <div class="div7">
+        <p id="fote">&copy;2024 Spa Patitas. Todos los derechos reservados. El contenido y las imágenes son propiedad de Spa Patitas.
+          Prohibida su reproducción sin autorización.</p>
+      </div>
+      <!-- -->
+    </footer>
+  </div>

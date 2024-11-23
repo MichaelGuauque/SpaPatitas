@@ -1,5 +1,6 @@
 package com.spapatitas.service.implementation;
 
+import com.spapatitas.DTO.ProductoDTO;
 import com.spapatitas.persistence.model.Producto;
 import com.spapatitas.persistence.model.Proveedor;
 import com.spapatitas.persistence.repository.ProductoRepository;
@@ -33,16 +34,16 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
-    public void save(Producto producto) throws SQLIntegrityConstraintViolationException, Exception {
-        productoRepository.save(producto);
+    public void save(ProductoDTO productoDTO) throws SQLIntegrityConstraintViolationException, Exception {
+        productoRepository.save(cambiarProductoDTO(productoDTO));
     }
 
     @Override
     public Producto update(Producto producto) {
-        if (productoRepository.existsById(producto.getCodigo())) {
+//        if (productoRepository.existsById(producto.getCodigo())) {
             return productoRepository.save(producto);
-        }
-        throw new IllegalArgumentException("El producto con codigo" + producto.getCodigo() + " no existe.");
+//        }
+//        throw new IllegalArgumentException("El producto con codigo" + producto.getCodigo() + " no existe.");
     }
 
     @Override
@@ -61,5 +62,21 @@ public class ProductoService implements IProductoService {
             p.setEstado(true);
             productoRepository.save(p);
         });
+    }
+
+    @Override
+    public Producto cambiarProductoDTO(ProductoDTO productoDTO) {
+        Producto producto = Producto.builder()
+                .nombre(productoDTO.getNombre())
+                .precioPublico(productoDTO.getPrecioPublico())
+                .precioProvee(productoDTO.getPrecioProvee())
+                .stock(productoDTO.getStock())
+                .descripcion(productoDTO.getDescripcion())
+                .imagen(productoDTO.getImagen())
+                .estado(productoDTO.isEstado())
+                .categoria(productoDTO.getCategoria())
+                .build();
+
+        return producto;
     }
 }

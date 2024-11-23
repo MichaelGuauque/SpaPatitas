@@ -2,6 +2,7 @@ package com.spapatitas.persistence.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -9,7 +10,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 
 @Entity
@@ -32,6 +32,15 @@ public class Producto {
     private int stock;
 
     @Column(nullable = false)
+    private String descripcion;
+
+    @Transient
+    private MultipartFile imagenFile;
+
+    @Column(nullable = false)
+    private String imagen;
+
+    @Column(nullable = false)
     private boolean estado;
 
     @ManyToOne (targetEntity = Categoria.class)
@@ -39,4 +48,19 @@ public class Producto {
 
     @OneToMany (targetEntity = DetalleVenta.class, mappedBy = "producto")
     private List<DetalleVenta> detallesVenta;
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "codigo=" + codigo +
+                ", nombre='" + nombre + '\'' +
+                ", precioPublico=" + precioPublico +
+                ", precioProvee=" + precioProvee +
+                ", stock=" + stock +
+                ", descripcion='" + descripcion + '\'' +
+                ", imagen='" + imagen + '\'' +
+                ", estado=" + estado +
+                ", categoria=" + categoria +
+                '}';
+    }
 }

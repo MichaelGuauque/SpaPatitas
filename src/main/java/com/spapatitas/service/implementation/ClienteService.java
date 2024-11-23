@@ -1,5 +1,6 @@
 package com.spapatitas.service.implementation;
 
+import com.spapatitas.DTO.ClienteDTO;
 import com.spapatitas.persistence.model.Cliente;
 import com.spapatitas.persistence.repository.ClienteRepository;
 import com.spapatitas.service.interfaces.IClienteService;
@@ -37,7 +38,20 @@ public class ClienteService implements IClienteService {
 
     //Guarda un cliente
     @Override
-    public Cliente save(Cliente cliente) {
+    public Cliente save(ClienteDTO clienteDTO) {
+        Cliente cliente = Cliente.builder()
+                .cedula(clienteDTO.getCedula())
+                .primerNombre(clienteDTO.getPrimerNombre())
+                .segundoNombre(clienteDTO.getSegundoNombre())
+                .primerApellido(clienteDTO.getPrimerApellido())
+                .segundoApellido(clienteDTO.getSegundoApellido())
+                .genero(clienteDTO.getGenero())
+                .fechaNacimiento(clienteDTO.getFechaNacimiento())
+                .telefono(clienteDTO.getTelefono())
+                .direccion(clienteDTO.getDireccion())
+                .usuario(clienteDTO.getUsuario())
+                .estado(true)
+                .build();
         return clienteRepository.save(cliente);
     }
 

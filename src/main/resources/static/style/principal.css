@@ -63,7 +63,7 @@ main{
     display: flex;
     flex-direction: column;
     gap: 1%;
-    
+
 }
 
 .icons-menu{
@@ -114,7 +114,7 @@ main{
     justify-content: flex-end;
     padding: 1%;
     gap: 0.313rem;
-    
+
 }
 
 .crear-producto{
@@ -135,7 +135,7 @@ main{
 .right-content-info{
     display: flex;
     gap: 1.5%;
-    
+
 }
 
 .right-content-info-izquierda{
@@ -165,11 +165,11 @@ p{
     margin-top: 3.125rem;
     margin-left: 3rem;
     margin-right: 1.75rem;
-    
+
 
 }
 
-#texto{
+.texto, .texto2{
     margin-left: 3rem;
     margin-right: 3.125rem;
     font-size: 2rem;
@@ -179,7 +179,7 @@ p{
     padding: 1%;
 }
 
-#texto2{
+.texto2{
     margin-bottom: 3.125rem;
 }
 
@@ -384,7 +384,7 @@ footer{
     margin-top: 1.563rem;
     padding-left: 4.688rem;
     padding-top: 3.438rem;
-    
+
     border-radius: 0.938rem 0.938rem 0px 0px;
     background: #4F4F4F;
     height: 33.813rem;
@@ -405,14 +405,14 @@ footer{
     font-weight: 400;
     line-height: 1.563rem; /* 178.571% */
     opacity: 0.6;
-    
+
 }
 
 .iconosFooter{
     width: 1.25rem;
     height: 1.25rem;
     margin-right: 0.313rem;
-    
+
 }
 
 #eslogan{
@@ -434,7 +434,7 @@ footer{
     width: 24.125rem;
     height: 7.5rem;
 }
-    
+
 .div1 {
     grid-column: span 2 / span 2;
     grid-row: span 2 / span 2;
@@ -444,7 +444,7 @@ footer{
     margin-left: 3.75rem;
     grid-row: span 2 / span 2;
     grid-column-start: 3;
-    
+
 }
 
 .div4 {
@@ -459,7 +459,7 @@ footer{
     grid-column: span 2 / span 2;
     grid-row: span 2 / span 2;
     grid-row-start: 3;
-  
+
 }
 
 .div6 {
@@ -474,21 +474,18 @@ footer{
     grid-column: span 5 / span 5;
     grid-row-start: 5;
 }
-        
-#informa{
-    
+
+.informa{
     color: #FFF;
     font-family: Rubik;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
-    
     opacity: 0.6;
-    
 }
 
 h5{
-    
+
     color: #FFF;
     font-family: Rubik;
     font-size: 1.5rem;
@@ -527,4 +524,189 @@ h5{
 #promocionesDiv{
     padding-top: 0.938rem;
     padding-left: 1.25rem;
+}
+
+#tituloOscuro{
+    width: 1267px;
+    color: #FFFAF9;
+    text-align: center;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+#panelOscuro{
+    border-radius: 10px;
+    background: #4F4F4F;
+}
+
+#contacto{
+    color: #4F4F4F;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+#paginasAcordeon{
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+/* Color del texto cuando el acordeón está colapsado */
+.accordion-button.collapsed h5#paginasAcordeon {
+    color: #515151 !important;
+}
+
+/* Color del texto cuando el acordeón está expandido */
+.accordion-button:not(.collapsed) h5#paginasAcordeon {
+    color: #ffffff !important;
+}
+
+/* Cambia el color del botón del acordeón cuando está expandido */
+.accordion-button:not(.collapsed) {
+    background-color: #4F4F4F; /* Cambia el color de fondo aquí */
+}
+
+/* Cambia el color del borde cuando está expandido */
+.accordion-button:not(.collapsed)::after {
+    border-color: #ffffff; /* Cambia el color del icono de flecha */
+}
+
+/* Estilo para las pestañas cuando están colapsadas (cerradas) */
+.accordion-button.collapsed {
+    background-color: #FFFAF9; /* Color de fondo cuando está cerrado */
+    color: #c4c4c4; /* Color del texto cuando está cerrado */
+    border-color: #d9d9d9; /* Color del borde cuando está cerrado */
+}
+
+/* Estilo para todos los botones del acordeón */
+.accordion-button {
+    border-width: 1px; /* Grosor del borde */
+    border-radius: 5px;
+    border-color: #dddddd; /* Color del borde */
+    border-style: solid; /* Estilo del borde (puede ser solid, dashed, dotted, etc.) */
+}
+
+#mail{
+    margin-left: 15px;
+    color: #C26D3B;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px; /* 116.667% */
+}
+
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    align-items: center;
+    font-weight: bold;
+    color: #333;
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    line-height: normal;
+}
+
+.card-text {
+    color: #777;
+
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.btn-primary {
+    background-color: #F8BA4D;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #d7a041;
+}
+
+.textoTarjeta{
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+#carrito {
+    filter: brightness(0) invert(1);
+}
+
+#tarjetaPromo{
+    background-color: #AB7D50;
+    border-radius: 15px;
+}
+
+#tituloTarjetaPromo{
+    margin-top: 10px;
+    margin-left: 10px;
+    color: #FFFAF9;
+    text-align: center;
+    font-family: Inter;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+/* Estilo para el botón circular transparente */
+.btn-circle-transparent {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+}
+
+.btn-circle-transparent:hover {
+    background-color: #87623d;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.btn-circle-transparent i {
+    font-size: 1.2rem;
+}
+
+/* Estilo para la imagen centrada */
+.centered-image {
+    width: 163px;
+    height: 249px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-left: 55px;
+    margin-top: 20px    ;
 }
