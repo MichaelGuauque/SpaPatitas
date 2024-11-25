@@ -11,6 +11,10 @@ public interface MascotaRepository extends CrudRepository<Mascota, Long> {
 
     //Optional<Mascota> findMascotaById(Long id);
 
+    List<Mascota> findAll();
+
     List<Mascota> findAllByDueno_Cedula(int cedula);
+
+
 
 }

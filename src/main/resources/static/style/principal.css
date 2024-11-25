@@ -265,6 +265,18 @@ a{
     opacity: 0.8;
 }
 
+.panel-informacionText{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    background-color: #FFFAF9;
+    border-radius: 0.625rem;
+    margin-top: 2%;
+    padding: 1%;
+    opacity: 0.8;
+}
+
 h2{
     text-align: center;
     font-size: 1.43rem;
@@ -299,7 +311,7 @@ h3{
     color: #515151;
 }
 
-h3::after {
+#titulosDiv::after {
     content: "";
     display: inline-block;
     width: 56.875rem; /* Longitud de la línea */
@@ -308,7 +320,18 @@ h3::after {
     opacity: 0.4;
     margin-left: 0.625rem; /* Espacio entre el título y la línea */
     align-items: baseline; /* Alinea los elementos al piso del texto */
-  }
+}
+
+#titulosDiv2::after {
+    content: "";
+    display: inline-block;
+    width: 54.875rem; /* Longitud de la línea */
+    height: 0.2rem; /* Grosor de la línea */
+    background-color: #121212; /* Color de la línea */
+    opacity: 0.4;
+    margin-left: 0.625rem; /* Espacio entre el título y la línea */
+    align-items: baseline; /* Alinea los elementos al piso del texto */
+}
 
 #pequeño::after {
     content: "";
@@ -320,6 +343,17 @@ h3::after {
     margin-left: 0.625rem; /* Espacio entre el título y la línea */
     align-items: baseline; /* Alinea los elementos al piso del texto */
   }
+
+#pequeño2::after {
+    content: "";
+    display: inline-block;
+    width: 31.25rem; /* Longitud de la línea */
+    height: 0.156rem; /* Grosor de la línea */
+    background-color: #121212; /* Color de la línea */
+    opacity: 0.4;
+    margin-left: 0.625rem; /* Espacio entre el título y la línea */
+    align-items: baseline; /* Alinea los elementos al piso del texto */
+}
 
   #pequeñ::after {
     content: "";
@@ -708,5 +742,87 @@ h5{
     object-fit: cover;
     border-radius: 10px;
     margin-left: 55px;
-    margin-top: 20px    ;
+    margin-top: 20px;
+}
+
+#huellaPata {
+    width: 148px;
+    height: 122px;
+    flex-shrink: 0;
+}
+
+#descripMascota {
+    gap: 2px;
+    margin-right: 100px;
+    opacity: 0.6;
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+#observacion {
+    gap: 2px;
+    margin-right: 100px;
+    opacity: 0.6;
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+#nombreMascota {
+    margin-top: 1rem;
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+#razaMascota {
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#botonesMasco{
+    border-radius: 12px;
+    width: 215px;
+    height: 35px;
+    font-weight: 500;
+}
+
+#botonesMasco2 {
+    margin-left: -0.01rem;
+    font-weight: 500;
+    border-radius: 12px;
+    width: 215px;
+    height: 35px;
+    border: 1px solid #C0C0C0;
+    background: #F1F1F1;
+    color: #4D4B4B;
+}
+
+#cajonBotones {
+    margin-top: 1.3rem;
+}
+
+#regMascota{
+    margin: 1rem;
+}
+
+.tituloNav {
+    font-family: Inter;
+    margin-left: -0.938rem;
+    font-weight: 700;
+    color: #b11818;
 }
