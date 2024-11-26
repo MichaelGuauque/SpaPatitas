@@ -1,7 +1,9 @@
 package com.spapatitas.service.interfaces;
 
+import com.spapatitas.DTO.TipoServicioDTO;
 import com.spapatitas.persistence.model.TipoServicio;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,9 +13,14 @@ public interface ITipoServicioService {
 
     public Optional<TipoServicio> findById(Long id);
 
-    public void save(TipoServicio tipoServicio);
+    public void save(TipoServicioDTO tipoServicioDTO) throws
+            SQLIntegrityConstraintViolationException, Exception;
 
-    public void update(TipoServicio tipoServicio);
+    public TipoServicio update(TipoServicio tipoServicio);
 
-    // falta habilitar/deshabilitar
+    public void deshabilitar(Long id);
+
+    public void habilitar(Long id);
+
+    TipoServicio cambiarTipoServicioDTO (TipoServicioDTO tipoServicioDTO);
 }

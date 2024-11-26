@@ -45,7 +45,7 @@ public class MascotaService implements IMascotaService {
     // Guarda una nueva mascota en la base de datos
     @Override
     public void save(MascotaDTO mascotaDTO) throws SQLIntegrityConstraintViolationException, Exception {
-         mascotaRepository.save(cabiarMascotaDTO(mascotaDTO));
+         mascotaRepository.save(cambiarMascotaDTO(mascotaDTO));
     }
 
 
@@ -81,7 +81,7 @@ public class MascotaService implements IMascotaService {
     }
 
     @Override
-    public Mascota cabiarMascotaDTO(MascotaDTO mascotaDTO) {
+    public Mascota cambiarMascotaDTO(MascotaDTO mascotaDTO) {
         Mascota mascota = Mascota.builder()
                 .nombre(mascotaDTO.getNombre())
                 .raza(mascotaDTO.getRaza())

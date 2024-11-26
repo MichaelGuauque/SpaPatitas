@@ -44,11 +44,11 @@ public class Cita {
 
     public void addTipoServicio(TipoServicio tipoServicio) {
         this.tipoServicios.add(tipoServicio);
-        this.ValorTotal += tipoServicio.getPrecio();
+        this.ValorTotal += tipoServicio.getPrecioPublico();
     }
 
     public void removeTipoServicio(TipoServicio tipoServicio) {
         this.tipoServicios.remove(tipoServicio);
-        this.ValorTotal -= tipoServicio.getPrecio();
+        this.ValorTotal -= tipoServicio.getPrecioPublico();
     }
 }

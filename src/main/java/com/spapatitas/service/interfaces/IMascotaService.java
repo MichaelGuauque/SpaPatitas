@@ -30,6 +30,6 @@ public interface IMascotaService {
     // Habilita una mascota previamente deshabilitada
     public void habilitar(Long id);
 
-    Mascota cabiarMascotaDTO (MascotaDTO mascotaDTO);
+    Mascota cambiarMascotaDTO (MascotaDTO mascotaDTO);
 
 }
