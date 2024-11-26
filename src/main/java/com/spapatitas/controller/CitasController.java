@@ -10,10 +10,7 @@ import org.springframework.ui.Model;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,7 +29,7 @@ public class CitasController {
     public String servicios(Model model){
         // Obtiene la lista de servicios desde la base de datos
         List<TipoServicio> tipoServicios = tipoServicioService.findAllTipoServicio();
-        List<Cita> listaCitas = citaService.findAllCita();
+        List<Cita> listaCitas = citaService.findAllCitaOrdenadas();
         model.addAttribute("servicios", tipoServicios);
         model.addAttribute("citas", listaCitas);
         return "citas/vistaCitas";
@@ -48,4 +45,10 @@ public class CitasController {
         cita.setDisponible(false);
         citaService.agendarCita(cita, null);
         return "redirect:/citas";}
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Long id){
+        citaService.desagendarCita(id);
+        return "redirect:/citas";
+    }
 }

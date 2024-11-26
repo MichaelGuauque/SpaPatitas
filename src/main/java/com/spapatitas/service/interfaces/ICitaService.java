@@ -13,6 +13,8 @@ public interface ICitaService {
 
     public List<Cita> findCitasDisponibles();
 
+    public List<Cita> findAllCitaOrdenadas();
+
 //    public void save(Cita cita);
 
     public void agendarCita(Cita cita, Long idCliente);

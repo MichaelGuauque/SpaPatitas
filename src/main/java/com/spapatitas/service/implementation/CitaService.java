@@ -44,25 +44,24 @@ public class CitaService implements ICitaService {
     }
 
     @Override
+    public List<Cita> findAllCitaOrdenadas() {
+        return (List<Cita>) citaRepository.findAllByOrderByFechaCitaAscHoraCitaAsc();
+    }
+
+    @Override
     public void agendarCita(Cita cita, Long idCliente) {
 //        Cita cita = citaRepository.findById(idCita).orElseThrow();
 //        Optional<Cliente> cliente = clienteRepository.findById(idCliente);
 //        if (cita.getDisponible() == TRUE) {  // Revisa si la cita está disponible (true)
 //            cita.setDisponible(FALSE);  // Marca como ocupada (false)
 //            cita.setCliente(cliente.get());
-            citaRepository.save(cita);
-        }
+        citaRepository.save(cita);
+    }
 //        throw new RuntimeException("La cita no está disponible");
 
 
     @Override
     public void desagendarCita(Long id) {
-        Cita cita = citaRepository.findById(id).orElseThrow();
-        if (cita.getDisponible() == FALSE) {  // Revisa si la cita está disponible (true)
-            cita.setDisponible(TRUE);  // Marca como ocupada (false)
-            cita.setCliente(null);
-            citaRepository.save(cita);
-        }
-        throw new RuntimeException("La cita está disponible");
+        citaRepository.deleteById(id);
     }
 }
