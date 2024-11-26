@@ -2,7 +2,9 @@ package com.spapatitas.service.implementation;
 
 import com.spapatitas.DTO.ClienteDTO;
 import com.spapatitas.persistence.model.Cliente;
+import com.spapatitas.persistence.model.UserEntity;
 import com.spapatitas.persistence.repository.ClienteRepository;
+import com.spapatitas.persistence.repository.UserRepository;
 import com.spapatitas.service.interfaces.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ public class ClienteService implements IClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     //Implementacion de Metodos
 

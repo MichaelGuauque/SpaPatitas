@@ -28,5 +28,4 @@ public interface IClienteService {
 
     // Habilita un cliente (cambia el estado a true)
     void habilitar(Long idCliente);
-
 }
