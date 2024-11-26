@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TipoServicioService implements ITipoServicioService {
@@ -33,5 +34,11 @@ public class TipoServicioService implements ITipoServicioService {
     @Override
     public void update(TipoServicio tipoServicio) {
         tipoServicioRepository.save(tipoServicio);
+    }
+
+    @Override
+    public List<TipoServicio> findByIds(List<Long> id) {
+        Iterable<TipoServicio> iterable = tipoServicioRepository.findAllById(id);
+        return ((List<TipoServicio>) iterable).stream().collect(Collectors.toList());
     }
 }

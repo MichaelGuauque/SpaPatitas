@@ -9,7 +9,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import lombok.*;
 
@@ -27,7 +29,10 @@ public class Cita {
     private Long idCita;
 
     @Column(nullable = false)
-    private LocalDateTime fechaHora;
+    private LocalDate fechaCita;
+
+    @Column(nullable = false)
+    private LocalTime horaCita;
 
     @ManyToMany(targetEntity = TipoServicio.class, fetch = FetchType.LAZY)
     @JoinTable(name = "servicio")
@@ -36,7 +41,7 @@ public class Cita {
     @Column(nullable = false)
     private double ValorTotal = 0;
 
-    @ManyToOne(targetEntity = Cliente.class)
+    @ManyToOne(targetEntity = Cliente.class, optional = true)
     private Cliente cliente = null;
 
     @Column(nullable = false)
