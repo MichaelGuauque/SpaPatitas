@@ -32,7 +32,9 @@ public class CitasController {
     public String servicios(Model model){
         // Obtiene la lista de servicios desde la base de datos
         List<TipoServicio> tipoServicios = tipoServicioService.findAllTipoServicio();
+        List<Cita> listaCitas = citaService.findAllCita();
         model.addAttribute("servicios", tipoServicios);
+        model.addAttribute("citas", listaCitas);
         return "citas/vistaCitas";
     }
 

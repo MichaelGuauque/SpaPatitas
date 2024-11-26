@@ -99,7 +99,7 @@
             <table class="table">
                 <tbody>
 
-                <tr>
+                <tr th:each="cita: ${citas}">
                     <td>
                         <div class="d-flex align-items-center justify-content-between" id="regCita">
                             <!-- Contenido de la fila -->
@@ -107,9 +107,11 @@
                                 <img th:src="@{/img/Calendar_.png}" alt="Imagen" class="me-3"
                                      style="width: 51.7px; height: 59px; display: flex; align-items: center;justify-content: center">
                                 <div>
-                                    <h5 class="mb-1" id="diaCita">Día de la Cita:</h5>
-                                    <h6 class="text-muted mb-2" id="horaCitas">Hora de la Cita:</h6>
-                                    <p class="mb-0" id="serviciosCita">Servicios de la cita:</p>
+                                    <h5 class="mb-1" id="diaCita" th:text="${cita.fechaCita}"></h5>
+                                    <h6 class="text-muted mb-2" id="horaCitas" th:text="${cita.horaCita}"></h6>
+                                    <div th:each="tipoServicio : ${cita.tipoServicios}">
+                                        <p class="mb-0" id="serviciosCita" th:text="${tipoServicio.descripcion}"></p>
+                                    </div></p>
                                 </div>
                             </div>
                             <!-- Botones -->
