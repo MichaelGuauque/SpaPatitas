@@ -29,7 +29,7 @@
             <div id="promocionesDiv">
                 <div class="row mb-3">
                     <form th:action="@{/clientes/actualizarMascota}" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="id" th:value="${mascota.id}" />
+                        <input type="hidden" name="id" th:value="${mascota.id}"/>
                         <div class="row mb-3">
                             <!-- Nombre de la mascota -->
                             <div class="col-md-4">
@@ -85,6 +85,7 @@
                                     Cancelar
                                 </button>
                             </div>
+                        </div>
 
                     </form>
                 </div>
