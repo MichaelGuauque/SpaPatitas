@@ -11,6 +11,8 @@ public interface ITipoServicioService {
 
     public List<TipoServicio> findAllTipoServicio();
 
+    public List<TipoServicio> findAllTipoServicioHabilitados();
+
     public Optional<TipoServicio> findById(Long id);
 
     public void save(TipoServicioDTO tipoServicioDTO) throws

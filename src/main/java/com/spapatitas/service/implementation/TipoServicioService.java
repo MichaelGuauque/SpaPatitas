@@ -24,6 +24,11 @@ public class TipoServicioService implements ITipoServicioService {
     }
 
     @Override
+    public List<TipoServicio> findAllTipoServicioHabilitados() {
+        return tipoServicioRepository.findByEstadoTrue();
+    }
+
+    @Override
     public Optional<TipoServicio> findById(Long id) {
         return tipoServicioRepository.findById(id);
     }

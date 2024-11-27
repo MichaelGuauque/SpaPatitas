@@ -26,7 +26,7 @@ public class TipoServicio {
     @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String nombreServicio;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(200)")
+    @Column(nullable = false, columnDefinition = "VARCHAR(300)")
     private String descripcion;
 
     @Column(nullable = false)

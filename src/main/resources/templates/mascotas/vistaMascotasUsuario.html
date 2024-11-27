@@ -117,7 +117,7 @@
                                 <div>
                                     <h5 class="mb-1" id="nombreMascota" th:text="${mascota.nombre}" ></h5>
                                     <h6 class="text-muted mb-2" id="razaMascota" th:text="${mascota.raza}" ></h6>
-                                    <p class="mb-0" id="descripMascota" th:text="${mascota.observaciones}" ></p>
+                                    <p class="mb-0" id="descripMascota">Observaciones: <span id="descripMas" th:text="${mascota.observaciones}"></span></p>
                                 </div>
                             </div>
                             <!-- Botones -->
@@ -137,6 +137,16 @@
 
                  </tbody>
              </table>
+
+            <script>
+                const etiqueta = document.getElementById('descripMas');
+                const maxCaracteres = 230;
+
+                etiqueta.textContent = etiqueta.textContent.length > maxCaracteres
+                    ? etiqueta.textContent.substring(0, maxCaracteres) + "..."
+                    : etiqueta.textContent;
+            </script>
+
          </div>
      </div>
      <!-- Footer -->

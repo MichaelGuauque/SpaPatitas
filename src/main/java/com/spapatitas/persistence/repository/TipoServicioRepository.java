@@ -11,4 +11,5 @@ import java.util.Optional;
 @Repository
 public interface TipoServicioRepository extends CrudRepository<TipoServicio, Long> {
 
+    List<TipoServicio> findByEstadoTrue();
 }

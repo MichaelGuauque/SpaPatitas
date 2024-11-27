@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpaPatitas | Servicios</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="icon" type="image/png" th:href="@{/img/Solo logo Blanco.png}">
+  <link rel="stylesheet" th:href="@{/style/stylAm.css}">
+</head>
+<body>
+<!-- left var -->
+<div th:include="admin/template_admin.html::header"></div>
+<main>
+
+  <div class="right-content">
+    <div class="panel-informacion2">
+      <h3>Conoce Nuestros Servicios</h3>
+      <h2>Cuida y consiente a tu mascota con nuestros servicios especializados. Desde baños y cortes de pelo hasta tratamientos relajantes, en Spa Patitas ofrecemos todo lo que tu peludo necesita para sentirse bien.</h2>
+    </div>
+
+
+
+    <div class="tablaPromo">
+      <div class="tabla-encabezado">
+        <h3 id="pequeño2">Servicios Disponibles</h3>
+        <div>
+          <form>
+            <input class="buscador" type="number" placeholder="Nombre del Servicio">
+            <button class="boton-buscar" type="submit"><img th:src="@{/img/Search.png}"></button>
+          </form>
+        </div>
+      </div>
+
+      <table class="table">
+        <tbody>
+        <!-- Fila 1 -->
+        <tr th:each="servicio:${servicios}">
+          <td>
+            <div class="d-flex align-items-center justify-content-between" id="regServicio">
+              <!-- Imagen y contenido -->
+              <div class="d-flex align-items-center">
+                <img th:src="@{/img/imgService.png}" alt="Imagen Servicio" id="imgTable" class="me-3" style="width: 177.11px; height: 146px; object-fit: cover;">
+                <div>
+                  <h5 class="mb-1" id="nombreMascotaa" th:text="${servicio.nombreServicio}" ></h5>
+                  <h6 class="text-muted mb-2" id="descripMascota" th:text="${servicio.descripcion}" ></h6>
+                  <p class="mb-0" id="precioService">Precio: $<span id="precioSer" th:text="${servicio.precioPublico}"></span></p>
+                </div>
+              </div>
+              <!-- Botón Agendar -->
+              <div>
+                <a  class="btn btn-primary d-flex align-items-center">
+                  <span>Agendar</span>
+                  <img th:src="@{/img/Calen.png}" alt="Ícono Calendario" class="ms-2" style="width: 20px; height: 20px;">
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+
+
+
+
+    </div>
+  </div>
+  <script>
+    const etiqueta = document.getElementById('descripMascota');
+    const maxCaracteres = 230;
+
+    etiqueta.textContent = etiqueta.textContent.length > maxCaracteres
+            ? etiqueta.textContent.substring(0, maxCaracteres) + "..."
+            : etiqueta.textContent;
+  </script>
+
+
+
+<!-- Footer -->
+<div th:include="admin/template_admin.html::footer"></div>
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

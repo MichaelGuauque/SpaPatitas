@@ -40,10 +40,10 @@ public class ProductoService implements IProductoService {
 
     @Override
     public Producto update(Producto producto) {
-//        if (productoRepository.existsById(producto.getCodigo())) {
+        if (productoRepository.existsById(producto.getCodigo())) {
             return productoRepository.save(producto);
-//        }
-//        throw new IllegalArgumentException("El producto con codigo" + producto.getCodigo() + " no existe.");
+        }
+        throw new IllegalArgumentException("El producto con codigo" + producto.getCodigo() + " no existe.");
     }
 
     @Override
