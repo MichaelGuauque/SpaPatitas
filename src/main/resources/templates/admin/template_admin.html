@@ -9,9 +9,9 @@
       <div class="opciones">
         <a class="menu-link" th:href="@{/administrador/home}"> <img class="icons-menu" th:src="@{/img/Home.png}"> Inicio</a>
         <a class="menu-link" th:href="@{/productos}"> <img class="icons-menu" th:src="@{/img/Shopping bag.png}"> Productos</a>
-        <a class="menu-link" href="vistaServicios.html"> <img class="icons-menu" th:src="@{/img/Scissors.png}"> Servicios</a>
+        <a class="menu-link" th:href="@{/servicios}"> <img class="icons-menu" th:src="@{/img/Scissors.png}"> Servicios</a>
         <a class="menu-link" th:href="@{/citas}"> <img class="icons-menu" th:src="@{/img/Calendar.png}"> Citas</a>
-        <a class="menu-link" href="vistaPromociones.html"> <img class="icons-menu" th:src="@{/img/Tag.png}"> Promociones</a>
+        <a class="menu-link" th:href="@{/promociones}"> <img class="icons-menu" th:src="@{/img/Tag.png}"> Promociones</a>
         <a class="menu-link" th:href="@{/clientes}"> <img class="icons-menu" th:src="@{/img/Users.png}">  Clientes</a>
         <a class="menu-link" th:href="@{/proveedores}"> <img class="icons-men" th:src="@{/img/Truck.png}">  Proveedores</a>
         <a class="menu-link" href="vistaInformes.html"> <img class="icons-menu" th:src="@{/img/Clipboard.png}">  Informes</a>
@@ -33,35 +33,49 @@
 
   <div th:fragment="footer">
     <footer>
-      <div class="div1"> <img class="imgLogo" th:src="@{/img/Blanco Cuadrado.png}"> </div>
-      <div class="div2">
-        <div class="contene">
+      <div style="display: flex; width: 100%; height: auto;">
+        <!-- Columna 1 -->
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px;">
+          <div class="div1">
+            <img class="imgLogo" src="/img/Blanco Cuadrado.png" alt="Logo">
+          </div>
+          <p id="eslogan" style="text-align: center;">
+            Nos apasiona el cuidado de tu mascota. Gracias por confiar en Spa Patitas.
+          </p>
+        </div>
+        <!-- Columna 2 -->
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
           <h5>Información de contacto</h5>
-          <p class="informa"><img class="iconosFooter" th:src="@{/img/Map pin.png}">Calle Ejemplo 123, Ciudad, País</p>
-          <p class="informa"><img class="iconosFooter" th:src="@{/img/Phone call.png}">+123 456 7890</p>
-          <p class="informa"><img class="iconosFooter" th:src="@{/img/Mail.png}">info@spapatitas.com</p>
-          <p class="informa"><img class="iconosFooter" th:src="@{/img/Clock.png}">Horario: Lunes a Sábado, 9:00 AM - 6:00 PM</p>
+          <p class="informa" style="display: flex; align-items: center; gap: 15px;">
+            <img class="iconosFooter" src="/img/Map pin.png" alt="Ubicación">Calle Ejemplo 123, Ciudad, País
+          </p>
+          <p class="informa" style="display: flex; align-items: center; gap: 15px;">
+            <img class="iconosFooter" src="/img/Phone call.png" alt="Teléfono">+123 456 7890
+          </p>
+          <p class="informa" style="display: flex; align-items: center; gap: 15px;">
+            <img class="iconosFooter" src="/img/Mail.png" alt="Correo">info@spapatitas.com
+          </p>
+          <p class="informa" style="display: flex; align-items: center; gap: 15px;">
+            <img class="iconosFooter" src="/img/Clock.png" alt="Horario">Horario: Lunes a Sábado, 9:00 AM - 6:00 PM
+          </p>
+        </div>
+        <!-- Columna 3 -->
+        <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
+          <h5>Redes Sociales</h5>
+          <p class="informa" style="display: flex; align-items: center; gap: 15px;">
+            <img class="iconosFooter" src="/img/Instagram.png" alt="Instagram">Instagram
+          </p>
+          <p class="informa" style="display: flex; align-items: center; gap: 15px;">
+            <img class="iconosFooter" src="/img/Facebook.png" alt="Facebook">Facebook
+          </p>
+          <p class="informa" style="display: flex; align-items: center; gap: 15px;">
+            <img class="iconosFooter" src="/img/icon _x letter_.png" alt="X">X
+          </p>
+          <p class="informa" style="display: flex; align-items: center; gap: 15px;">
+            <img class="iconosFooter" src="/img/icon _tiktok_.png" alt="TikTok">TikTok
+          </p>
         </div>
       </div>
 
-      <div class="div5">
-        <section id="eslo">
-          <p id="eslogan">Nos apasiona el cuidado de tu mascota. Gracias por confiar en Spa Patitas.</p>
-        </section>
-      </div>
-      <div class="div6">
-        <div class="contene">
-          <h5>Información de contacto</h5>
-          <p class="informa"><img class="iconosFooter" th:src="@{/img/Instagram.png}">Instagram</p>
-          <p class="informa"><img class="iconosFooter" th:src="@{/img/Facebook.png}">Facebook</p>
-          <p class="informa"><img class="iconosFooter" th:src="@{/img/icon _x letter_.png}">X</p>
-          <p class="informa"><img class="iconosFooter" th:src="@{/img/icon _tiktok_.png}">TikTok</p>
-        </div>
-      </div>
-      <div class="div7">
-        <p id="fote">&copy;2024 Spa Patitas. Todos los derechos reservados. El contenido y las imágenes son propiedad de Spa Patitas.
-          Prohibida su reproducción sin autorización.</p>
-      </div>
-      <!-- -->
     </footer>
   </div>

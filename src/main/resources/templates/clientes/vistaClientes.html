@@ -31,12 +31,12 @@
                         <!-- Primer Nombre -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="text" class="form-control" name="primerNombre" id="primerNombre"
-                                   placeholder="Primer Nombre.">
+                                   placeholder="Primer Nombre." required>
                         </div>
                         <!-- Segundo Nombre -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="text" class="form-control" name="segundoNombre" id="segundoNombre"
-                                   placeholder="Segundo Nombre.">
+                                   placeholder="Segundo Nombre." >
                         </div>
                     </div>
 
@@ -44,12 +44,12 @@
                         <!-- Primer Apellido -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="text" class="form-control" name="primerApellido" id="primerApellido"
-                                   placeholder="Primer Apellido.">
+                                   placeholder="Primer Apellido." required>
                         </div>
                         <!-- Segundo Apellido -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="text" class="form-control" name="segundoApellido" id="segundoApellido"
-                                   placeholder="Segundo Apellido.">
+                                   placeholder="Segundo Apellido." >
                         </div>
                     </div>
 
@@ -57,19 +57,19 @@
                         <!-- Numero de documento -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="number" class="form-control" name="cedula" id="cedula"
-                                   placeholder="No. de documento.">
+                                   placeholder="No. de documento." required>
                         </div>
                         <!-- Telefono -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="number" class="form-control" name="telefono" id="telefono"
-                                   placeholder="Número celular">
+                                   placeholder="Número celular" required>
                         </div>
                     </div>
 
                     <div class="row" style="background-color: #FFFFFF;">
                         <!-- Genero -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
-                            <select class="form-select" name="genero" aria-label="Seleccione su género">
+                            <select class="form-select" name="genero" aria-label="Seleccione su género" required>
                                 <option value="" selected>Seleccione su genero.</option>
                                 <th:block th:each="genero : ${generos}">
                                     <option th:value="${genero}" th:text="${genero}"></option>
@@ -79,7 +79,7 @@
                         <!-- Fecha Nacimiento-->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento"
-                                   placeholder="Fecha Nacimiento">
+                                   placeholder="Fecha Nacimiento" required>
                         </div>
                     </div>
 
@@ -87,19 +87,19 @@
                         <!-- Direccion  -->
                         <div class="col-md-12 mb-3" style="background-color: #FFFFFF;">
                             <input type="text" class="form-control" name="direccion" id="direccion"
-                                   placeholder="Dirección">
+                                   placeholder="Dirección" required>
                         </div>
                     </div>
 
                     <div class="row" style="background-color: #FFFFFF;">
                         <!-- Correo-->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
-                            <input type="email" class="form-control" name="username" id="username" placeholder="Correo">
+                            <input type="email" class="form-control" name="username" id="username" placeholder="Correo" required>
                         </div>
                         <!-- Contrasenia -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="password" class="form-control" name="password" id="password"
-                                   placeholder="Contraseña">
+                                   placeholder="Contraseña" required>
                         </div>
                     </div>
 
@@ -111,9 +111,14 @@
                                     style="background-color: #F2B243; border-style: none;">Guardar
                             </button>
                             <button type="button" class="btn btn-secondary w-25"
-                                    onclick="window.location.href='/'">
+                                    onclick="resetFormAndShowAlert()">
                                 Cancelar
                             </button>
+                        </div>
+                        <!-- Alerta de Cancelación -->
+                        <div id="alerta-cancelacion" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none;">
+                            Proceso cancelado.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     </div>
                 </form>
@@ -176,5 +181,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+<script>
+    // Función para reiniciar el formulario y mostrar el mensaje de cancelación
+    function resetFormAndShowAlert() {
+        const form = document.querySelector('form'); // Selecciona el formulario
+        form.reset(); // Limpia los campos del formulario
+
+        const alertaCancelacion = document.getElementById('alerta-cancelacion');
+        alertaCancelacion.style.display = "block"; // Muestra la alerta de cancelación
+
+        // Ocultar automáticamente la alerta después de 3 segundos
+        setTimeout(() => {
+            alertaCancelacion.style.display = "none";
+        }, 3000);
+    }
+</script>
 </body>
 </html>

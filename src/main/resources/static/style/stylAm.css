@@ -430,15 +430,12 @@ h3{
 
 footer{
     margin-top: 1.563rem;
-    padding-left: 4.688rem;
-    padding-top: 3.438rem;
-
+    /*padding-left: 4.688rem;*/
+    /*padding-top: 3.438rem;*/
     border-radius: 0.938rem 0.938rem 0px 0px;
     background: #4F4F4F;
-    height: 33.813rem;
+    /*height: 33.813rem;*/
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
     gap: 0.5rem;
 }
 

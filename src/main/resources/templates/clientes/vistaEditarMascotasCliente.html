@@ -81,36 +81,11 @@
                                 <button type="submit" class="btn btn-primary w-50 me-2"
                                         style="background-color: #F2B243; border-style: none;">Guardar
                                 </button>
-                                <button type="button" class="btn btn-secondary w-50" onclick="resetFormAndShowAlert()">
+                                <button type="button" class="btn btn-secondary w-50" onclick="window.history.back()">
                                     Cancelar
                                 </button>
                             </div>
 
-                            <!-- Alerta de Cancelación -->
-                            <div id="alerta-cancelacion" class="alert alert-warning alert-dismissible fade show"
-                                 role="alert" style="display: none;">
-                                Proceso cancelado.
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                            </div>
-
-                        </div>
-
-                        <script>
-                            // Función para reiniciar el formulario y mostrar el mensaje de cancelación
-                            function resetFormAndShowAlert() {
-                                const form = document.querySelector('form'); // Selecciona el formulario
-                                form.reset(); // Limpia los campos del formulario
-
-                                const alertaCancelacion = document.getElementById('alerta-cancelacion');
-                                alertaCancelacion.style.display = "block"; // Muestra la alerta de cancelación
-
-                                // Ocultar automáticamente la alerta después de 3 segundos
-                                setTimeout(() => {
-                                    alertaCancelacion.style.display = "none";
-                                }, 3000);
-                            }
-                        </script>
                     </form>
                 </div>
             </div>
