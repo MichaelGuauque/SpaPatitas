@@ -42,16 +42,20 @@ public class CitasController {
     }
 
     @PostMapping("/crear")
-    public String crear(Cita cita, @RequestParam List<Long> serviciosSeleccionados) {
+    public String crear(Cita cita, @RequestParam List<Long> serviciosSeleccionados,@RequestParam int cedula) {
+        Cliente cliente1 = new Cliente();
+        Optional<Cliente> cliente = clienteService.findByCedula(cedula);
+        cliente1 = cliente.get();
 
         List<TipoServicio> servicios = tipoServicioService.findByIds(serviciosSeleccionados);
         cita.setTipoServicios(servicios);
         cita.setDisponible(false);
+        cita.setCliente(cliente1);
 
 //        logger.info("Servicios encontrados: {}", servicios);
 //        logger.info("Esta es la cita {}", cita);
 //        logger.info("Servicios seleccionados: {}", serviciosSeleccionados);
-        citaService.agendarCita(cita, null);
+        citaService.agendarCita(cita, cliente1.getIdCliente());
         return "redirect:/citas";}
 
     @GetMapping("/eliminar/{id}")

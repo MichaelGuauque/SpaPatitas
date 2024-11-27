@@ -37,7 +37,7 @@
                             <div class="row mb-3">
                                 <div class="col-12">
                                     <label for="cedula" class="form-label">Ingrese la Cedula del Cliente:</label>
-                                    <input type="number" class="form-control" name="cedula" id="cedula" placeholder="No. de documento.">
+                                    <input type="number" class="form-control" name="cedula" id="cedula" placeholder="No. de documento." required>
                                 </div>
                             </div>
 
@@ -118,8 +118,9 @@
                                 <img th:src="@{/img/Calendar_.png}" alt="Imagen" class="me-3"
                                      style="width: 51.7px; height: 59px; display: flex; align-items: center;justify-content: center">
                                 <div>
-                                    <h5 class="mb-1" id="diaCita" th:text="${cita.fechaCita}"></h5>
-                                    <h6 class="text-muted mb-2" id="horaCitas" th:text="${cita.horaCita}"></h6>
+                                    <h4 class="mb-1" id="diaCita" th:text="${cita.fechaCita}"></h4>
+                                    <h4 class="text-muted mb-1" id="clienteCita" th:text="${cita.cliente.primerNombre} + ' ' + ${cita.cliente.primerApellido}"></h4>
+                                    <h4 class="text-muted mb-2" id="horaCitas" th:text="${cita.horaCita}"></h4>
                                     <div th:each="tipoServicio : ${cita.tipoServicios}">
                                         <p class="mb-0" id="serviciosCita" th:text="${tipoServicio.descripcion}"></p>
                                     </div></p>

@@ -41,7 +41,7 @@ public class Cita {
     @Column(nullable = false)
     private double ValorTotal = 0;
 
-    @ManyToOne(targetEntity = Cliente.class, optional = true)
+    @ManyToOne(targetEntity = Cliente.class, optional = false)
     private Cliente cliente = null;
 
     @Column(nullable = false)
