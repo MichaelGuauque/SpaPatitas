@@ -11,6 +11,8 @@ public interface ITipoServicioService {
 
     public Optional<TipoServicio> findById(Long id);
 
+    public List<TipoServicio> findByIds(List<Long> ids);
+
     public void save(TipoServicio tipoServicio);
 
     public void update(TipoServicio tipoServicio);
