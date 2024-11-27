@@ -24,10 +24,10 @@ public class Proveedor {
     private String nombre;
 
     @Column(nullable = false)
-    private String direccion;
+    private int telefono;
 
     @Column(nullable = false)
-    private int telefono;
+    private String direccion;
 
     @Column(nullable = false)
     private String correo;
@@ -37,5 +37,17 @@ public class Proveedor {
 
     @OneToMany(targetEntity = DetalleProvee.class, mappedBy = "proveedor")
     private List<DetalleProvee> detallesProvee;
+
+    @Override
+    public String toString() {
+        return "Proveedor{" +
+                "nit=" + nit +
+                ", nombre='" + nombre + '\'' +
+                ", telefono=" + telefono +
+                ", direccion='" + direccion + '\'' +
+                ", correo='" + correo + '\'' +
+                ", estado=" + estado +
+                '}';
+    }
 }
 
