@@ -12,4 +12,9 @@ import java.util.Optional;
 public interface TipoServicioRepository extends CrudRepository<TipoServicio, Long> {
 
     List<TipoServicio> findByEstadoTrue();
+
+
+    List<TipoServicio> findByNombreServicioContainingIgnoreCase(String nombreServicio);
+
+
 }

@@ -13,6 +13,8 @@ public interface ITipoServicioService {
 
     public List<TipoServicio> findAllTipoServicioHabilitados();
 
+    public List<TipoServicio> findByNombre(String nombreServicio);
+
     public Optional<TipoServicio> findById(Long id);
 
     public void save(TipoServicioDTO tipoServicioDTO) throws

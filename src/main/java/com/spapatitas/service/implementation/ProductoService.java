@@ -79,4 +79,9 @@ public class ProductoService implements IProductoService {
 
         return producto;
     }
+
+    @Override
+    public List<Producto> findAllProductoHabilitados() {
+        return productoRepository.findByEstadoTrue();
+    }
 }

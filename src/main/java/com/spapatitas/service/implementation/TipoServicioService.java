@@ -77,5 +77,8 @@ public class TipoServicioService implements ITipoServicioService {
         return tipoServicio;
     }
 
+    public List<TipoServicio> findByNombre(String nombreServicio) {
+        return tipoServicioRepository.findByNombreServicioContainingIgnoreCase(nombreServicio);
+    }
 
 }

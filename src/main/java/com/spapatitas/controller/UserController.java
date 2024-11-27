@@ -80,7 +80,7 @@ public class UserController {
 
     @GetMapping("/productos")
     public String productos(Model model){
-        List<Producto> productos = productoService.findAll();
+        List<Producto> productos = productoService.findAllProductoHabilitados();
         model.addAttribute("productos", productos);
         return "productos/vistaProductosUsuario";
     }

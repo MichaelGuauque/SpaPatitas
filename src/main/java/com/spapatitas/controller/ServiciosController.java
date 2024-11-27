@@ -82,5 +82,13 @@ public class ServiciosController {
         return "servicios/vistaServicios"; // Devuelve la misma vista
     }
 
+    @GetMapping("/search")
+    public String buscarServicio(@RequestParam String nombreServicio, Model model) {
+        // Filtrar los servicios que coincidan con el nombre
+        List<TipoServicio> serviciosEncontrados = tipoServicioService.findByNombre(nombreServicio);
+        model.addAttribute("servicios", serviciosEncontrados);
+        return "servicios/vistaServiciosUsuario"; // O la vista donde quieres mostrar los resultados
+    }
+
 
 }
