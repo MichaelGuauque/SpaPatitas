@@ -14,22 +14,41 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-@Entity
 
+@Entity
 public class TipoServicio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTipoServicio;
+    private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
+    private String nombreServicio;
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(300)")
     private String descripcion;
 
     @Column(nullable = false)
-    private double precio;
+    private double precioPublico;
 
-//    Agregar Estado Habilitado / Deshabilitado
+    @Column(nullable = false)
+    private double costoInterno;
+
+    @Column(nullable = false)
+    private boolean estado;
+
+
+    @Override
+    public String toString() {
+        return "TipoServicio{" +
+                "id='" + id +
+                ", nombreServicio='" + nombreServicio + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precioPublico='" + precioPublico + '\'' +
+                ", costoInterno='" + costoInterno + '\'' +
+                ", estado='" + estado + '\'' +
+                '}';
+    }
 
 }

@@ -1,11 +1,13 @@
 package com.spapatitas.service.implementation;
 
+import com.spapatitas.DTO.MascotaDTO;
 import com.spapatitas.persistence.model.Mascota;
 import com.spapatitas.persistence.repository.MascotaRepository;
 import com.spapatitas.service.interfaces.IMascotaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +25,13 @@ public class MascotaService implements IMascotaService {
         return mascotaRepository.findAllByDueno_Cedula(cedula);
     }
 
+
+    @Override
+    public List<Mascota> findAll() {
+        return mascotaRepository.findAll();
+    }
+
+
     // Encuentra una mascota por su ID
     @Override
     public Optional<Mascota> findById(Long id) {
@@ -32,20 +41,23 @@ public class MascotaService implements IMascotaService {
     }   return null;
     }
 
+
     // Guarda una nueva mascota en la base de datos
     @Override
-    public Mascota save(Mascota mascota) {
-        return mascotaRepository.save(mascota);
+    public void save(MascotaDTO mascotaDTO) throws SQLIntegrityConstraintViolationException, Exception {
+         mascotaRepository.save(cambiarMascotaDTO(mascotaDTO));
     }
+
 
     // Actualiza una mascota existente
     @Override
     public Mascota update(Mascota mascota) {
-        if (mascota.getId() != null && mascotaRepository.existsById(mascota.getId())) {
-            return mascotaRepository.save(mascota);
+        if (mascotaRepository.existsById(mascota.getId())) {
+            return  mascotaRepository.save(mascota);
         }
         throw new IllegalArgumentException("La mascota con ID " + mascota.getId() + " no existe.");
     }
+
 
     // Deshabilita una mascota (marcar como inactiva)
     @Override
@@ -57,6 +69,7 @@ public class MascotaService implements IMascotaService {
         });
     }
 
+
     // Habilita una mascota previamente deshabilitada (marcar como activa)
     @Override
     public void habilitar(Long id) {
@@ -65,5 +78,19 @@ public class MascotaService implements IMascotaService {
             m.setEstado(true);
             mascotaRepository.save(m);
         });
+    }
+
+    @Override
+    public Mascota cambiarMascotaDTO(MascotaDTO mascotaDTO) {
+        Mascota mascota = Mascota.builder()
+                .nombre(mascotaDTO.getNombre())
+                .raza(mascotaDTO.getRaza())
+                .observaciones(mascotaDTO.getObservaciones())
+                .estado(mascotaDTO.isEstado())
+                .dueno(mascotaDTO.getDueno())
+                .fechaNacimiento(mascotaDTO.getFechaNacimiento())
+                .build();
+
+        return mascota;
     }
 }

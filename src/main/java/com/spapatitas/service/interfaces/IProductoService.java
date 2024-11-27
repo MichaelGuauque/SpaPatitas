@@ -3,6 +3,7 @@ package com.spapatitas.service.interfaces;
 import com.spapatitas.DTO.ProductoDTO;
 import com.spapatitas.persistence.model.Producto;
 import com.spapatitas.persistence.model.Proveedor;
+import com.spapatitas.persistence.model.TipoServicio;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
@@ -20,4 +21,6 @@ public interface IProductoService {
     public void deshabilitar(Long codigo);
     public void habilitar(Long codigo);
     Producto cambiarProductoDTO(ProductoDTO productoDTO);
+
+    public List<Producto> findAllProductoHabilitados();
 }

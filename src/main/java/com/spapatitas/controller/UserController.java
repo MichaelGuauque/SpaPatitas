@@ -4,8 +4,10 @@ import com.spapatitas.DTO.ClienteDTO;
 import com.spapatitas.DTO.UserDTO;
 import com.spapatitas.persistence.model.Genero;
 import com.spapatitas.persistence.model.Producto;
+import com.spapatitas.persistence.model.TipoServicio;
 import com.spapatitas.persistence.model.UserEntity;
 import com.spapatitas.service.implementation.ProductoService;
+import com.spapatitas.service.implementation.TipoServicioService;
 import com.spapatitas.service.interfaces.IClienteService;
 import com.spapatitas.service.interfaces.IUserEntity;
 import org.apache.catalina.User;
@@ -37,6 +39,9 @@ public class UserController {
 
     @Autowired
     private ProductoService productoService;
+
+    @Autowired
+    private TipoServicioService tipoServicioService;
 
     @GetMapping("/login")
     public String login(){
@@ -75,9 +80,16 @@ public class UserController {
 
     @GetMapping("/productos")
     public String productos(Model model){
-        List<Producto> productos = productoService.findAll();
+        List<Producto> productos = productoService.findAllProductoHabilitados();
         model.addAttribute("productos", productos);
         return "productos/vistaProductosUsuario";
+    }
+
+    @GetMapping("/servicios")
+    public String servicios(Model model) {
+        List<TipoServicio> tipoServicio = tipoServicioService.findAllTipoServicioHabilitados();
+        model.addAttribute("servicios", tipoServicio);
+        return "servicios/vistaServiciosUsuario";
     }
 
 }

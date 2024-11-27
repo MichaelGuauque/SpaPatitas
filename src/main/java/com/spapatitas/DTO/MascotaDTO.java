@@ -1,45 +1,26 @@
-package com.spapatitas.persistence.model;
+package com.spapatitas.DTO;
 
-import jakarta.persistence.*;
-import lombok.*;
+import com.spapatitas.persistence.model.Cliente;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
-
-@Entity
-public class Mascota {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne(targetEntity = Cliente.class)
+public class MascotaDTO {
     private Cliente dueno;
-
-    @Column(nullable = true, columnDefinition = "VARCHAR(20)")
     private String nombre;
-
-    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
     private String raza;
-
-    @Column(columnDefinition = "DATE")
     private LocalDate fechaNacimiento;
-
-    @Column(nullable = false, columnDefinition = "VARCHAR(300)")
     private String observaciones;
-
-    @Column(nullable = false)
     private boolean estado;
 
     @Override
     public String toString() {
-        return "Mascota{" +
-                "id='" + id +
+        return "MascotaDTO{" +
                 ", dueno='" + dueno + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", raza='" + raza + '\'' +
@@ -48,5 +29,4 @@ public class Mascota {
                 ", estado='" + estado + '\'' +
                 '}';
     }
-
 }
