@@ -5,7 +5,7 @@ import com.spapatitas.persistence.model.Producto;
 import com.spapatitas.persistence.model.Proveedor;
 import com.spapatitas.persistence.repository.ProductoRepository;
 import com.spapatitas.service.interfaces.IProductoService;
-import lombok.Getter
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
