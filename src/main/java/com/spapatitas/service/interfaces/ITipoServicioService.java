@@ -17,6 +17,8 @@ public interface ITipoServicioService {
 
     public Optional<TipoServicio> findById(Long id);
 
+    public List<TipoServicio>findByIds(List<Long> ids);
+
     public void save(TipoServicioDTO tipoServicioDTO) throws
             SQLIntegrityConstraintViolationException, Exception;
 

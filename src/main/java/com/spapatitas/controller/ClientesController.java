@@ -1,6 +1,7 @@
 package com.spapatitas.controller;
 
 import com.spapatitas.DTO.ClienteDTO;
+import com.spapatitas.DTO.MascotaDTO;
 import com.spapatitas.DTO.UserDTO;
 import com.spapatitas.persistence.model.*;
 import com.spapatitas.service.implementation.MascotaService;
@@ -53,7 +54,7 @@ public class ClientesController {
     }
 
     @PostMapping("/guardarMascota")
-    public String guardarMascota(Mascota mascota, Cliente cliente) {
+    public String guardarMascota(MascotaDTO mascota, Cliente cliente) throws Exception {
         Optional<Cliente> optionalCliente = clienteService.findById(cliente.getIdCliente());
         cliente = optionalCliente.get();
         mascota.setDueno(cliente);
