@@ -123,7 +123,7 @@
                       <td th:text="${p.precioProvee}"></td>
                       <td th:text="${p.codigo}"></td>
                       <td th:text="${p.stock}"></td>
-                      <td th:text="${p.estado}"></td>
+                      <td th:text="(${p.estado} ? 'Habilitado' : 'Deshabilitado')">"></td>
                       <td style="display: flex; flex-direction: column; gap: 7px;">
                         <a style="display:flex; justify-content: center; color: #010101; border-radius: 10px; background-color: #e6e8e4; border: 2px solid black; text-decoration: none;"
                            th:href="@{productos/editar/{codigo} (codigo = ${p.codigo})}">Modificar</a>

@@ -3,6 +3,7 @@ package com.spapatitas.controller;
 import com.spapatitas.persistence.model.Cita;
 import com.spapatitas.persistence.model.Cliente;
 import com.spapatitas.persistence.model.TipoServicio;
+import com.spapatitas.service.implementation.ClienteService;
 import com.spapatitas.service.interfaces.ICitaService;
 import com.spapatitas.service.interfaces.ITipoServicioService;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/citas")
@@ -24,25 +26,31 @@ public class CitasController {
     private ICitaService citaService;
     @Autowired
     private ITipoServicioService tipoServicioService;
+    @Autowired
+    private ClienteService clienteService;
 
     @GetMapping()
     public String servicios(Model model){
         // Obtiene la lista de servicios desde la base de datos
+        List<Cliente>  clientes = clienteService.findAll();
         List<TipoServicio> tipoServicios = tipoServicioService.findAllTipoServicio();
         List<Cita> listaCitas = citaService.findAllCitaOrdenadas();
         model.addAttribute("servicios", tipoServicios);
         model.addAttribute("citas", listaCitas);
+        model.addAttribute("clientes", clientes);
         return "citas/vistaCitas";
     }
 
     @PostMapping("/crear")
     public String crear(Cita cita, @RequestParam List<Long> serviciosSeleccionados) {
-        logger.info("Esta es la cita {}", cita);
-        logger.info("Servicios seleccionados: {}", serviciosSeleccionados);
+
         List<TipoServicio> servicios = tipoServicioService.findByIds(serviciosSeleccionados);
-        logger.info("Servicios encontrados: {}", servicios);
         cita.setTipoServicios(servicios);
         cita.setDisponible(false);
+
+//        logger.info("Servicios encontrados: {}", servicios);
+//        logger.info("Esta es la cita {}", cita);
+//        logger.info("Servicios seleccionados: {}", serviciosSeleccionados);
         citaService.agendarCita(cita, null);
         return "redirect:/citas";}
 

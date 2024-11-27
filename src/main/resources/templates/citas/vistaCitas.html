@@ -27,31 +27,42 @@
 
                 <h8 id="tituloPrincipal">Programación Cita</h8>
 
-                <div class="container mt-4 px-4">
+                <div class="container px-4">
 
                     <div class="row mb-3" style="margin-top: 20px;">
 
-                        <form class="row g-4" th:action="@{/citas/crear}" method="post" enctype="multipart/form-data">
+                        <form class="row g-4" th:action="@{/citas/crear}" method="post">
 
-                            <div class="col-md-6">
-                                <label for="fechaCita" class="form-label">Selecciona una Fecha:</label>
-                                <input type="date" id="fechaCita" name="fechaCita" class="form-control" required>
+                            <!-- Fila para la Cedula -->
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <label for="cedula" class="form-label">Ingrese la Cedula del Cliente:</label>
+                                    <input type="number" class="form-control" name="cedula" id="cedula" placeholder="No. de documento.">
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <label for="horaCita" class="form-label">Selecciona una Hora:</label>
-                                <select id="horaCita" name="horaCita" class="form-select" required>
-                                    <option value="" disabled selected>Elige una hora</option>
-                                    <option value="8:00">8:00 AM</option>
-                                    <option value="9:00">9:00 AM</option>
-                                    <option value="10:00">10:00 AM</option>
-                                    <option value="11:00">11:00 AM</option>
-                                    <option value="12:00">12:00 PM</option>
-                                    <option value="13:00">1:00 PM</option>
-                                    <option value="14:00">2:00 PM</option>
-                                    <option value="15:00">3:00 PM</option>
-                                    <option value="16:00">4:00 PM</option>
-                                    <option value="17:00">5:00 PM</option>
-                                </select>
+
+                            <!-- Fila para la Fecha y Hora-->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="fechaCita" class="form-label">Selecciona una Fecha:</label>
+                                    <input type="date" id="fechaCita" name="fechaCita" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="horaCita" class="form-label">Selecciona una Hora:</label>
+                                    <select id="horaCita" name="horaCita" class="form-select" required>
+                                        <option value="" disabled selected>Elige una hora</option>
+                                        <option value="8:00">8:00 AM</option>
+                                        <option value="9:00">9:00 AM</option>
+                                        <option value="10:00">10:00 AM</option>
+                                        <option value="11:00">11:00 AM</option>
+                                        <option value="12:00">12:00 PM</option>
+                                        <option value="13:00">1:00 PM</option>
+                                        <option value="14:00">2:00 PM</option>
+                                        <option value="15:00">3:00 PM</option>
+                                        <option value="16:00">4:00 PM</option>
+                                        <option value="17:00">5:00 PM</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="col-12">
@@ -125,6 +136,7 @@
                 </tbody>
             </table>
         </div>
+
     </div>
 
     <!-- Footer -->

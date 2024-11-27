@@ -2,10 +2,8 @@ package com.spapatitas.controller;
 
 import com.spapatitas.DTO.ClienteDTO;
 import com.spapatitas.DTO.UserDTO;
-import com.spapatitas.persistence.model.Cliente;
-import com.spapatitas.persistence.model.Genero;
-import com.spapatitas.persistence.model.Producto;
-import com.spapatitas.persistence.model.UserEntity;
+import com.spapatitas.persistence.model.*;
+import com.spapatitas.service.implementation.MascotaService;
 import com.spapatitas.service.interfaces.IClienteService;
 import com.spapatitas.service.interfaces.IUserEntity;
 import org.slf4j.Logger;
@@ -32,6 +30,8 @@ public class ClientesController {
     private IClienteService clienteService;
     @Autowired
     private IUserEntity userService;
+    @Autowired
+    private MascotaService mascotaService;
 
 
     @GetMapping()
@@ -52,6 +52,17 @@ public class ClientesController {
         return "redirect:/clientes";
     }
 
+    @PostMapping("/guardarMascota")
+    public String guardarMascota(Mascota mascota, Cliente cliente) {
+        Optional<Cliente> optionalCliente = clienteService.findById(cliente.getIdCliente());
+        cliente = optionalCliente.get();
+        mascota.setDueno(cliente);
+//        logger.info("Mascota registrada: {}", mascota);
+        mascota.setDueno(cliente);
+        mascotaService.save(mascota);
+        return "redirect:/clientes/verMascotas/" + cliente.getIdCliente();
+    }
+
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model) {
         Cliente cliente = new Cliente();
@@ -60,6 +71,15 @@ public class ClientesController {
         model.addAttribute("cliente", cliente);
         model.addAttribute("generos", Genero.values());
         return "clientes/vistaEditarClientes";
+    }
+
+    @GetMapping("/editarMascota/{id}")
+    public String editarMascota(@PathVariable Long id, Model model) {
+        Mascota mascota = new Mascota();
+        Optional<Mascota> optionalMascota = mascotaService.findById(id);
+        mascota = optionalMascota.get();
+        model.addAttribute("mascota", mascota);
+        return "clientes/vistaEditarMascotasCliente";
     }
 
     @PostMapping("/actualizar")
@@ -71,9 +91,45 @@ public class ClientesController {
         cliente.setUsuario(user);
 //        logger.info("Cliente con usuario:{}",cliente);
 
-
         clienteService.update(cliente);
         return "redirect:/clientes";
+    }
+
+    @PostMapping("/actualizarMascota")
+    public String actualizarMascota(Mascota mascota) throws IOException {
+
+        Optional<Mascota> optionalMascota = mascotaService.findById(mascota.getId());
+        Mascota mascota1 = optionalMascota.get();
+        mascota.setDueno(mascota1.getDueno());
+        //        logger.info("Cliente actualizado: {}", cliente);
+//        logger.info("Cliente con usuario:{}",cliente);
+
+        mascotaService.update(mascota);
+        return "redirect:/clientes";
+    }
+
+    @GetMapping("/verMascotas/{id}")
+    public String verMascotas(@PathVariable Long id, Model model) {
+        Cliente cliente = new Cliente();
+        Optional<Cliente> optionalCliente = clienteService.findById(id);
+        cliente = optionalCliente.get();
+        model.addAttribute("cliente", cliente);
+        model.addAttribute("mascotas", mascotaService.findAllByDuenoCedula(cliente.getCedula()));
+        return "clientes/vistaMascotasCliente";
+    }
+
+    @PostMapping("/cambiarEstado/{id}")
+    public String cambiarEstado(@PathVariable Long id) {
+        Optional<Mascota> mascota = mascotaService.findById(id);
+
+        if (mascota.isPresent()) {
+            if (mascota.get().isEstado()) {
+                mascotaService.deshabilitar(id); // Deshabilita si está habilitada
+            } else {
+                mascotaService.habilitar(id); // Habilita si está deshabilitada
+            }
+        }
+        return "redirect:/clientes/verMascotas/" + mascota.get().getDueno().getIdCliente(); // Redirige a la vista principal de mascotas
     }
 
 }
