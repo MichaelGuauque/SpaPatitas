@@ -35,6 +35,8 @@ public class MascotaController {
     @Autowired
     private IUserEntity userService;
 
+    private final String ID_USUARIO = "idUsuario";
+
     private Cliente clienteSession(String nombreSession, HttpSession session) {
         Optional<UserEntity> optionalUserEntity = userService.findById(Long.parseLong(session.getAttribute(nombreSession).toString()));
         UserEntity usuario = optionalUserEntity.get();
@@ -45,7 +47,7 @@ public class MascotaController {
 
     @GetMapping()
     public String mascotas(Model model, HttpSession session) {
-        Cliente sesionDelCliente = clienteSession("idUsuario", session);
+        Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
         List<Mascota> mascotas = mascotaService.findAllByDuenoCedula(sesionDelCliente.getCedula());
         model.addAttribute("mascotas", mascotas);
         return "mascotas/vistaMascotasUsuario";
@@ -54,7 +56,7 @@ public class MascotaController {
     @PostMapping("/crear")
     public String crear(MascotaDTO mascotaDTO, HttpSession session) throws Exception {
         //Logger.info("Este es el objeto mascota {}",mascota);
-        Cliente sesionDelCliente = clienteSession("idUsuario", session);
+        Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
         mascotaDTO.setDueno(sesionDelCliente);
         mascotaService.save(mascotaDTO);
         return "redirect:/mascotas";
@@ -71,7 +73,7 @@ public class MascotaController {
 
     @PostMapping("/actualizar")
     public String actualizar(Mascota mascota, HttpSession session) {
-        Cliente sesionDelCliente = clienteSession("idUsuario", session);
+        Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
         mascota.setDueno(sesionDelCliente);
         mascotaService.update(mascota);
         return "redirect:/mascotas";
