@@ -2,10 +2,8 @@ package com.spapatitas.controller;
 
 import com.spapatitas.DTO.ClienteDTO;
 import com.spapatitas.DTO.UserDTO;
-import com.spapatitas.persistence.model.Genero;
-import com.spapatitas.persistence.model.Producto;
-import com.spapatitas.persistence.model.TipoServicio;
-import com.spapatitas.persistence.model.UserEntity;
+import com.spapatitas.persistence.model.*;
+import com.spapatitas.service.implementation.GestionInfoService;
 import com.spapatitas.service.implementation.ProductoService;
 import com.spapatitas.service.implementation.TipoServicioService;
 import com.spapatitas.service.interfaces.IClienteService;
@@ -42,6 +40,10 @@ public class UserController {
 
     @Autowired
     private TipoServicioService tipoServicioService;
+
+    @Autowired
+    private GestionInfoService gestionInfoService;
+
 
     @GetMapping("/login")
     public String login(){
@@ -91,5 +93,73 @@ public class UserController {
         model.addAttribute("servicios", tipoServicio);
         return "servicios/vistaServiciosUsuario";
     }
+
+
+    @GetMapping("/centroAyuda")
+    public String vistaCentroAyuda(Model model) {
+        // Recupera todos los registros
+        List<GestionInfo> gestionInfoList = gestionInfoService.findAll();
+
+        // Verifica si hay registros
+        GestionInfo gestionInfo;
+        if (gestionInfoList.isEmpty()) {
+            // Si no hay registros, inicializa con valores predeterminados
+            gestionInfo = new GestionInfo();
+            gestionInfo.setAgendamientoCitas("No hay información disponible.");
+            gestionInfo.setCompraProductos("No hay información disponible.");
+            gestionInfo.setMetodosPago("No hay información disponible.");
+            gestionInfo.setCuentaPerfil("No hay información disponible.");
+            gestionInfo.setContactoAdicional("No hay información disponible.");
+        } else {
+            // Toma el primer registro (suponiendo que solo hay uno relevante)
+            gestionInfo = gestionInfoList.get(0);
+        }
+
+        // Agrega el objeto al modelo
+        model.addAttribute("gestionInfo", gestionInfo);
+        return "info/vistaCentroAyuda";
+    }
+
+
+    @GetMapping("/TerminosCondiciones")
+    public String vistaTerminosCondiciones(Model model) {
+        // Recupera todos los registros
+        List<GestionInfo> gestionInfoList = gestionInfoService.findAll();
+
+        // Verifica si hay registros
+        GestionInfo gestionInfo;
+        if (gestionInfoList.isEmpty()) {
+            // Si no hay registros, inicializa con valores predeterminados
+            gestionInfo = new GestionInfo();
+        } else {
+            // Toma el primer registro (suponiendo que solo hay uno relevante)
+            gestionInfo = gestionInfoList.get(0);
+        }
+
+        // Agrega el objeto al modelo
+        model.addAttribute("gestionInfo", gestionInfo);
+        return "info/vistaTerminosCondiciones";
+    }
+
+    @GetMapping("/pqrs")
+    public String vistaPqrs(Model model) {
+        // Recupera todos los registros
+        List<GestionInfo> gestionInfoList = gestionInfoService.findAll();
+
+        // Verifica si hay registros
+        GestionInfo gestionInfo;
+        if (gestionInfoList.isEmpty()) {
+            // Si no hay registros, inicializa con valores predeterminados
+            gestionInfo = new GestionInfo();
+        } else {
+            // Toma el primer registro (suponiendo que solo hay uno relevante)
+            gestionInfo = gestionInfoList.get(0);
+        }
+
+        // Agrega el objeto al modelo
+        model.addAttribute("gestionInfo", gestionInfo);
+        return "info/vistaPqrs";
+    }
+
 
 }
