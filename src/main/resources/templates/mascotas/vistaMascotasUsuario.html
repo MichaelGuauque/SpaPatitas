@@ -117,6 +117,7 @@
                                 <div>
                                     <h5 class="mb-1" id="nombreMascota" th:text="${mascota.nombre}" ></h5>
                                     <h6 class="text-muted mb-2" id="razaMascota" th:text="${mascota.raza}" ></h6>
+                                    <h6 class="mb-1" id="estadoMascota" th:text="'Estado: ' + (${mascota.estado} ? 'Habilitado' : 'Deshabilitado')"></h6>
                                     <p class="mb-0" id="descripMascota">Observaciones: <span id="descripMas" th:text="${mascota.observaciones}"></span></p>
                                 </div>
                             </div>

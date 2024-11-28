@@ -14,4 +14,6 @@ public interface IUserEntity {
     UserEntity cambioUserDTO(UserDTO userDTO);
 
     Optional<UserEntity> findByEmail(UserDTO userDTO);
+
+    Optional<UserEntity> findById(long id);
 }

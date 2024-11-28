@@ -7,6 +7,7 @@ import com.spapatitas.service.implementation.ProductoService;
 import com.spapatitas.service.implementation.TipoServicioService;
 import com.spapatitas.service.interfaces.IClienteService;
 import com.spapatitas.service.interfaces.IUserEntity;
+import jakarta.servlet.http.HttpSession;
 import org.apache.catalina.Role;
 import org.apache.catalina.User;
 import org.slf4j.Logger;
@@ -66,12 +67,13 @@ public class UserController {
     }
 
     @PostMapping("/acceder")
-    public String acceder(UserDTO userDTO){
+    public String acceder(UserDTO userDTO, HttpSession session){
         logger.info("Usuario accedido: {}", userDTO);
         Optional<UserEntity> user = userService.findByEmail(userDTO);
         if (user.isPresent()) {
             UserEntity usuarioBuscado = user.get();
             logger.info("Usuario de la BD: {}", usuarioBuscado);
+            session.setAttribute("idUsuario", usuarioBuscado.getId());
             Optional<RoleEnum> optionalRol = usuarioBuscado.getRoles().stream()
                     .map(RoleEntity::getRoleEnum)
                     .findFirst();
@@ -82,7 +84,7 @@ public class UserController {
                 if(rol.equals("ADMIN")){
                     return "redirect:/administrador/home";
                 }
-                return home();
+                return "user/homeUser";
             }else {
                 return "redirect:login";
             }

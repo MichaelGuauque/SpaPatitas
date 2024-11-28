@@ -5,6 +5,7 @@ import com.spapatitas.persistence.model.PermissionEntity;
 import com.spapatitas.persistence.model.RoleEntity;
 import com.spapatitas.persistence.model.RoleEnum;
 import com.spapatitas.persistence.model.UserEntity;
+import com.spapatitas.persistence.repository.ClienteRepository;
 import com.spapatitas.persistence.repository.RoleRepository;
 import com.spapatitas.persistence.repository.UserRepository;
 import com.spapatitas.service.interfaces.IUserEntity;
@@ -31,6 +32,8 @@ public class UserDetailServiceImpl implements UserDetailsService, IUserEntity {
     private RoleRepository roleRepository;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder() ;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -77,6 +80,11 @@ public class UserDetailServiceImpl implements UserDetailsService, IUserEntity {
     @Override
     public Optional<UserEntity> findByEmail(UserDTO userDTO) {
         return userRepository.findUserEntityByUsername(userDTO.username());
+    }
+
+    @Override
+    public Optional<UserEntity> findById(long id) {
+        return userRepository.findById(id);
     }
 
     @Override
