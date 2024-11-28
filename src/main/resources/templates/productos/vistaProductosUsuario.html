@@ -58,7 +58,7 @@
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${producto.nombre}"></h5>
                                 <p class="card-text" th:text="${producto.descripcion}"></p>
-                                <h6 class="textoTarjeta" th:text="${producto.precioPublico}"></h6>
+                                <h6 class="textoTarjeta" th:text="'$'+${producto.precioPublico}"></h6>
                                 <button class="btn btn-primary w-100 d-flex align-items-center justify-content-center">
                                     Agregar al carrito
                                     <img id="carrito" th:src="@{/img/Shopping cart.png}" alt="Carrito" class="me-2" style="width: 20px; height: 20px; margin-left: 5px;">
