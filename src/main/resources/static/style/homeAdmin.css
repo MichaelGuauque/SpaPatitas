@@ -21,10 +21,10 @@
     gap: 15%;
 }
 
-.boton-cliente, .boton-promocion{
+.boton-cliente, .boton-promocion, .boton-servicio, .boton-producto-admin{
     display: flex;
     color: black;
-    font-size: 1.5rem;
+    font-size: 1rem;
     width: 15.188rem;
     height: 5.063rem;
     border-radius: 1.25rem;
@@ -32,4 +32,9 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
+}
+
+.titulo-administracion{
+    margin-left: 3rem;
+    margin-right: 3.125rem;
 }

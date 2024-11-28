@@ -13,23 +13,20 @@
 <!-- left var -->
     <div th:include="admin/template_admin.html::header"></div>
     <main>
-    <div class="right-content">
-        <div class="right-texto-bienvenido">
-            <h2 class="texto-bienvenido">Bienvenido</h2>
-        </div>
+    <div class="right-content" style="margin-top: 2rem">
         <div class="right-content-info">
             <div class="right-content-info-izquierda">
-                <h1 id="tituloPrincipal">Panel de Administración Spa Patitas</h1>
-                <p id="texto">Bienvenido al panel de administración de Spa Patitas. Aquí puedes gestionar citas, 
+                <h1 class="titulo-administracion">Panel de Administración Spa Patitas</h1>
+                <p class="texto">Bienvenido al panel de administración de Spa Patitas. Aquí puedes gestionar citas,
                     servicios, productos y usuarios, y visualizar un resumen de las actividades recientes.</p>
-                <img class="img-linea" src="./img/Line.png">
+                <img class="img-linea" th:src="@{/img/Line.png}">
                 <div class="botones-enlace">
-                    <a class="boton-producto" th:href="@{/productos}">Agregar Producto</a>
-                    <a class="boton-cliente" href="vistaClientes.html">Agregar Cliente </a>
+                    <a class="boton-producto-admin" th:href="@{/productos}">Agregar Producto</a>
+                    <a class="boton-cliente" th:href="@{/clientes}">Agregar Cliente </a>
                 </div>
                 <div class="botones-enlace">
-                    <a class="boton-servicio" href="vistaServicios.html">Agregar Servicio </a>
-                    <a class="boton-promocion" href="vistaPromociones.html">Agregar Promoción </a>
+                    <a class="boton-servicio" th:href="@{/servicios}">Agregar Servicio </a>
+                    <a class="boton-promocion" th:href="@{/promociones}">Agregar Promoción </a>
                 </div>
             </div>
             <div class="right-content-info-derecha">
