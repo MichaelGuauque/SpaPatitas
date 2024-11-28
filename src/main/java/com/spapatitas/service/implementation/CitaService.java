@@ -49,7 +49,7 @@ public class CitaService implements ICitaService {
     }
 
     @Override
-    public void agendarCita(Cita cita, Long idCliente) {
+    public void agendarCita(Cita cita ) {
 //        Cita cita = citaRepository.findById(idCita).orElseThrow();
 //        Optional<Cliente> cliente = clienteRepository.findById(idCliente);
 //        if (cita.getDisponible() == TRUE) {  // Revisa si la cita está disponible (true)
@@ -63,5 +63,10 @@ public class CitaService implements ICitaService {
     @Override
     public void desagendarCita(Long id) {
         citaRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Cita> findAllByCliente_IdCliente(Long idCliente) {
+        return citaRepository.findAllByCliente_IdCliente(idCliente);
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString (exclude = {"mascotas","citas"})
 @Builder
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"usuario"}))

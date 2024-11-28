@@ -3,6 +3,7 @@ package com.spapatitas.controller;
 import com.spapatitas.DTO.ClienteDTO;
 import com.spapatitas.DTO.UserDTO;
 import com.spapatitas.persistence.model.*;
+import com.spapatitas.service.implementation.CitaService;
 import com.spapatitas.service.implementation.ProductoService;
 import com.spapatitas.service.implementation.TipoServicioService;
 import com.spapatitas.service.interfaces.IClienteService;
@@ -16,9 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +30,8 @@ public class UserController {
     private final IUserEntity userService;
     private final IClienteService clienteService;
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private CitaService citaService;
 
     @Autowired
     public UserController(IUserEntity userService, IClienteService clienteService) {
@@ -44,8 +45,10 @@ public class UserController {
     @Autowired
     private TipoServicioService tipoServicioService;
 
+    private final String ID_USUARIO = "idUsuario";
+
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "user/login";
     }
 
@@ -56,7 +59,7 @@ public class UserController {
     }
 
     @PostMapping("/guardar")
-    public String guardar(UserDTO usuario , ClienteDTO cliente){
+    public String guardar(UserDTO usuario, ClienteDTO cliente) {
 //        logger.info("Usuario registrado: {}", usuario);
 //        logger.info("Cliente registrado: {}", cliente);
         UserEntity user = userService.cambioUserDTO(usuario);
@@ -67,7 +70,7 @@ public class UserController {
     }
 
     @PostMapping("/acceder")
-    public String acceder(UserDTO userDTO, HttpSession session){
+    public String acceder(UserDTO userDTO, HttpSession session) {
         logger.info("Usuario accedido: {}", userDTO);
         Optional<UserEntity> user = userService.findByEmail(userDTO);
         if (user.isPresent()) {
@@ -80,12 +83,12 @@ public class UserController {
             RoleEnum rolEnum = optionalRol.get();
             String rol = rolEnum.name();
             logger.info("Rol del usuario: {}", rol);
-            if(passwordEncoder.matches(userDTO.password(), usuarioBuscado.getPassword())){
-                if(rol.equals("ADMIN")){
+            if (passwordEncoder.matches(userDTO.password(), usuarioBuscado.getPassword())) {
+                if (rol.equals("ADMIN")) {
                     return "redirect:/administrador/home";
                 }
                 return "user/homeUser";
-            }else {
+            } else {
                 return "redirect:login";
             }
         }
@@ -94,12 +97,12 @@ public class UserController {
     }
 
     @GetMapping("/home")
-    public String home(){
+    public String home() {
         return "user/homeUser";
     }
 
     @GetMapping("/productos")
-    public String productos(Model model){
+    public String productos(Model model) {
         List<Producto> productos = productoService.findAllProductoHabilitados();
         model.addAttribute("productos", productos);
         return "productos/vistaProductosUsuario";
@@ -112,4 +115,49 @@ public class UserController {
         return "servicios/vistaServiciosUsuario";
     }
 
+    private Cliente clienteSession(String nombreSession, HttpSession session) {
+        Optional<UserEntity> optionalUserEntity = userService.findById(Long.parseLong(session.getAttribute(nombreSession).toString()));
+        UserEntity usuario = optionalUserEntity.get();
+        Optional<Cliente> optionalCliente = clienteService.findById(usuario.getCliente().getIdCliente());
+        Cliente cliente = optionalCliente.get();
+        return cliente;
+    }
+
+    @GetMapping("/citas")
+    public String citas(Model model, HttpSession session) {
+        List<TipoServicio> tipoServicios = tipoServicioService.findAllTipoServicio();
+        List<Cita> listaCitas = citaService.findAllCitaOrdenadas();
+        Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
+        List<Cita> citas = citaService.findAllByCliente_IdCliente(sesionDelCliente.getIdCliente());
+        model.addAttribute("servicios", tipoServicios);
+        model.addAttribute("citas", listaCitas);
+        model.addAttribute("citas", citas);
+        return "citas/vistaCitasUsuario";
+    }
+
+    @PostMapping("/crearCitaUsuario")
+    public String crearCitaUsuario(Cita cita, HttpSession session, @RequestParam List<Long> serviciosSeleccionados) {
+
+        Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
+        List<TipoServicio> servicios = tipoServicioService.findByIds(serviciosSeleccionados);
+        cita.setTipoServicios(servicios);
+        cita.setDisponible(false);
+        cita.setCliente(sesionDelCliente);
+//        logger.info("Servicios encontrados: {}", servicios);
+//        logger.info("Esta es la cita {}", cita);
+//        logger.info("Servicios seleccionados: {}", serviciosSeleccionados);
+        citaService.agendarCita(cita);
+        return "redirect:/user/citas";
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Long id) {
+        citaService.desagendarCita(id);
+        return "redirect:/user/citas";
+    }
+
+    @GetMapping("/promociones")
+    public String promociones() {
+        return "promociones/promocionesConstruccionUsuario";
+    }
 }

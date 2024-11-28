@@ -30,9 +30,9 @@ public class CitasController {
     private ClienteService clienteService;
 
     @GetMapping()
-    public String servicios(Model model){
+    public String servicios(Model model) {
         // Obtiene la lista de servicios desde la base de datos
-        List<Cliente>  clientes = clienteService.findAll();
+        List<Cliente> clientes = clienteService.findAll();
         List<TipoServicio> tipoServicios = tipoServicioService.findAllTipoServicio();
         List<Cita> listaCitas = citaService.findAllCitaOrdenadas();
         model.addAttribute("servicios", tipoServicios);
@@ -42,7 +42,7 @@ public class CitasController {
     }
 
     @PostMapping("/crear")
-    public String crear(Cita cita, @RequestParam List<Long> serviciosSeleccionados,@RequestParam int cedula) {
+    public String crear(Cita cita, @RequestParam List<Long> serviciosSeleccionados, @RequestParam int cedula) {
         Cliente cliente1 = new Cliente();
         Optional<Cliente> cliente = clienteService.findByCedula(cedula);
         cliente1 = cliente.get();
@@ -55,11 +55,12 @@ public class CitasController {
 //        logger.info("Servicios encontrados: {}", servicios);
 //        logger.info("Esta es la cita {}", cita);
 //        logger.info("Servicios seleccionados: {}", serviciosSeleccionados);
-        citaService.agendarCita(cita, cliente1.getIdCliente());
-        return "redirect:/citas";}
+        citaService.agendarCita(cita);
+        return "redirect:/citas";
+    }
 
     @GetMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable Long id){
+    public String eliminar(@PathVariable Long id) {
         citaService.desagendarCita(id);
         return "redirect:/citas";
     }

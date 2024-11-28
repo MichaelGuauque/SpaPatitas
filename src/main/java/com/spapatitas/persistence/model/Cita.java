@@ -42,7 +42,7 @@ public class Cita {
     private double ValorTotal = 0;
 
     @ManyToOne(targetEntity = Cliente.class, optional = false)
-    private Cliente cliente = null;
+    private Cliente cliente;
 
     @Column(nullable = false)
     private Boolean disponible;

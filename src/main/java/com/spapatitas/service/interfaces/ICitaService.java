@@ -17,7 +17,9 @@ public interface ICitaService {
 
 //    public void save(Cita cita);
 
-    public void agendarCita(Cita cita, Long idCliente);
+    public void agendarCita(Cita cita );
 
     public void desagendarCita(Long idCita);
+
+    public List<Cita> findAllByCliente_IdCliente(Long idCliente);
 }

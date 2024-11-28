@@ -49,7 +49,7 @@ public class SpaPatitasApplication {
 //
 //			//Crear usuarios
 //			UserEntity userAdmin = UserEntity.builder()
-//					.username("admin")
+//					.username("admin@spapatitas.com")
 //					.password("$2a$10$eeTu3yyhB9G8J1ZzFTEF8ORHLLh4XV9iKq0nhOHSPP5gt2zOi42dy")
 //					.isEnabled(true)
 //					.accountNoExpired(true)
