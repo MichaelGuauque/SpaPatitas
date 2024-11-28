@@ -2,18 +2,17 @@ package com.spapatitas.controller;
 
 import com.spapatitas.DTO.ClienteDTO;
 import com.spapatitas.DTO.UserDTO;
-import com.spapatitas.persistence.model.Genero;
-import com.spapatitas.persistence.model.Producto;
-import com.spapatitas.persistence.model.TipoServicio;
-import com.spapatitas.persistence.model.UserEntity;
+import com.spapatitas.persistence.model.*;
 import com.spapatitas.service.implementation.ProductoService;
 import com.spapatitas.service.implementation.TipoServicioService;
 import com.spapatitas.service.interfaces.IClienteService;
 import com.spapatitas.service.interfaces.IUserEntity;
+import org.apache.catalina.Role;
 import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +29,7 @@ public class UserController {
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
     private final IUserEntity userService;
     private final IClienteService clienteService;
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     public UserController(IUserEntity userService, IClienteService clienteService) {
@@ -69,7 +69,25 @@ public class UserController {
     public String acceder(UserDTO userDTO){
         logger.info("Usuario accedido: {}", userDTO);
         Optional<UserEntity> user = userService.findByEmail(userDTO);
-        logger.info("Usuario de la BD: {}", user.get());
+        if (user.isPresent()) {
+            UserEntity usuarioBuscado = user.get();
+            logger.info("Usuario de la BD: {}", usuarioBuscado);
+            Optional<RoleEnum> optionalRol = usuarioBuscado.getRoles().stream()
+                    .map(RoleEntity::getRoleEnum)
+                    .findFirst();
+            RoleEnum rolEnum = optionalRol.get();
+            String rol = rolEnum.name();
+            logger.info("Rol del usuario: {}", rol);
+            if(passwordEncoder.matches(userDTO.password(), usuarioBuscado.getPassword())){
+                if(rol.equals("ADMIN")){
+                    return "redirect:/administrador/home";
+                }
+                return home();
+            }else {
+                return "redirect:login";
+            }
+        }
+        logger.info("Usuario no encontrado");
         return "redirect:login";
     }
 

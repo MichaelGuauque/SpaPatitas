@@ -260,7 +260,7 @@ a{
     justify-items: center;
     background-color: #FFFAF9;
     border-radius: 0.625rem;
-    margin-top: 3%;
+    /*margin-top: 3%;*/
     padding: 2%;
     opacity: 0.8;
 }
