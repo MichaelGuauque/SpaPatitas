@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaPatitas | PQRS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" type="image/png" th:href="@{/img/Solo}">
+    <link rel="stylesheet" th:href="@{/style/stylAm.css}">
+
+</head>
+<body>
+<!-- left var -->
+<div th:include="user/template_user.html::header-user"></div>
+
+<main>
+
+
+    <div class="right-content">
+        <div class="panel-informacionText" >
+            <h3 >PQRS - Peticiones, Quejas, Reclamos y Sugerencias</h3>
+            <h2 >En Spa Patitas, nos interesa conocer tu opinión para mejorar nuestros servicios y ofrecer una experiencia más satisfactoria para ti y tu mascota. Si tienes alguna petición, queja, reclamo o sugerencia, por favor, no dudes en contactarnos.</h2>
+        </div>
+
+        <div class="crear-promo" style="background-color: #FFFAF9; border-radius: 10px;">
+
+            <h3 id="titulosDiv">Correo de Contacto para PQRS:</h3>
+
+<!--            <p id="mail"><img class="iconosFooter" th:src="@{/img/mail.png}"><strong>info@spapatitas.com</strong></p>-->
+
+
+
+
+            <p class="contacto" style="margin-left: 15px;" th:text="${gestionInfo.infoAdicional}">Por favor, envía un correo a la dirección anterior con la siguiente información:</p>
+
+            <a href="https://forms.gle/9sCBvBvSL988bVRF6" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                Contáctanos desde aquí
+            </a>
+
+        </div>
+    </div>
+
+    <div class="right-content">
+
+
+        <div class="crear-promo" style="background-color: #FFFAF9; border-radius: 10px; margin-top: 1.2%;">
+
+            <h3 class="titulosDiv2">Información de Contacto Adicional</h3>
+
+            <p class="contacto" style="margin-left: 15px;" th:text="${gestionInfo.contactoAdicional}" >Si necesitas asistencia inmediata, también puedes llamarnos o enviarnos un mensaje de WhatsApp:</p>
+
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Footer -->
+    <div th:include="admin/template_admin.html::footer"></div>
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

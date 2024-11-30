@@ -33,6 +33,18 @@ main{
     gap: 4%;
 }
 
+#botones2{
+    gap: 4%;
+}
+
+#botones3{
+    gap: 4%;
+}
+
+#botones4{
+    gap: 4%;
+}
+
 .contenedor-logo{
     display: flex;
     width: 17.688rem;
@@ -347,6 +359,28 @@ h3{
     align-items: baseline; /* Alinea los elementos al piso del texto */
 }
 
+.titulosDiv::after {
+    content: "";
+    display: inline-block;
+    width: 56.875rem; /* Longitud de la línea */
+    height: 0.156rem; /* Grosor de la línea */
+    background-color: #121212; /* Color de la línea */
+    opacity: 0.4;
+    margin-left: 0.625rem; /* Espacio entre el título y la línea */
+    align-items: baseline; /* Alinea los elementos al piso del texto */
+}
+
+.titulosDiv2::after {
+    content: "";
+    display: inline-block;
+    width: 54.875rem; /* Longitud de la línea */
+    height: 0.2rem; /* Grosor de la línea */
+    background-color: #121212; /* Color de la línea */
+    opacity: 0.4;
+    margin-left: 0.625rem; /* Espacio entre el título y la línea */
+    align-items: baseline; /* Alinea los elementos al piso del texto */
+}
+
 #pequeño::after {
     content: "";
     display: inline-block;
@@ -596,7 +630,25 @@ h5{
     line-height: normal;
 }
 
+.contacto{
+    color: #4F4F4F;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
 #paginasAcordeon{
+    text-align: center;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.paginasAcordeon{
     text-align: center;
     font-family: Inter;
     font-size: 20px;
@@ -612,6 +664,15 @@ h5{
 
 /* Color del texto cuando el acordeón está expandido */
 .accordion-button:not(.collapsed) h5#paginasAcordeon {
+    color: #ffffff !important;
+}
+
+.accordion-button.collapsed h5.paginasAcordeon {
+    color: #515151 !important;
+}
+
+/* Color del texto cuando el acordeón está expandido */
+.accordion-button:not(.collapsed) h5.paginasAcordeon {
     color: #ffffff !important;
 }
 

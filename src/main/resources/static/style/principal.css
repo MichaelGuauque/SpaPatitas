@@ -823,3 +823,116 @@ h5{
     font-weight: 700;
     color: #b11818;
 }
+
+/** Aki pa abajo cambios Att: Marin **/
+.right-content-info-derecha2{
+    background: #FFFAF9;
+    border-radius: 1.875rem;
+
+    width: 42.5rem;
+
+
+
+    border-radius: 15px;
+    padding: 3rem;
+}
+
+.tituloConoce {
+    margin-top: 3px;
+    margin-bottom: 12px;
+
+    color: #4F4F4F;
+    text-align: center;
+    font-family: Rubik;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.textoConoce {
+    margin-top: 0.5rem;
+    color: #4F4F4F;
+    text-align: center;
+    font-family: Rubik;
+    font-size: 31px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px; /* 156.25% */
+}
+
+.tituloConoce2 {
+    margin-top: -0.9rem;
+    margin-bottom: 18px;
+
+    color: #FFFAF9;
+    text-align: center;
+    font-family: Rubik;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.textoConoce2 {
+    margin-top: 0.5rem;
+    color: #FFFAF9;
+    text-align: center;
+    font-family: Rubik;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px; /* 156.25% */
+    opacity: 0.7;
+    margin-bottom: 1rem;
+}
+
+.panel-informacion2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    background-color: #FFFAF9;
+    border-radius: 15px;
+
+    margin-right: 0.4%;
+
+    padding: 3%;
+    background-color: #4f4f4f;
+}
+
+.linea-centrada {
+    width: 25rem; /* Ancho exacto */
+    height: 4px;      /* Alto exacto */
+    background-color: #000; /* Color de la línea, ajustable */
+    margin: 0 auto;   /* Centra el elemento horizontalmente */
+    opacity: 0.3;
+    background: #FFFAF9;
+    border-radius: 2px;
+}
+
+.linea-centrada2 {
+    width: 15rem; /* Ancho exacto */
+    height: 3px;      /* Alto exacto */
+    background-color: #000; /* Color de la línea, ajustable */
+    margin: 0 auto;   /* Centra el elemento horizontalmente */
+    opacity: 0.3;
+    background: #0d0d0d;
+    border-radius: 2px;
+}
+
+.imagenBanner{
+    background: #FFFAF9;
+    border-radius: 15px;
+    width: 86.6rem;
+    height: 20.975625rem;
+
+
+}
+
+.imbanner{
+    width: 86.6rem;
+    height: 20.975625rem;
+    object-fit: cover;
+
+}

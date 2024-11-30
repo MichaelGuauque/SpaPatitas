@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaPatitas | Centro de Ayuda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" type="image/png" th:href="@{/img/Solo}">
+    <link rel="stylesheet" th:href="@{/style/stylAm.css}">
+
+</head>
+<body>
+<!-- left var -->
+<div th:include="user/template_user.html::header-user"></div>
+
+<main>
+
+    <div class="right-content">
+        <!-- Panel de Introducción -->
+        <div class="panel-informacion" id="panelOscuro">
+            <h2 id="tituloOscuro">
+                Bienvenido al Centro de Ayuda de Spa Patitas. Aquí encontrarás respuestas a las preguntas más frecuentes y guías útiles para que disfrutes de nuestros servicios y productos sin inconvenientes. Si no encuentras lo que buscas, por favor, contáctanos a través de nuestro correo: info@spapatitas.com.
+            </h2>
+        </div>
+
+        <!-- Centro de Ayuda -->
+        <div class="crear-promo" style="background-color: #FFFAF9; border-radius: 10px;">
+            <h3 id="titulosDiv">Centro de Ayuda</h3>
+            <div class="container mt-4">
+                <div class="accordion" id="accordionExample">
+                    <!-- Item 1: Agendamiento de Citas -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h5 class="paginasAcordeon">Agendamiento de Citas</h5>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p class="contacto" th:text="${gestionInfo.agendamientoCitas}"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: Compra de Productos -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <h5 class="paginasAcordeon">Compra de Productos</h5>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+                            <div class="accordion-body">
+                                <p class="contacto" th:text="${gestionInfo.compraProductos}">Texto sobre compra de productos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: Métodos de Pago -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <h5 class="paginasAcordeon">Métodos de Pago</h5>
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
+                            <div class="accordion-body">
+                                <p class="contacto" th:text="${gestionInfo.metodosPago}">Texto sobre métodos de pago</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: Cuenta y Perfil -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <h5 class="paginasAcordeon">Cuenta y Perfil</h5>
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour">
+                            <div class="accordion-body">
+                                <p class="contacto" th:text="${gestionInfo.cuentaPerfil}">Texto sobre cuenta y perfil</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5: Contacto -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                <h5 id="paginasAcordeon">Contacto</h5>
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive">
+                            <div class="accordion-body">
+                                <p class="contacto" th:text="${gestionInfo.contactoAdicional}">Texto sobre contacto adicional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- Footer -->
+<div th:include="admin/template_admin.html::footer"></div>
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
