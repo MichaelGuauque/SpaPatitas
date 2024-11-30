@@ -3,6 +3,7 @@ package com.spapatitas.controller;
 import com.spapatitas.DTO.ClienteDTO;
 import com.spapatitas.DTO.UserDTO;
 import com.spapatitas.persistence.model.*;
+import com.spapatitas.service.implementation.CitaService;
 import com.spapatitas.service.implementation.GestionInfoService;
 import com.spapatitas.service.implementation.ProductoService;
 import com.spapatitas.service.implementation.TipoServicioService;
@@ -30,6 +31,8 @@ public class UserController {
     private final IUserEntity userService;
     private final IClienteService clienteService;
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+
     @Autowired
     private CitaService citaService;
 
@@ -47,7 +50,6 @@ public class UserController {
 
     @Autowired
     private GestionInfoService gestionInfoService;
-
 
     private final String ID_USUARIO = "idUsuario";
 
@@ -101,7 +103,6 @@ public class UserController {
     }
 
     @GetMapping("/home")
-    public String home() {
     public String home(Model model){
 
         // Recupera todos los registros
@@ -224,31 +225,29 @@ public class UserController {
     }
 
 
-}
+@PostMapping("/crearCitaUsuario")
+public String crearCitaUsuario(Cita cita, HttpSession session, @RequestParam List<Long> serviciosSeleccionados) {
 
-    @PostMapping("/crearCitaUsuario")
-    public String crearCitaUsuario(Cita cita, HttpSession session, @RequestParam List<Long> serviciosSeleccionados) {
-
-        Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
-        List<TipoServicio> servicios = tipoServicioService.findByIds(serviciosSeleccionados);
-        cita.setTipoServicios(servicios);
-        cita.setDisponible(false);
-        cita.setCliente(sesionDelCliente);
+    Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
+    List<TipoServicio> servicios = tipoServicioService.findByIds(serviciosSeleccionados);
+    cita.setTipoServicios(servicios);
+    cita.setDisponible(false);
+    cita.setCliente(sesionDelCliente);
 //        logger.info("Servicios encontrados: {}", servicios);
 //        logger.info("Esta es la cita {}", cita);
 //        logger.info("Servicios seleccionados: {}", serviciosSeleccionados);
-        citaService.agendarCita(cita);
-        return "redirect:/user/citas";
-    }
+    citaService.agendarCita(cita);
+    return "redirect:/user/citas";
+}
 
-    @GetMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable Long id) {
-        citaService.desagendarCita(id);
-        return "redirect:/user/citas";
-    }
+@GetMapping("/eliminar/{id}")
+public String eliminar(@PathVariable Long id) {
+    citaService.desagendarCita(id);
+    return "redirect:/user/citas";
+}
 
-    @GetMapping("/promociones")
-    public String promociones() {
-        return "promociones/promocionesConstruccionUsuario";
-    }
+@GetMapping("/promociones")
+public String promociones() {
+    return "promociones/promocionesConstruccionUsuario";
+}
 }
