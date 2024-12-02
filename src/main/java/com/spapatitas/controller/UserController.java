@@ -76,7 +76,7 @@ public class UserController {
     }
 
     @PostMapping("/acceder")
-    public String acceder(UserDTO userDTO, HttpSession session) {
+    public String acceder(UserDTO userDTO, HttpSession session, Model model) {
         logger.info("Usuario accedido: {}", userDTO);
         Optional<UserEntity> user = userService.findByEmail(userDTO);
         if (user.isPresent()) {
@@ -93,6 +93,23 @@ public class UserController {
                 if (rol.equals("ADMIN")) {
                     return "redirect:/administrador/home";
                 }
+                // Logica para traer la Info de "Quienes Somos"
+
+                // Recupera todos los registros
+                List<GestionInfo> gestionInfoList = gestionInfoService.findAll();
+
+                // Verifica si hay registros
+                GestionInfo gestionInfo;
+                if (gestionInfoList.isEmpty()) {
+                    // Si no hay registros, inicializa con valores predeterminados
+                    gestionInfo = new GestionInfo();
+                } else {
+                    // Toma el primer registro (suponiendo que solo hay uno relevante)
+                    gestionInfo = gestionInfoList.get(0);
+                }
+
+                // Agrega el objeto al modelo
+                model.addAttribute("gestionInfo", gestionInfo);
                 return "user/homeUser";
             } else {
                 return "redirect:login";

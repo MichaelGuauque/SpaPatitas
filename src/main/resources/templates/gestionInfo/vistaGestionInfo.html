@@ -11,7 +11,7 @@
 </head>
 <body>
 <!-- left var -->
-<div th:include="user/template_user.html::header-user"></div>
+<div th:include="admin/template_admin.html::header"></div>
 
 <main>
 
@@ -30,16 +30,16 @@
         <form id="form1" th:action="@{/gestionInfo/actualizar}" th:object="${gestionInfo}" method="post">
           <div class="mb-3">
             <label for="info" class="form-label">Información</label>
-            <textarea class="form-control" id="info" name="informacion" th:text="*{informacion}" rows="5"></textarea>
+            <textarea class="form-control" id="info" name="informacion" th:text="*{informacion}" rows="5" placeholder="Ingrese información sobre quienes somos"></textarea>
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="mision" class="form-label">Misión</label>
-              <textarea class="form-control" id="mision" name="mision" th:text="*{mision}" rows="5"></textarea>
+              <textarea class="form-control" id="mision" name="mision" th:text="*{mision}" rows="5" placeholder="Ingrese información sobre la mision"></textarea>
             </div>
             <div class="col-md-6 mb-3">
               <label for="vision" class="form-label">Visión</label>
-              <textarea class="form-control" id="vision" name="vision" th:text="*{vision}" rows="5"></textarea>
+              <textarea class="form-control" id="vision" name="vision" th:text="*{vision}" rows="5" placeholder="Ingrese información sobre la vision"></textarea>
             </div>
           </div>
           <!-- Campos ocultos para el resto de los datos -->
@@ -63,7 +63,7 @@
 
           <div id="botones" class="col-md-4 mb-3" style="display: flex;">
             <button type="submit" class="btn btn-primary w-50 me-2" style="background-color: #F2B243; border-style: none;">Guardar</button>
-            <button type="button" class="btn btn-secondary w-50" onclick="window.location.href='/'">Cancelar</button>
+
           </div>
         </form>
 
@@ -87,11 +87,11 @@
         <form id="form2" th:action="@{/gestionInfo/actualizar}" th:object="${gestionInfo}" method="post">
           <div class="mb-3">
             <label for="infoAdicional" class="form-label">Información Adicional</label>
-            <textarea class="form-control" id="infoAdicional" name="infoAdicional" th:text="*{infoAdicional}" rows="5"></textarea>
+            <textarea class="form-control" id="infoAdicional" name="infoAdicional" th:text="*{infoAdicional}" rows="5" placeholder="Ingrese la información"></textarea>
           </div>
           <div class="mb-3">
             <label for="contacto" class="form-label">Contacto</label>
-            <textarea class="form-control" id="contacto" name="contacto" th:text="*{contacto}" rows="5"></textarea>
+            <textarea class="form-control" id="contacto" name="contacto" th:text="*{contacto}" rows="5" placeholder="Ingrese información de contacto"></textarea>
           </div>
 
           <!-- Campos ocultos -->
@@ -117,7 +117,7 @@
 
           <div id="botones2" class="col-md-4 mb-3" style="display: flex;">
             <button type="submit" class="btn btn-primary w-50 me-2" style="background-color: #F2B243; border-style: none;">Guardar</button>
-            <button type="button" class="btn btn-secondary w-50" onclick="window.location.href='/'">Cancelar</button>
+
           </div>
         </form>
 
@@ -187,7 +187,7 @@
           <!-- Botones de Enviar y Cancelar -->
           <div id="botones3" class="col-md-4 mb-3" style="display: flex;">
             <button type="submit" class="btn btn-primary w-50 me-2" style="background-color: #F2B243; border-style: none;">Guardar</button>
-            <button type="button" class="btn btn-secondary w-50" onclick="window.location.href='/'">Cancelar</button>
+
           </div>
         </form>
       </div>
@@ -283,21 +283,11 @@
           <input type="hidden" name="metodosPago" th:value="*{metodosPago}" />
           <input type="hidden" name="cuentaPerfil" th:value="*{cuentaPerfil}" />
           <input type="hidden" name="contactoAdicional" th:value="*{contactoAdicional}" />
-          <input type="hidden" name="definiciones" th:value="*{definiciones}" />
-          <input type="hidden" name="usoSitioWeb" th:value="*{usoSitioWeb}" />
-          <input type="hidden" name="cuentasRegistro" th:value="*{cuentasRegistro}" />
-          <input type="hidden" name="codicionesVenta" th:value="*{codicionesVenta}" />
-          <input type="hidden" name="condicionesAgendamiento" th:value="*{condicionesAgendamiento}" />
-          <input type="hidden" name="limitacionesResponsabilidad" th:value="*{limitacionesResponsabilidad}" />
-          <input type="hidden" name="propiedadIntelectual" th:value="*{propiedadIntelectual}" />
-          <input type="hidden" name="politicaPrivacidad" th:value="*{politicaPrivacidad}" />
-          <input type="hidden" name="modificacionTerminos" th:value="*{modificacionTerminos}" />
-          <input type="hidden" name="aceptacionTerminos" th:value="*{aceptacionTerminos}" />
 
           <!-- Botones -->
           <div id="botones4" class="col-md-4 mb-3" style="display: flex;">
             <button type="submit" class="btn btn-primary w-50 me-2" style="background-color: #F2B243; border-style: none;">Guardar</button>
-            <button type="button" class="btn btn-secondary w-50" onclick="window.location.href='/'">Cancelar</button>
+
           </div>
         </form>
       </div>

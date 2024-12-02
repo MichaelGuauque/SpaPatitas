@@ -14,7 +14,7 @@ public interface IGestionInfoService {
 
     public void actualizarGestionInfo(GestionInfo gestionInfo);
 
-    public void save(GestionInfoDTO gestionInfoDTO) throws
+    public void save(GestionInfo gestionInfo) throws
             SQLIntegrityConstraintViolationException, Exception;
 
     public GestionInfo update(GestionInfo gestionInfo);

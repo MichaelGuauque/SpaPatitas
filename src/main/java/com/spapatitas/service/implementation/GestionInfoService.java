@@ -23,8 +23,8 @@ public class GestionInfoService implements IGestionInfoService {
     }
 
     @Override
-    public void save(GestionInfoDTO gestionInfoDTO) throws SQLIntegrityConstraintViolationException, Exception {
-        gestionInfoRepository.save(cambiarGestionInfoDTO(gestionInfoDTO));
+    public void save(GestionInfo gestionInfo) throws SQLIntegrityConstraintViolationException, Exception {
+        gestionInfoRepository.save(gestionInfo);
     }
 
     @Override
