@@ -242,29 +242,36 @@ public class UserController {
     }
 
 
-@PostMapping("/crearCitaUsuario")
-public String crearCitaUsuario(Cita cita, HttpSession session, @RequestParam List<Long> serviciosSeleccionados) {
+    @PostMapping("/crearCitaUsuario")
+    public String crearCitaUsuario(Cita cita, HttpSession session, @RequestParam List<Long> serviciosSeleccionados) {
 
-    Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
-    List<TipoServicio> servicios = tipoServicioService.findByIds(serviciosSeleccionados);
-    cita.setTipoServicios(servicios);
-    cita.setDisponible(false);
-    cita.setCliente(sesionDelCliente);
-//        logger.info("Servicios encontrados: {}", servicios);
-//        logger.info("Esta es la cita {}", cita);
-//        logger.info("Servicios seleccionados: {}", serviciosSeleccionados);
-    citaService.agendarCita(cita);
-    return "redirect:/user/citas";
-}
+        Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
+        List<TipoServicio> servicios = tipoServicioService.findByIds(serviciosSeleccionados);
+        cita.setTipoServicios(servicios);
+        cita.setDisponible(false);
+        cita.setCliente(sesionDelCliente);
+    //        logger.info("Servicios encontrados: {}", servicios);
+    //        logger.info("Esta es la cita {}", cita);
+    //        logger.info("Servicios seleccionados: {}", serviciosSeleccionados);
+        citaService.agendarCita(cita);
+        return "redirect:/user/citas";
+    }
 
-@GetMapping("/eliminar/{id}")
-public String eliminar(@PathVariable Long id) {
-    citaService.desagendarCita(id);
-    return "redirect:/user/citas";
-}
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Long id) {
+        citaService.desagendarCita(id);
+        return "redirect:/user/citas";
+    }
 
-@GetMapping("/promociones")
-public String promociones() {
-    return "promociones/promocionesConstruccionUsuario";
-}
+    @GetMapping("/promociones")
+    public String promociones() {
+        return "promociones/promocionesConstruccionUsuario";
+
+    }
+
+    @GetMapping("/cerrar")
+    public String cerrarSesion(HttpSession session){
+        session.removeAttribute("idUsuario");
+        return "redirect:/user/login";
+    }
 }
