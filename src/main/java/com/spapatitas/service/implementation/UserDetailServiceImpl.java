@@ -98,7 +98,7 @@ public class UserDetailServiceImpl implements UserDetailsService, IUserEntity {
         if (userOptional.isPresent()){
             UserEntity userEntity = userOptional.get();
             if(bCryptPasswordEncoder.matches(oldPassword, userEntity.getPassword())){
-                userEntity.setPassword(newPassword);
+                userEntity.setPassword(bCryptPasswordEncoder.encode(newPassword));
                 userRepository.save(userEntity);
             }
 

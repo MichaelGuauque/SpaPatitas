@@ -27,15 +27,19 @@
             <h3>Informacion del Usuario</h3>
 
             <div class="container mt-5" style="background-color: #FFFFFF;">
-                <form th:action="@{/clientes/actualizar}" method="post">
+                <form th:action="@{/configuracion/actualizar}" method="post">
                     <input type="hidden" name="idCliente" th:value="${cliente.idCliente}"/>
+
+                    <!-- Campos ocultos para los datos de las otras secciones -->
+                    <input type="hidden" name="username" th:value="${cliente.usuario.username}" />
+                    <input type="hidden" name="password" th:value="${cliente.usuario.password}" />
 
                     <div class="row" style="background-color: #FFFFFF;">
                         <!-- Primer Nombre -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="text" class="form-control" name="primerNombre" id="primerNombre"
                                    th:value="${cliente.primerNombre}"
-                                   placeholder="Primer Nombre.">
+                                   placeholder="Primer Nombre." required>
                         </div>
                         <!-- Segundo Nombre -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
@@ -50,7 +54,7 @@
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="text" class="form-control" name="primerApellido" id="primerApellido"
                                    th:value="${cliente.primerApellido}"
-                                   placeholder="Primer Apellido.">
+                                   placeholder="Primer Apellido." required>
                         </div>
                         <!-- Segundo Apellido -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
@@ -65,20 +69,20 @@
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="number" class="form-control" name="cedula" id="cedula"
                                    th:value="${cliente.cedula}"
-                                   placeholder="No. de documento.">
+                                   placeholder="No. de documento." required>
                         </div>
                         <!-- Telefono -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="number" class="form-control" name="telefono" id="telefono"
                                    th:value="${cliente.telefono}"
-                                   placeholder="Número celular">
+                                   placeholder="Número celular" required>
                         </div>
                     </div>
 
                     <div class="row" style="background-color: #FFFFFF;">
                         <!-- Genero -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
-                            <select class="form-select" name="genero" aria-label="Seleccione su género">
+                            <select class="form-select" name="genero" aria-label="Seleccione su género" required>
                                 <option value="" selected>Seleccione su genero.</option>
                                 <th:block th:each="genero : ${generos}">
                                     <option th:value="${genero}"
@@ -92,7 +96,7 @@
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento"
                                    th:value="${cliente.fechaNacimiento}"
-                                   placeholder="Fecha Nacimiento">
+                                   placeholder="Fecha Nacimiento" required>
                         </div>
                     </div>
 
@@ -101,7 +105,7 @@
                         <div class="col-md-12 mb-3" style="background-color: #FFFFFF;">
                             <input type="text" class="form-control" name="direccion" id="direccion"
                                    th:value="${cliente.direccion}"
-                                   placeholder="Dirección">
+                                   placeholder="Dirección" required>
                         </div>
                     </div>
 
@@ -118,17 +122,21 @@
                             </button>
                         </div>
                     </div>
+
+
                 </form>
             </div>
 
         </div>
+
+<!--        Actualizar Contraseñas-->
 
         <div class="crear-producto" style="background-color: #FFFAF9; border-radius: 10px;">
 
             <h3>Credenciales de Usuario</h3>
 
             <div class="container mt-5" style="background-color: #FFFFFF;">
-                <form th:action="@{/clientes/actualizar}" method="post">
+                <form th:action="@{/configuracion/actualizarContrasenia}" method="post">
                     <input type="hidden" name="idCliente" th:value="${cliente.idCliente}"/>
 
                     <div class="row" style="background-color: #FFFFFF;">
@@ -136,16 +144,16 @@
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="email" class="form-control" name="username" id="username"
                                    th:value="${cliente.usuario.username}"
-                                   placeholder="Correo">
+                                   placeholder="Correo" readonly>
                         </div>
                         <!-- Contrasenias -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="password" class="form-control" name="password" id="password"
-                                   placeholder="Contraseña Actual">
+                                   placeholder="Contraseña Actual" required>
                         </div>
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                             <input type="password" class="form-control" name="newPassword" id="newPassword"
-                                   placeholder="Nueva Contraseña">
+                                   placeholder="Nueva Contraseña" required>
                         </div>
                     </div>
 
@@ -171,7 +179,7 @@
             <h2>Si deseas salir de tu cuenta, haz clic en el botón de "Cerrar Sesión" a continuación.</h2>
 
             <div class="container mt-5" style="background-color: #FFFFFF;">
-                <form th:action="@{/clientes/actualizar}" method="post">
+                <form th:action="@{/configuracion/actualizarContrasenia}" method="post">
                     <input type="hidden" name="idCliente" th:value="${cliente.idCliente}"/>
 
                     <!-- Botón de enviar -->
