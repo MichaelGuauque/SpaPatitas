@@ -47,32 +47,35 @@
         <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
           <h5>Información de contacto</h5>
           <p class="informa" style="display: flex; align-items: center; gap: 15px;">
-            <img class="iconosFooter" src="/img/Map pin.png" alt="Ubicación">Calle Ejemplo 123, Ciudad, País
+            <img class="iconosFooter" th:src="@{/img/Map pin.png}" alt="Ubicación">Calle Ejemplo 123, Ciudad, País
           </p>
           <p class="informa" style="display: flex; align-items: center; gap: 15px;">
-            <img class="iconosFooter" src="/img/Phone call.png" alt="Teléfono">+123 456 7890
+            <img class="iconosFooter" th:src="@{/img/Phone call.png}" alt="Teléfono">+123 456 7890
           </p>
           <p class="informa" style="display: flex; align-items: center; gap: 15px;">
-            <img class="iconosFooter" src="/img/Mail.png" alt="Correo">info@spapatitas.com
+            <img class="iconosFooter" th:src="@{/img/Mail.png}" alt="Correo">info@spapatitas.com
           </p>
           <p class="informa" style="display: flex; align-items: center; gap: 15px;">
-            <img class="iconosFooter" src="/img/Clock.png" alt="Horario">Horario: Lunes a Sábado, 9:00 AM - 6:00 PM
+            <img class="iconosFooter" th:src="@{/img/Clock.png}" alt="Horario">Horario: Lunes a Sábado, 9:00 AM - 6:00 PM
           </p>
+          <a class="informa" th:href="@{/user/TerminosCondiciones}" style="display: flex; align-items: center; gap: 15px; margin: 0px">
+            <img class="iconosFooter" th:src="@{/img/terminos.png}" alt="clipboard">Términos y Condiciones
+          </a>
         </div>
         <!-- Columna 3 -->
         <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
           <h5>Redes Sociales</h5>
           <p class="informa" style="display: flex; align-items: center; gap: 15px;">
-            <img class="iconosFooter" src="/img/Instagram.png" alt="Instagram">Instagram
+            <img class="iconosFooter" th:src="@{/img/Instagram.png}" alt="Instagram">Instagram
           </p>
           <p class="informa" style="display: flex; align-items: center; gap: 15px;">
-            <img class="iconosFooter" src="/img/Facebook.png" alt="Facebook">Facebook
+            <img class="iconosFooter" th:src="@{/img/Facebook.png}" alt="Facebook">Facebook
           </p>
           <p class="informa" style="display: flex; align-items: center; gap: 15px;">
-            <img class="iconosFooter" src="/img/icon _x letter_.png" alt="X">X
+            <img class="iconosFooter" th:src="@{/img/icon _x letter_.png}" alt="X">X
           </p>
           <p class="informa" style="display: flex; align-items: center; gap: 15px;">
-            <img class="iconosFooter" src="/img/icon _tiktok_.png" alt="TikTok">TikTok
+            <img class="iconosFooter" th:src="@{/img/icon _tiktok_.png}" alt="TikTok">TikTok
           </p>
         </div>
       </div>
