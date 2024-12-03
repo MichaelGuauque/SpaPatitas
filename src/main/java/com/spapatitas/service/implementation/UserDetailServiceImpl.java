@@ -104,6 +104,4 @@ public class UserDetailServiceImpl implements UserDetailsService, IUserEntity {
 
         }
     }
-
-//passwordEncoder.matches(userDTO.password(), usuarioBuscado.getPassword()
 }
