@@ -38,3 +38,15 @@
     background: #F1F1F1;
     color: #4D4B4B;
 }
+
+#botonesCredenciales{
+    gap: 4%;
+}
+#botonCerrarSesion{
+    gap: 4%;
+}
+
+.btnCerrarSesion {
+    background-color: #F8BA4D;
+    border: none;
+}
