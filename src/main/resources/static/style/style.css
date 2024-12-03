@@ -103,7 +103,7 @@ p{
     display: flex;
     flex-direction: column;
     background-color: #FFFFFF;
-    gap: 2%;
+    gap: 30px;
 }
 
 .mb-3{
@@ -115,4 +115,8 @@ p{
 .img-line{
     width: 300px;
     height: 3px;
+}
+
+.form-label{
+    background-color: #FFFFFF;
 }

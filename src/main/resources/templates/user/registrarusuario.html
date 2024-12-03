@@ -56,15 +56,17 @@
                 <div class="row" style="background-color: #FFFFFF;">
                     <!-- Genero -->
                     <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
+                        <label class="form-label">Genero</label>
                         <select class="form-select" name="genero" aria-label="Seleccione su género">
                             <option value="" selected>Seleccione su genero.</option>
                             <th:block th:each="genero : ${generos}">
-                                <option th:value="${genero}" th:text="${genero}"></option>
+                                <option th:value="${genero}" th:text="${genero}" style="background-color: #FFFFFF;"></option>
                             </th:block>
                         </select>
                     </div>
                     <!-- Fecha Nacimiento-->
                     <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
+                        <label class="form-label">Fecha de Nacimiento</label>
                         <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento" placeholder="Fecha Nacimiento">
                     </div>
                 </div>
