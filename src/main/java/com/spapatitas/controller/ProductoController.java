@@ -3,6 +3,7 @@ package com.spapatitas.controller;
 import com.spapatitas.DTO.ProductoDTO;
 import com.spapatitas.persistence.model.Categoria;
 import com.spapatitas.persistence.model.Producto;
+import com.spapatitas.persistence.model.TipoServicio;
 import com.spapatitas.service.implementation.UploadFileService;
 import com.spapatitas.service.interfaces.ICategoriaService;
 import com.spapatitas.service.interfaces.IProductoService;
@@ -75,5 +76,15 @@ public class ProductoController {
         productoService.update(producto);
         return "redirect:/productos";
     }
+
+    @GetMapping("/search")
+    public String buscarProducto(@RequestParam String nombre, Model model) {
+        // Filtrar los servicios que coincidan con el nombre
+        List<Producto> productosEncontrados = productoService.findByNombre(nombre);
+        model.addAttribute("productos", productosEncontrados);
+        return "productos/vistaProductosUsuario"; // O la vista donde quieres mostrar los resultados
+    }
+
+
 
 }

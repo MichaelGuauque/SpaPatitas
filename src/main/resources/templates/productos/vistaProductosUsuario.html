@@ -29,8 +29,8 @@
             <div class="tabla-encabezado">
                 <h3 id="pequeño2">Productos Disponibles</h3>
                 <div>
-                    <form>
-                        <input class="buscador" type="number" placeholder="Nombre del producto.">
+                    <form th:action="@{/productos/search}" method="get">
+                        <input class="buscador" type="text" name="nombre" placeholder="Nombre del producto." required>
                         <button class="boton-buscar" type="submit"><img th:src="@{/img/Search.png}"></button>
                     </form>
                 </div>

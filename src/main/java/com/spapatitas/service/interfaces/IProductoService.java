@@ -13,7 +13,7 @@ public interface IProductoService {
 
 
     public Optional<Producto> findById (Long codigo);
-    public Optional<Producto> findByNombre (String nombre);
+    public List<Producto> findByNombre (String nombre);
     public List<Producto> findAll();
     public void save(ProductoDTO productoDTO) throws
             SQLIntegrityConstraintViolationException, Exception;
