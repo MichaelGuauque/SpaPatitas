@@ -10,17 +10,17 @@
 </head>
 <body style="background-color: #E0E0E0;">
     <div class="div-img">
-        <img class="img-login" th:src="@{/img/Mask group dog.png}">
+        <img class="img-login" th:src="@{/img/perroRegis.png}">
     </div>
 
-    <div class="login">
-        <img class="img-icon" th:src="@{/img/icon _Paw_.png}">
-        <h1>Crea una Cuenta</h1>
-        <p>Ingresa tus datos para crear una cuenta</p>
-        <img class="img-line" th:src="@{/img/Line.png}">
-        <div class="container mt-5" style="background-color: #FFFFFF;">
+    <div class="login" style="background-color: #FFFFFF; padding: 2%; padding-top: 6%;">
+        <img style="margin-top: -3rem;" class="img-icon" th:src="@{/img/icon _Paw_.png}">
+        <h1 id="tituloLogin">Crea una Cuenta</h1>
+        <p id="textoLogin">Ingresa tus datos para crear una cuenta</p>
+        <img style="margin-top: -10px;" class="img-line" th:src="@{/img/Line.png}">
+        <div class="container mt-5" style="background-color: #FFFFFF; margin-top: 50px;">
             <form th:action="@{/user/guardar}" method="post">
-                <div class="row" style="background-color: #FFFFFF;">
+                <div class="row" style="background-color: #FFFFFF; margin-top: -2.6rem;">
                     <!-- Primer Nombre -->
                     <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
                         <input type="text" class="form-control" name="primerNombre" id="primerNombre" placeholder="Primer Nombre.">

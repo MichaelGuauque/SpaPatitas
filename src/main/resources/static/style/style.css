@@ -9,13 +9,16 @@
 body{
     display: flex;
     align-items: center;
-    padding: 3%;
-    gap: 3%;
+    justify-content: space-between;
+    padding: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+    gap: 2%;
 }
 
 .div-img{
-    top: 33px;
-    left: 32px;
+    width: 840px;
+    height: 920px;
 }
 
 .img-login{
@@ -30,7 +33,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 791px;
+    width: 800px;
     height: 924px;
     font-family: "Poppins", sans-serif;
     border-radius: 20px;
@@ -43,6 +46,8 @@ body{
 .img-icon{
     align-items: center;
     background-color: #FFFFFF;
+    width: 56px;
+    height: 49px;
 }
 
 input, select{
@@ -119,4 +124,26 @@ p{
 
 .form-label{
     background-color: #FFFFFF;
+}
+
+#tituloLogin{
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    opacity: 0.7;
+}
+
+#textoLogin{
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    opacity: 0.4;
+    margin-top: -0.5rem;
 }
