@@ -17,4 +17,6 @@ public interface IVentaService {
 
     byte[] exportPdf() throws JRException, FileNotFoundException;
 
+    byte[] exportFacturaPdf(Long id) throws JRException, FileNotFoundException;
+
 }

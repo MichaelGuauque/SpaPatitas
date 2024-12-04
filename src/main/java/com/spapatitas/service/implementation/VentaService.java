@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,5 +41,16 @@ public class VentaService implements IVentaService {
     @Override
     public byte[] exportPdf() throws JRException, FileNotFoundException {
         return ventasReportGenerator.exportToPdf((List<Venta>) ventaRepository.findAll());
+    }
+
+    @Override
+    public byte[] exportFacturaPdf(Long id) throws JRException, FileNotFoundException {
+        Optional<Venta> optionalVenta = ventaRepository.findById(id);
+        if (optionalVenta.isPresent()) {
+            Venta venta = optionalVenta.get();
+            List<Venta> ventas = Collections.singletonList(venta);
+            return ventasReportGenerator.exportFacturaToPdf((Collection<Venta>) ventas);
+        }
+        return null;
     }
 }

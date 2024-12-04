@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
 import java.io.FileNotFoundException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,21 @@ public class VentasReportGenerator {
 
         JasperPrint report = JasperFillManager.fillReport(JasperCompileManager.compileReport(
                 ResourceUtils.getFile("classpath:reporteMensual.jrxml")
+                        .getAbsolutePath()), params, new JREmptyDataSource());
+
+        return report;
+    }
+
+    public byte[] exportFacturaToPdf(Collection<Venta> ventaF) throws JRException, FileNotFoundException {
+        return JasperExportManager.exportReportToPdf(getFacturaReport(ventaF));
+    }
+
+    private JasperPrint getFacturaReport(Collection<Venta> ventaF) throws FileNotFoundException, JRException {
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("venta", new JRBeanCollectionDataSource((Collection<?>) ventaF));
+
+        JasperPrint report = JasperFillManager.fillReport(JasperCompileManager.compileReport(
+                ResourceUtils.getFile("classpath:facturaVenta.jrxml")
                         .getAbsolutePath()), params, new JREmptyDataSource());
 
         return report;

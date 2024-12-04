@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.FileNotFoundException;
@@ -31,5 +32,12 @@ public class InformeController {
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("reporteMensual", "reporteMensual.pdf");
         return ResponseEntity.ok().headers(headers).body(ventaService.exportPdf());
+    }
+    @GetMapping("/facturaVenta/{id}")
+    public ResponseEntity<byte[]> exportFacturaPdf(@PathVariable Long id) throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("facturaVenta", "facturaVenta.pdf");
+        return ResponseEntity.ok().headers(headers).body(ventaService.exportFacturaPdf(id));
     }
 }
