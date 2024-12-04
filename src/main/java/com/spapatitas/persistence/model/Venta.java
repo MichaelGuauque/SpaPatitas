@@ -40,6 +40,9 @@ public class Venta {
     private double valorIva;
     @Column(nullable = false)
     private double valorSinIva;
+    @Column(nullable = false)
+    private double valorTotal;
+
 
     @OneToMany(targetEntity = DetalleVenta.class,fetch = FetchType.EAGER, mappedBy = "venta")
     private List<DetalleVenta> detallesVenta;
@@ -49,17 +52,20 @@ public class Venta {
         this.detallesVenta = new ArrayList<>();
         this.valorIva = 0;
         this.valorSinIva = 0;
+        this.valorTotal = 0;
     }
 
     public void addDetalleVenta(DetalleVenta detalleVenta) {
         this.detallesVenta.add(detalleVenta);
         this.valorIva += detalleVenta.getValorIva();
         this.valorSinIva += detalleVenta.getValorSinIva();
+        this.valorTotal = this.valorTotal + this.valorSinIva + this.valorIva;
     }
 
     public void removeDetalleVenta(DetalleVenta detalleVenta) {
         this.detallesVenta.remove(detalleVenta);
         this.valorIva -= detalleVenta.getValorIva();
         this.valorSinIva -= detalleVenta.getValorSinIva();
+        this.valorTotal = this.valorTotal - this.valorSinIva - this.valorIva;
     }
 }
