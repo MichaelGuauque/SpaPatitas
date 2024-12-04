@@ -56,12 +56,12 @@
                     <div class="row" style="background-color: #FFFFFF;">
                         <!-- Numero de documento -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
-                            <input type="number" class="form-control" name="cedula" id="cedula"
+                            <input type="number" min="1" class="form-control" name="cedula" id="cedula"
                                    placeholder="No. de documento." required>
                         </div>
                         <!-- Telefono -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
-                            <input type="number" class="form-control" name="telefono" id="telefono"
+                            <input type="number" min="1" class="form-control" name="telefono" id="telefono"
                                    placeholder="Número celular" required>
                         </div>
                     </div>
@@ -69,6 +69,7 @@
                     <div class="row" style="background-color: #FFFFFF;">
                         <!-- Genero -->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
+                            <label class="form-label">Genero</label>
                             <select class="form-select" name="genero" aria-label="Seleccione su género" required>
                                 <option value="" selected>Seleccione su genero.</option>
                                 <th:block th:each="genero : ${generos}">
@@ -78,6 +79,7 @@
                         </div>
                         <!-- Fecha Nacimiento-->
                         <div class="col-md-6 mb-3" style="background-color: #FFFFFF;">
+                            <label class="form-label">Fecha de Nacimiento</label>
                             <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento"
                                    placeholder="Fecha Nacimiento" required>
                         </div>

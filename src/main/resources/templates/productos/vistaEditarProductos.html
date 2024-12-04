@@ -35,12 +35,12 @@
                         <!-- Segundo Input -->
                         <div class="col-md-4 mb-3">
                             <label for="valor" class="form-label">Precio al Publico</label>
-                            <input type="number" class="form-control" name="precioPublico" id="valor" placeholder="Ingresa el valor" th:value="${producto.precioPublico}">
+                            <input type="number" min="1" class="form-control" name="precioPublico" id="valor" placeholder="Ingresa el valor" th:value="${producto.precioPublico}">
                         </div>
                         <!-- Tercer Input -->
                         <div class="col-md-4 mb-3">
                             <label for="precioProveedor" class="form-label">Precio Proveedor</label>
-                            <input type="number" class="form-control" name="precioProvee" id="precioProveedor" placeholder="Ingresa el valor" th:value="${producto.precioProvee}">
+                            <input type="number" min="1" class="form-control" name="precioProvee" id="precioProveedor" placeholder="Ingresa el valor" th:value="${producto.precioProvee}">
                         </div>
                     </div>
             
@@ -83,7 +83,7 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="stock" class="form-label">Stock</label>
-                            <input type="number" class="form-control" name="stock" id="stock" th:value="${producto.stock}" placeholder="Ingrese el stock">
+                            <input type="number" min="1" class="form-control" name="stock" id="stock" th:value="${producto.stock}" placeholder="Ingrese el stock">
                         </div>
                     </div>
             

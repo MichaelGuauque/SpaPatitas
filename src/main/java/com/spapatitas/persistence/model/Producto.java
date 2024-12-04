@@ -49,6 +49,9 @@ public class Producto {
     @OneToMany (targetEntity = DetalleVenta.class, mappedBy = "producto")
     private List<DetalleVenta> detallesVenta;
 
+    @OneToMany (targetEntity = PromocionProducto.class, mappedBy = "producto")
+    private List<PromocionProducto> promocionesProducto;
+
     @Override
     public String toString() {
         return "Producto{" +

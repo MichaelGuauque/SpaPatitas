@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpaPatitas | Promociones</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="icon" type="image/png" th:href="@{/img/Solo logo Blanco.png}">
+  <link rel="stylesheet" th:href="@{/style/principal.css}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
+</head>
+<body>
+<!-- left var -->
+<div th:include="user/template_user.html::header-user"></div>
+
+<main>
+  <div class="right-content">
+    <div class="right-botones">
+      <a class="boton-carrito" href="#"> <img class="icons-menu" th:src="@{/img/Shopping cart.png}"> Carrito</a>
+    </div>
+    <div class="panel-informacion">
+      <h2>¡Aprovecha nuestras ofertas y consiente a tu mascota sin gastar de más! Descubre descuentos especiales en servicios y productos exclusivos para tu peludo amigo.</h2>
+    </div>
+
+
+
+    <div class="tabla">
+      <div class="tabla-encabezado">
+        <h3 id="pequeño2">Promociones Disponibles</h3>
+        <div>
+          <form>
+            <input class="buscador" type="number" placeholder="Nombre del producto.">
+            <button class="boton-buscar" type="submit"><img th:src="@{/img/Search.png}"></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="container mt-4">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+          <!-- Div personalizado (en lugar de la primera tarjeta) -->
+          <div class="col">
+            <div id="tarjetaPromo" class="custom-div h-100 p-3 position-relative">
+              <h5 id="tituloTarjetaPromo">Aprovecha Nuestras Promociones</h5>
+
+              <img th:src="@{/img/promo.png}" alt="Imagen de producto" class="centered-image">
+
+            </div>
+          </div>
+
+          <!-- Tarjeta de producto 2 -->
+          <div class="col" th:each="p: ${promociones}">
+            <div class="card h-100">
+              <img th:src="@{/images/{img} (img=${p.producto.imagen})}" class="card-img-top" alt="Producto">
+              <div class="card-body">
+                <h5 class="card-title" th:text="${p.producto.nombre}"></h5>
+                <p class="card-text" th:text="${p.producto.descripcion}"></p>
+                <p class="card-text" th:text="'Antes: $'+${p.producto.precioPublico}"></p>
+                <h6 class="textoTarjeta" th:text="'$'+${p.totalPrecio}"></h6>
+                <button class="btn btn-primary w-100 d-flex align-items-center justify-content-center">
+                  Agregar al carrito
+                  <img id="carrito" th:src="@{/img/Shopping cart.png}" alt="Carrito" class="me-2" style="width: 20px; height: 20px; margin-left: 5px;">
+
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <div th:include="admin/template_admin.html::footer"></div>
+
+
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>

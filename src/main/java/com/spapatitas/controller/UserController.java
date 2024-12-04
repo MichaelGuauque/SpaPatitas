@@ -8,6 +8,7 @@ import com.spapatitas.service.implementation.GestionInfoService;
 import com.spapatitas.service.implementation.ProductoService;
 import com.spapatitas.service.implementation.TipoServicioService;
 import com.spapatitas.service.interfaces.IClienteService;
+import com.spapatitas.service.interfaces.IPromocionProductoService;
 import com.spapatitas.service.interfaces.IUserEntity;
 import jakarta.servlet.http.HttpSession;
 import org.apache.catalina.Role;
@@ -50,6 +51,9 @@ public class UserController {
 
     @Autowired
     private GestionInfoService gestionInfoService;
+
+    @Autowired
+    private IPromocionProductoService promocionService;
 
     private final String ID_USUARIO = "idUsuario";
 
@@ -264,8 +268,9 @@ public class UserController {
     }
 
     @GetMapping("/promociones")
-    public String promociones() {
-        return "promociones/promocionesConstruccionUsuario";
+    public String promociones(Model model) {
+        model.addAttribute("promociones", promocionService.findAllPromocionesDisponibles());
+        return "promociones/vistaPromocionesUsuario";
 
     }
 
