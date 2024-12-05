@@ -53,6 +53,9 @@ public class Cliente {
     @OneToMany(targetEntity = Mascota.class, fetch = FetchType.LAZY, mappedBy = "dueno")
     private List<Mascota> mascotas;
 
+    @OneToMany(targetEntity = Venta.class, fetch = FetchType.LAZY, mappedBy = "cliente")
+    private List<Venta> ventas;
+
     @OneToOne()
     @JoinColumn(name = "usuario_id", unique = true, nullable = false)
     private UserEntity usuario;

@@ -1,16 +1,7 @@
 package com.spapatitas.persistence.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +20,7 @@ public class Venta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVenta;
 
-    @OneToOne(targetEntity = Cliente.class, cascade = CascadeType.PERSIST)
+    @ManyToOne(targetEntity = Cliente.class)
     private Cliente cliente;
 
     @Column(nullable = false)
@@ -51,20 +42,20 @@ public class Venta {
         this.detallesVenta = new ArrayList<>();
         this.valorIva = 0;
         this.valorSinIva = 0;
-        this.total = total;
+        this.total = 0;
     }
 
     public void addDetalleVenta(DetalleVenta detalleVenta) {
         this.detallesVenta.add(detalleVenta);
         this.valorIva += detalleVenta.getValorIva();
         this.valorSinIva += detalleVenta.getValorSinIva();
-        this.total = valorIva + valorSinIva;
+        this.total += this.valorIva + this.valorSinIva;
     }
 
     public void removeDetalleVenta(DetalleVenta detalleVenta) {
         this.detallesVenta.remove(detalleVenta);
         this.valorIva -= detalleVenta.getValorIva();
         this.valorSinIva -= detalleVenta.getValorSinIva();
-        this.total = valorIva + valorSinIva;
+        this.total -= this.valorIva + this.valorSinIva;
     }
 }

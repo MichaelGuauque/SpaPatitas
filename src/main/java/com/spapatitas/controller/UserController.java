@@ -304,7 +304,7 @@ public class UserController {
         if (existente.isPresent()) {
             // Actualizar cantidad y total del producto ya existente
             DetalleVenta detExistente = existente.get();
-            detExistente.setCantidad(detExistente.getCantidad() + cantidad);
+            detExistente.setCantidad(detExistente.getCantidad() + 1);
             // Calcular el nuevo total
             detExistente.setTotal(detExistente.getCantidad() * producto.getPrecioPublico());
         } else {

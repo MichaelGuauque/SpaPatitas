@@ -45,6 +45,9 @@ public class Producto {
     @Column(nullable = false)
     private boolean estado;
 
+    @Transient
+    private double precioSinIva;
+
     @ManyToOne (targetEntity = Categoria.class)
     private Categoria categoria;
 
@@ -60,6 +63,8 @@ public class Producto {
         formatoPesosColombianos.setMinimumFractionDigits(0); // No mostrar decimales
         return "$" + formatoPesosColombianos.format(this.precioPublico);
     }
+
+
 
     @Override
     public String toString() {

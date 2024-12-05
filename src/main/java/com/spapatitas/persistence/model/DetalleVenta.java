@@ -40,8 +40,8 @@ public class DetalleVenta {
     public DetalleVenta(int cantidad, Producto producto) {
         this.cantidad = cantidad;
         this.producto = producto;
-        this.valorSinIva = cantidad * producto.getPrecioPublico();
-        this.valorIva = valorSinIva * producto.getCategoria().getPorcentajeIva();
+        this.valorSinIva = (this.producto.getPrecioPublico() - (this.producto.getCategoria().getPorcentajeIva()*this.producto.getPrecioPublico())) * this.cantidad ;
+        this.valorIva = this.producto.getPrecioPublico() * producto.getCategoria().getPorcentajeIva();
         this.total = valorSinIva + valorIva;
     }
 }
