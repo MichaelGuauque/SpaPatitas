@@ -25,7 +25,7 @@
         <field name="fechaVenta" class="java.time.LocalDateTime"/>
         <field name="valorSinIva" class="java.lang.Double"/>
         <field name="valorIva" class="java.lang.Double"/>
-        <field name="valorTotal" class="java.lang.Double"/>
+        <field name="total" class="java.lang.Double"/>
         <sortField name="fechaVenta"/>
     </subDataset>
     <parameter name="venta" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
@@ -141,7 +141,7 @@
                                 <textElement textAlignment="Center" verticalAlignment="Middle">
                                     <font size="12"/>
                                 </textElement>
-                                <textFieldExpression><![CDATA["$" + $F{valorTotal}]]></textFieldExpression>
+                                <textFieldExpression><![CDATA["$" + $F{total}]]></textFieldExpression>
                             </textField>
                         </jr:detailCell>
                     </jr:column>

@@ -24,7 +24,7 @@
         <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
         <field name="valorSinIva" class="java.lang.Double"/>
         <field name="valorIva" class="java.lang.Double"/>
-        <field name="valorTotal" class="java.lang.Double"/>
+        <field name="total" class="java.lang.Double"/>
         <field name="metodoPago" class="java.lang.Enum"/>
         <field name="idVenta" class="java.lang.Long"/>
         <field name="cliente.cedula" class="java.lang.Integer"/>
@@ -220,7 +220,7 @@ Correo: info@spapatitas.com
                                 <textElement textAlignment="Center" verticalAlignment="Middle">
                                     <font size="12"/>
                                 </textElement>
-                                <textFieldExpression><![CDATA["$" + $F{valorTotal}]]></textFieldExpression>
+                                <textFieldExpression><![CDATA["$" + $F{total}]]></textFieldExpression>
                             </textField>
                         </jr:columnFooter>
                         <jr:detailCell style="Table_TD" height="30">

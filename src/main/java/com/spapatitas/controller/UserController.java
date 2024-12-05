@@ -10,6 +10,7 @@ import com.spapatitas.service.implementation.TipoServicioService;
 import com.spapatitas.service.interfaces.IClienteService;
 import com.spapatitas.service.interfaces.IPromocionProductoService;
 import com.spapatitas.service.interfaces.IUserEntity;
+import com.spapatitas.service.interfaces.IVentaService;
 import jakarta.servlet.http.HttpSession;
 import org.apache.catalina.Role;
 import org.apache.catalina.User;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -57,6 +59,9 @@ public class UserController {
 
     @Autowired
     private IPromocionProductoService promocionService;
+
+    @Autowired
+    private IVentaService ventaService;
 
     private final String ID_USUARIO = "idUsuario";
 
@@ -354,5 +359,17 @@ public class UserController {
         model.addAttribute("venta", venta);
 
         return "user/carrito";
+    }
+
+    @GetMapping("/guardar-venta")
+    public String guardarVenta(HttpSession session ) {
+        Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
+        venta.setCliente(sesionDelCliente);
+        venta.setFechaVenta(LocalDateTime.now());
+        logger.info("venta: {}", venta);
+
+        ventaService.save(venta);
+        venta = new Venta();
+        return "redirect:/user/productos";
     }
 }
