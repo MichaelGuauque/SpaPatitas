@@ -17,7 +17,7 @@
     <main>
     <div class="right-content">
         <div class="right-botones">
-            <a class="boton-carrito" href="#"> <img class="icons-menu" th:src="@{/img/Shopping cart.png}"> Carrito</a>
+            <a class="boton-carrito" th:href="@{/user/carrito}"> <img class="icons-menu" th:src="@{/img/Shopping cart.png}"> Carrito</a>
         </div>
         <div class="panel-informacion">
             <h2>Encuentra lo mejor para tu peludo amigo. Desde alimentos de alta calidad hasta juguetes y accesorios, en Spa Patitas tenemos todo lo que necesitas para consentir a tu perro.</h2>
@@ -54,17 +54,19 @@
                     <!-- Tarjeta de producto 2 -->
                     <div class="col" th:each="producto: ${productos}">
                         <div class="card h-100">
-                            <img th:src="@{/images/{img} (img=${producto.imagen})}" class="card-img-top" alt="Producto">
-                            <div class="card-body">
-                                <h5 class="card-title" th:text="${producto.nombre}"></h5>
-                                <p class="card-text" th:text="${producto.descripcion}"></p>
-                                <h6 class="textoTarjeta" th:text="'$'+${producto.precioPublico}"></h6>
-                                <button class="btn btn-primary w-100 d-flex align-items-center justify-content-center">
-                                    Agregar al carrito
-                                    <img id="carrito" th:src="@{/img/Shopping cart.png}" alt="Carrito" class="me-2" style="width: 20px; height: 20px; margin-left: 5px;">
-                                    
-                                </button>
-                            </div>
+                            <form th:action="@{/user/carrito}" method="POST">
+                                <input type="hidden" th:value="${producto.codigo}" name="codigo">
+                                <img th:src="@{/images/{img} (img=${producto.imagen})}" class="card-img-top" alt="Producto">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${producto.nombre}"></h5>
+                                    <p class="card-text" th:text="${producto.descripcion}"></p>
+                                    <h6 class="textoTarjeta" th:text="'$'+${producto.precioPublico}"></h6>
+                                    <button class="btn btn-primary w-100 d-flex align-items-center justify-content-center">
+                                        Agregar al carrito
+                                        <img id="carrito" th:src="@{/img/Shopping cart.png}" alt="Carrito" class="me-2" style="width: 20px; height: 20px; margin-left: 5px;">
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

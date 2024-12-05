@@ -31,6 +31,9 @@ public class DetalleVenta {
     @Column(nullable = false)
     private double valorSinIva;
 
+    @Column(nullable = false)
+    private double total;
+
     @ManyToOne(targetEntity = Venta.class, fetch = FetchType.EAGER)
     private Venta venta;
 
@@ -39,5 +42,6 @@ public class DetalleVenta {
         this.producto = producto;
         this.valorSinIva = cantidad * producto.getPrecioPublico();
         this.valorIva = valorSinIva * producto.getCategoria().getPorcentajeIva();
+        this.total = valorSinIva + valorIva;
     }
 }

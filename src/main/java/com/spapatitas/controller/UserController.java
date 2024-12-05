@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,8 @@ public class UserController {
     private final IClienteService clienteService;
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+    List<DetalleVenta> detalles = new ArrayList<DetalleVenta>();
+    Venta venta = new Venta();
 
     @Autowired
     private CitaService citaService;
@@ -278,5 +281,108 @@ public class UserController {
     public String cerrarSesion(HttpSession session){
         session.removeAttribute("idUsuario");
         return "redirect:/user/login";
+    }
+
+    @PostMapping("/carrito")
+    public String añadirCarrito(@RequestParam (required = false) Long codigo,
+                                @RequestParam(defaultValue = "1") int cantidad,
+                                Model model) {
+        // Buscar el producto
+        Producto producto = productoService.getProductoRepository().findById(codigo)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+
+        // Verificar si el producto ya está en el carrito
+        Optional<DetalleVenta> existente = detalles.stream()
+                .filter(det -> det.getProducto().getCodigo().equals(producto.getCodigo()))
+                .findFirst();
+
+        if (existente.isPresent()) {
+            // Actualizar cantidad y total del producto ya existente
+            DetalleVenta detExistente = existente.get();
+            detExistente.setCantidad(detExistente.getCantidad() + cantidad);
+            // Calcular el nuevo total
+            detExistente.setTotal(detExistente.getCantidad() * producto.getPrecioPublico());
+        } else {
+            // Crear un nuevo detalle
+            DetalleVenta detalleVenta = new DetalleVenta(cantidad, producto);
+            detalleVenta.setProducto(producto);
+            detalleVenta.setCantidad(cantidad);
+
+            detalles.add(detalleVenta);
+        }
+
+        // Calcular el subtotal del carrito
+        double sumaSubTotal = detalles.stream().mapToDouble(DetalleVenta::getTotal).sum();
+
+        // Calcular el IVA de la compra
+        double ivaComp = sumaSubTotal * 0.19;
+
+        // Calcular el IVA de la compra
+        double sumaTotal = sumaSubTotal + ivaComp;
+
+        // Pasar datos al modelo
+        model.addAttribute("carrito", detalles);
+        model.addAttribute("sumaSubTotal", sumaSubTotal); // SubTotal acumulado del carrito
+        model.addAttribute("ivaComp", ivaComp); // Iva de la compra del carrito
+        model.addAttribute("sumaTotal", sumaTotal); // Total compra
+        model.addAttribute("venta", venta);
+
+        return "user/carrito";
+    }
+
+    @GetMapping("/delete/carrito/{codigo}")
+    public String borrarProductoCarrito(@PathVariable Long codigo, Model model){
+
+        List<DetalleVenta> detallesNueva = new ArrayList<DetalleVenta>();
+
+        for (DetalleVenta detalleVenta : detalles) {
+            if (!detalleVenta.getProducto().getCodigo().equals(codigo)) {
+                detallesNueva.add(detalleVenta);
+            }
+        }
+
+        detalles = detallesNueva;
+
+        double sumaSubTotal = 0;
+        // Calcular el total del carrito
+        sumaSubTotal = detalles.stream().mapToDouble(DetalleVenta::getTotal).sum();
+
+        // Calcular el IVA de la compra
+        double ivaComp = sumaSubTotal * 0.19;
+
+        // Calcular el IVA de la compra
+        double sumaTotal = sumaSubTotal + ivaComp;
+
+        // Pasar datos al modelo
+        model.addAttribute("carrito", detalles);
+        model.addAttribute("sumaSubTotal", sumaSubTotal); // SubTotal del carrito
+        model.addAttribute("ivaComp", ivaComp); // Iva de la compra del carrito
+        model.addAttribute("sumaTotal", sumaTotal); // Total compra
+        model.addAttribute("venta", venta);
+
+        return "user/carrito";
+    }
+
+    @GetMapping("/carrito")
+    public String verCarrito(Model model) {
+
+        double sumaSubTotal = 0;
+        // Calcular el total del carrito aunque este vacio
+        sumaSubTotal = detalles.stream().mapToDouble(DetalleVenta::getTotal).sum();
+
+        // Calcular el IVA de la compra
+        double ivaComp = sumaSubTotal * 0.19;
+
+        // Calcular el IVA de la compra
+        double sumaTotal = sumaSubTotal + ivaComp;
+
+        // Pasar datos al modelo
+        model.addAttribute("carrito", detalles);
+        model.addAttribute("sumaSubTotal", sumaSubTotal); // SubTotal del carrito
+        model.addAttribute("ivaComp", ivaComp); // Iva de la compra del carrito
+        model.addAttribute("sumaTotal", sumaTotal); // Total compra
+        model.addAttribute("venta", venta);
+
+        return "user/carrito";
     }
 }
