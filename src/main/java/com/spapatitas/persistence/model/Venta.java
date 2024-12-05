@@ -20,7 +20,7 @@ public class Venta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVenta;
 
-    @ManyToOne(targetEntity = Cliente.class)
+    @ManyToOne(targetEntity = Cliente.class, optional = true)
     private Cliente cliente;
 
     @Column(nullable = false)

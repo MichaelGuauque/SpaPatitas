@@ -3,10 +3,7 @@ package com.spapatitas.controller;
 import com.spapatitas.DTO.ClienteDTO;
 import com.spapatitas.DTO.UserDTO;
 import com.spapatitas.persistence.model.*;
-import com.spapatitas.service.implementation.CitaService;
-import com.spapatitas.service.implementation.GestionInfoService;
-import com.spapatitas.service.implementation.ProductoService;
-import com.spapatitas.service.implementation.TipoServicioService;
+import com.spapatitas.service.implementation.*;
 import com.spapatitas.service.interfaces.IClienteService;
 import com.spapatitas.service.interfaces.IPromocionProductoService;
 import com.spapatitas.service.interfaces.IUserEntity;
@@ -22,6 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +61,9 @@ public class UserController {
 
     @Autowired
     private IVentaService ventaService;
+
+    @Autowired
+    private ReciboPDFService reciboPDFService;
 
     private final String ID_USUARIO = "idUsuario";
 
@@ -361,15 +363,52 @@ public class UserController {
         return "user/carrito";
     }
 
+//    @GetMapping("/guardar-venta")
+//    public String guardarVenta(HttpSession session ) {
+//        Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
+//        venta.setCliente(sesionDelCliente);
+//        venta.setFechaVenta(LocalDateTime.now());
+//        logger.info("venta: {}", venta);
+//
+//        ventaService.save(venta);
+//        venta = new Venta();
+//        return "redirect:/user/productos";
+//    }
+
     @GetMapping("/guardar-venta")
-    public String guardarVenta(HttpSession session ) {
+    public String guardarVenta(HttpSession session) {
+        // Obtener el cliente de la sesión
         Cliente sesionDelCliente = clienteSession(ID_USUARIO, session);
         venta.setCliente(sesionDelCliente);
         venta.setFechaVenta(LocalDateTime.now());
-        logger.info("venta: {}", venta);
+        logger.info("Venta: {}", venta);
 
+        // Guardar la venta en la base de datos
         ventaService.save(venta);
+
+        try {
+            // Ruta para guardar el recibo en la carpeta de Descargas
+            String userHome = System.getProperty("user.home"); // Carpeta base del usuario
+            String downloadsPath = userHome + "/Downloads/recibo_" + venta.getIdVenta() + ".pdf"; // Nombre del archivo
+
+            // Llamar al método de generación de recibo, pasando la ruta de guardado
+            try (FileOutputStream fos = new FileOutputStream(downloadsPath)) {
+                reciboPDFService.generarReciboPDF(venta.getIdVenta(), fos);
+                logger.info("Recibo generado y guardado en: {}", downloadsPath);
+            }
+        } catch (IOException e) {
+            logger.error("Error al generar el recibo de la venta: {}", e.getMessage(), e);
+        }
+
+        // Limpiar la venta para futuras operaciones
         venta = new Venta();
+
+        // Redirigir al usuario de vuelta a la página de productos
         return "redirect:/user/productos";
     }
+
+
+
+
+
 }

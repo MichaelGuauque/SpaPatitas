@@ -26,7 +26,6 @@ import java.io.OutputStream;
 import java.util.List;
 
 
-//icon _Paw_
 @Service
 public class ReciboPDFService {
 
@@ -190,4 +189,5 @@ public class ReciboPDFService {
         // Cerrar el documento
         document.close();
     }
+
 }
