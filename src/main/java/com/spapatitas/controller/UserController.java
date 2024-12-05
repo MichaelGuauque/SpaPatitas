@@ -311,15 +311,6 @@ public class UserController {
             venta.addDetalleVenta(detalleVenta);
         }
 
-//        // Calcular el subtotal del carrito
-//        double sumaSubTotal = detalles.stream().mapToDouble(DetalleVenta::getValorSinIva).sum();
-//
-//        // Calcular el IVA de la compra
-//        double ivaComp = detalles.stream().mapToDouble(DetalleVenta::getValorIva).sum();
-//
-//        // Calcular el IVA de la compra
-//        double sumaTotal = sumaSubTotal + ivaComp;
-
         // Pasar datos al modelo
         model.addAttribute("carrito", venta.getDetallesVenta());
         model.addAttribute("sumaSubTotal", venta.getValorSinIva()); // SubTotal acumulado del carrito
@@ -332,26 +323,6 @@ public class UserController {
 
     @GetMapping("/delete/carrito/{codigo}")
     public String borrarProductoCarrito(@PathVariable Long codigo, Model model){
-
-//        List<DetalleVenta> detallesNueva = new ArrayList<DetalleVenta>();
-//
-//        for (DetalleVenta detalleVenta : detalles) {
-//            if (!detalleVenta.getProducto().getCodigo().equals(codigo)) {
-//                detallesNueva.add(detalleVenta);
-//            }
-//        }
-//
-//        detalles = detallesNueva;
-//
-//        double sumaSubTotal = 0;
-//        // Calcular el total del carrito
-//        sumaSubTotal = detalles.stream().mapToDouble(DetalleVenta::getValorSinIva).sum();
-//
-//        // Calcular el IVA de la compra
-//        double ivaComp = detalles.stream().mapToDouble(DetalleVenta::getValorIva).sum();
-//
-//        // Calcular el IVA de la compra
-//        double sumaTotal = sumaSubTotal + ivaComp;
 
         // Buscar detalle a eliminar
         DetalleVenta detalleEliminar = venta.getDetallesVenta().stream()
@@ -374,16 +345,6 @@ public class UserController {
 
     @GetMapping("/carrito")
     public String verCarrito(Model model) {
-
-//        double sumaSubTotal = 0;
-//        // Calcular el total del carrito aunque este vacio
-//        sumaSubTotal = detalles.stream().mapToDouble(DetalleVenta::getValorSinIva).sum();
-//
-//        // Calcular el IVA de la compra
-//        double ivaComp = detalles.stream().mapToDouble(DetalleVenta::getValorIva).sum();
-//
-//        // Calcular el IVA de la compra
-//        double sumaTotal = sumaSubTotal + ivaComp;
 
         // Pasar datos al modelo
         model.addAttribute("carrito", venta.getDetallesVenta());
