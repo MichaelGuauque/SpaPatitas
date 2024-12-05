@@ -304,25 +304,27 @@ public class UserController {
                 .findFirst();
 
         if (existente.isPresent()) {
-            // Actualizar cantidad y total del producto ya existente
+
+//            // Actualizar cantidad y total del producto ya existente
             DetalleVenta detExistente = existente.get();
+            venta.removeDetalleVenta(detExistente);
             detExistente.setCantidad(detExistente.getCantidad() + 1);
-            // Calcular el nuevo total
+            venta.addDetalleVenta(detExistente);
+//            // Calcular el nuevo total
             detExistente.setTotal(detExistente.getCantidad() * producto.getPrecioPublico());
+//
         } else {
             // Crear un nuevo detalle
             DetalleVenta detalleVenta = new DetalleVenta(cantidad, producto);
-            detalleVenta.setProducto(producto);
-            detalleVenta.setCantidad(cantidad);
 
             venta.addDetalleVenta(detalleVenta);
         }
 
         // Pasar datos al modelo
         model.addAttribute("carrito", venta.getDetallesVenta());
-        model.addAttribute("sumaSubTotal", venta.getValorSinIva()); // SubTotal acumulado del carrito
-        model.addAttribute("ivaComp", venta.getValorIva()); // Iva de la compra del carrito
-        model.addAttribute("sumaTotal", venta.getTotal()); // Total compra
+//        model.addAttribute("sumaSubTotal", venta.getValorSinIva()); // SubTotal acumulado del carrito
+//        model.addAttribute("ivaComp", venta.getValorIva()); // Iva de la compra del carrito
+//        model.addAttribute("sumaTotal", venta.getTotal()); // Total compra
         model.addAttribute("venta", venta);
 
         return "user/carrito";
@@ -342,9 +344,9 @@ public class UserController {
 
         // Pasar datos al modelo
         model.addAttribute("carrito", venta.getDetallesVenta());
-        model.addAttribute("sumaSubTotal", venta.getValorSinIva()); // SubTotal del carrito
-        model.addAttribute("ivaComp", venta.getValorIva()); // Iva de la compra del carrito
-        model.addAttribute("sumaTotal", venta.getTotal()); // Total compra
+//        model.addAttribute("sumaSubTotal", venta.getValorSinIva()); // SubTotal del carrito
+//        model.addAttribute("ivaComp", venta.getValorIva()); // Iva de la compra del carrito
+//        model.addAttribute("sumaTotal", venta.getTotal()); // Total compra
         model.addAttribute("venta", venta);
 
         return "user/carrito";
@@ -355,9 +357,9 @@ public class UserController {
 
         // Pasar datos al modelo
         model.addAttribute("carrito", venta.getDetallesVenta());
-        model.addAttribute("sumaSubTotal", venta.getValorSinIva()); // SubTotal del carrito
-        model.addAttribute("ivaComp", venta.getValorIva()); // Iva de la compra del carrito
-        model.addAttribute("sumaTotal", venta.getTotal()); // Total compra
+//        model.addAttribute("sumaSubTotal", venta.getValorSinIva()); // SubTotal del carrito
+//        model.addAttribute("ivaComp", venta.getValorIva()); // Iva de la compra del carrito
+//        model.addAttribute("sumaTotal", venta.getTotal()); // Total compra
         model.addAttribute("venta", venta);
 
         return "user/carrito";
@@ -382,6 +384,7 @@ public class UserController {
         venta.setCliente(sesionDelCliente);
         venta.setFechaVenta(LocalDateTime.now());
         logger.info("Venta: {}", venta);
+        venta.setMetodoPago(MetodoPago.TARJETADECREDITO);
 
         // Guardar la venta en la base de datos
         ventaService.save(venta);

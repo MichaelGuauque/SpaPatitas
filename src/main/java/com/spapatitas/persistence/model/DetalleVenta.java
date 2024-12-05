@@ -41,7 +41,7 @@ public class DetalleVenta {
         this.cantidad = cantidad;
         this.producto = producto;
         this.valorSinIva = (this.producto.getPrecioPublico() - (this.producto.getCategoria().getPorcentajeIva()*this.producto.getPrecioPublico())) * this.cantidad ;
-        this.valorIva = this.producto.getPrecioPublico() * producto.getCategoria().getPorcentajeIva();
+        this.valorIva = this.producto.getPrecioPublico() * this.producto.getCategoria().getPorcentajeIva() * this.cantidad;
         this.total = valorSinIva + valorIva;
     }
 }

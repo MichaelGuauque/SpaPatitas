@@ -60,9 +60,9 @@
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <p><strong>Sub Total:</strong> $<span th:text="${sumaSubTotal}"></span></p>
-                <p><strong>Impuestos:</strong> $<span th:text="${ivaComp}"></span></p>
-                <p><strong>Total:</strong> $<span th:text="${sumaTotal}"></span></p>
+                <p><strong>Sub Total:</strong> $<span th:text="${venta.valorSinIva}"></span></p>
+                <p><strong>Impuestos:</strong> $<span th:text="${venta.valorIva}"></span></p>
+                <p><strong>Total:</strong> $<span th:text="${venta.total}"></span></p>
             </div>
             <div>
                 <a th:href="@{/user/guardar-venta}" class="btn btn-success mb-2">Proceder con el pago</a>

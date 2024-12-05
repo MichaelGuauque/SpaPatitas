@@ -152,12 +152,12 @@ public class ReciboPDFService {
         List<DetalleVenta> detallesVenta = venta.getDetallesVenta();
         for (DetalleVenta detalle : detallesVenta) {
             Producto producto = detalle.getProducto();
-            double totalProducto = detalle.getValorSinIva() + detalle.getValorIva();
+            double totalProducto = (detalle.getValorSinIva() *detalle.getCantidad() ) + (detalle.getValorIva() *detalle.getCantidad());
 
             table.addCell(new Cell().add(new Paragraph(producto.getNombre())));
             table.addCell(new Cell().add(new Paragraph(String.valueOf(detalle.getCantidad()))));
-            table.addCell(new Cell().add(new Paragraph(String.valueOf(detalle.getValorSinIva()))));
-            table.addCell(new Cell().add(new Paragraph(String.valueOf(detalle.getValorIva()))));
+            table.addCell(new Cell().add(new Paragraph(String.valueOf(detalle.getValorSinIva()*detalle.getCantidad()))));
+            table.addCell(new Cell().add(new Paragraph(String.valueOf(detalle.getValorIva()*detalle.getCantidad()))));
             table.addCell(new Cell().add(new Paragraph(String.valueOf(totalProducto))));
         }
 
@@ -172,7 +172,7 @@ public class ReciboPDFService {
                 .setTextAlignment(TextAlignment.RIGHT);
         document.add(iva);
 
-        Paragraph totalConIva = new Paragraph("Total con impuestos: " + (venta.getValorSinIva() + venta.getValorIva()))
+        Paragraph totalConIva = new Paragraph("Total con impuestos: " + (venta.getTotal()))
                 .setTextAlignment(TextAlignment.RIGHT);
         document.add(totalConIva);
 
