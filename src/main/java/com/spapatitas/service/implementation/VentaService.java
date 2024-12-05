@@ -4,9 +4,14 @@ package com.spapatitas.service.implementation;
 import com.spapatitas.persistence.model.Venta;
 import com.spapatitas.persistence.repository.VentaRepository;
 import com.spapatitas.service.interfaces.IVentaService;
+import com.spapatitas.util.VentasReportGenerator;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +20,8 @@ public class VentaService implements IVentaService {
 
     @Autowired
     private VentaRepository ventaRepository;
+    @Autowired
+    private VentasReportGenerator ventasReportGenerator;
 
     @Override
     public List<Venta> findAllVenta() {
@@ -31,4 +38,19 @@ public class VentaService implements IVentaService {
         ventaRepository.save(venta);
     }
 
+    @Override
+    public byte[] exportPdf() throws JRException, FileNotFoundException {
+        return ventasReportGenerator.exportToPdf((List<Venta>) ventaRepository.findAll());
+    }
+
+    @Override
+    public byte[] exportFacturaPdf(Long id) throws JRException, FileNotFoundException {
+        Optional<Venta> optionalVenta = ventaRepository.findById(id);
+        if (optionalVenta.isPresent()) {
+            Venta venta = optionalVenta.get();
+            List<Venta> ventas = Collections.singletonList(venta);
+            return ventasReportGenerator.exportFacturaToPdf((Collection<Venta>) ventas);
+        }
+        return null;
+    }
 }

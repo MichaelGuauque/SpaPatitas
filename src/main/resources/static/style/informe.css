@@ -61,8 +61,26 @@ main{
     height: 86px;
     background-color: #4F4F4F;
     border: #FFFAF9 solid 10px;
+    align-content: center;
+    align-items: center;
+    text-decoration: none;
     border-radius: 20px;
     color: #FFFAF9;
     font-size: 2rem;
     font-family: "Rubik", sans-serif;
+}
+
+.boton-informe-mensual{
+    display: flex;
+    width: 254px;
+    height: 86px;
+    border-radius: 20px;
+    background-color: #4F4F4F;
+    border: #FFFAF9 solid 10px;
+    color: #FFFAF9;
+    font-size: 2rem;
+    font-family: "Rubik", sans-serif;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
