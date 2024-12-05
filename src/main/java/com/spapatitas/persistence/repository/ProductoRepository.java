@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface ProductoRepository extends CrudRepository<Producto, Long> {
 
-    Optional<Producto> findProductoByNombre(String nombre);
+    List<Producto> findByNombreContainingIgnoreCase(String nombre);
 
     List<Producto> findByEstadoTrue();
 }

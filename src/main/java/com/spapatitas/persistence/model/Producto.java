@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 @Getter
 @Setter
@@ -51,6 +53,13 @@ public class Producto {
 
     @OneToMany (targetEntity = PromocionProducto.class, mappedBy = "producto")
     private List<PromocionProducto> promocionesProducto;
+
+    public String getPrecioFormateado() {
+        NumberFormat formatoPesosColombianos = NumberFormat.getNumberInstance(new Locale("es", "CO"));
+        formatoPesosColombianos.setMaximumFractionDigits(0); // No mostrar decimales
+        formatoPesosColombianos.setMinimumFractionDigits(0); // No mostrar decimales
+        return "$" + formatoPesosColombianos.format(this.precioPublico);
+    }
 
     @Override
     public String toString() {
